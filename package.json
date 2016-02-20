@@ -1,0 +1,30 @@
+{
+  "name": "learn-nightmare",
+  "version": "1.0.0",
+  "description": "Learn how to use nightmare for front-end testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "nightmare"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nelsonic/learn-nightmare.git"
+  },
+  "keywords": [
+    "nightmare",
+    "testing",
+    "front-end",
+    "UAT",
+    "browser",
+    "test"
+  ],
+  "author": "",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/nelsonic/learn-nightmare/issues"
+  },
+  "homepage": "https://github.com/nelsonic/learn-nightmare#readme",
+  "dependencies": {
+    "nightmare": "^2.2.0"
+  }
+}
