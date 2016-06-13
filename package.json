@@ -1,30 +1,36 @@
 {
-  "name": "learn-nightmare",
+  "name": "learn-nightwatch",
   "version": "1.0.0",
-  "description": "Learn how to use nightmare for front-end testing",
+  "description": "Learn how to use nightwatch for front-end testing",
   "main": "index.js",
   "scripts": {
-    "test": "nightmare"
+    "test": "nightwatch",
+    "download-selenium": "node test/setup-selenium-download.js",
+    "selenium-server": "java -jar bin/selenium.jar",
+    "e2e": "./node_modules/.bin/nightwatch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nelsonic/learn-nightmare.git"
+    "url": "git+https://github.com/dwyl/learn-nightwatch.git"
+  },
+  "author": "DWYL & Friends",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/dwyl/learn-nightwatch/issues"
+  },
+  "homepage": "https://github.com/dwyl/learn-nightwatch#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "nightwatch": "^0.9.3",
+    "selenium-download": "^2.0.2"
   },
   "keywords": [
-    "nightmare",
+    "nightwatch",
     "testing",
     "front-end",
+    "UI",
     "UAT",
     "browser",
     "test"
-  ],
-  "author": "",
-  "license": "GPL-2.0",
-  "bugs": {
-    "url": "https://github.com/nelsonic/learn-nightmare/issues"
-  },
-  "homepage": "https://github.com/nelsonic/learn-nightmare#readme",
-  "dependencies": {
-    "nightmare": "^2.2.0"
-  }
+  ]
 }
