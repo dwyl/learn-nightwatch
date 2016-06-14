@@ -1,10 +1,5 @@
-language: java
-
-install:
-  - . $HOME/.nvm/nvm.sh
-  - nvm install stable
-  - nvm use stable
-  - npm install
-  
-script:
-  - npm test
+language: node_js
+node_js:
+  - 4.4.5
+before_install:
+  - java install oraclejdk8
