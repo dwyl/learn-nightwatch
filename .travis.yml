@@ -4,4 +4,4 @@ node_js:
 addons:
   apt:
     packages:
-      - oracle-java8-installer
+      - default-jre
