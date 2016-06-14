@@ -8,7 +8,7 @@ module.exports = {
       .click('button[name=btnG]')
       .pause(1000)
       .assert.containsText('#main', 'Night\'s Watch')
-      .saveScreenshot('google.png')
+      .saveScreenshot('reports/google.png')
       .end();
   }
 };

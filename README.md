@@ -1,6 +1,11 @@
-###### Learn Nightwatch
+# Learn Nightwatch
 
-###### _Why_?
+Automate your acceptance tests and run them
+
+![nightwatch-logo-with-slogan](https://cloud.githubusercontent.com/assets/194400/16045809/099207e2-3242-11e6-99d4-99b227d7a38a.png)
+
+
+## _Why_?
 
 Testing what people _using_ your application/website will _see_
 and their ability _interact_ with the product is
@@ -9,7 +14,7 @@ You can have amazing code, a super-fast backend and blazing ,
 but _none_ of that matters if the person is unable to _use_ it!
 
 
-###### _How_?
+## _How_?
 
 ### Installation
 
@@ -46,7 +51,45 @@ selenium.ensure('./bin', function(error) {
 ```
 
 
-##### Manual Selenium Install
+### Setup
+
+Nightwatch test runner expects to find a `nightwatch.json` file at the root
+of your project, create it and paste the _default_ configuration from
+http://nightwatchjs.org/guide#settings-file
+
+The default is to look for tests in the `/tests` folder of your project;
+you can change this to what ever you prefer.
+
+
+<br /> <br />
+
+# tl;dr
+
+> More detail than you will _probably_ need ... _but we're keeping for completeness_.
+
+### Background
+
+## Research
+
++ Basic intro: http://juristr.com/blog/2014/02/nightwatch-test-automation/
++ Page Object Pattern: http://martinfowler.com/bliki/PageObject.html
++ Nightwatch with React: https://www.syncano.io/blog/testing-syncano/
++ How to run a _single_ Nightwatch test: http://stackoverflow.com/questions/28308990/how-to-run-a-single-test-in-nightwatch/29701199#29701199
+
+
+#### Why Nightwatch instead of `xyz`...?
+
+We _first_ looked at [`NightmareJS`](https://github.com/segmentio/nightmare),
+and even though it _looks_ really good (_fast_), we saw the _reaction_
+non-technical people had when we mentioned it and did not want to have to _explain_
+the _name_ to people/clients every time, so instead opted for _night**watch**_.
+If _night**mare**_ ever change their name, we _could re-consider_ it.
+
+<br />
+
+### Setup (*Detail*)
+
+#### Manual Selenium Install
 
 If you prefer to install it _manually_ that's an option.
 
@@ -59,11 +102,11 @@ Click on "keep" to save the file.
 Once you have it, put it in the `bin` directory of your project
 and re-name it to `selenium.jar` (_without the version number_).
 
-#### Java (_Runtime Environment JRE_)
+#### Installing Java (_Runtime Environment JRE_)
 
 While we prefer _not_ to run `Java` on our machines for
 [_security reasons_](http://krebsonsecurity.com/tag/java/) Selenium is _still_
-the best way of running
+the best way of running tests in _real_ browsers.
 
 _Check_ if you have `Java` installed on your local machine:
 
@@ -87,29 +130,8 @@ You should see something like this:
 
 > See: [http://stackoverflow.com/questions/24342886/how-to-**install-java-8**-on-**mac**](http://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac)
 
-### Setup
+### StackOverflow Questions
 
-Nightwatch test runner expects to find a `nightwatch.json` file at the root
-of your project, create it and paste the _default_ configuration from
-http://nightwatchjs.org/guide#settings-file
-
-The default is to look for tests in the `/tests` folder of your project;
-you can change this to what ever you prefer.
-
-## Research
-
-+ Basic intro: http://juristr.com/blog/2014/02/nightwatch-test-automation/
-+ Page Object Pattern: http://martinfowler.com/bliki/PageObject.html
-+ Nightwatch with React: https://www.syncano.io/blog/testing-syncano/
-+ How to run a _single_ Nightwatch test: http://stackoverflow.com/questions/28308990/how-to-run-a-single-test-in-nightwatch/29701199#29701199
-
-
-> Respond to: http://stackoverflow.com/questions/24314040/getting-started-with-nightwatch-js
-> Selenium as child process: http://stackoverflow.com/questions/27408864/cant-launch-selenium-phantomjs-ghostdriver-as-child-processes
-
-### Background
-
-We *first* looked at [`NightmareJS`](https://github.com/segmentio/nightmare),
-and even though it *looks* really good, we did not want to have to explain
-the *name* to non-technical people/clients every time, so instead opted for
-nightwatch.
+Remind me to Respond to these:
+> + [ ] http://stackoverflow.com/questions/24314040/getting-started-with-nightwatch-js
+> + [x] Run Selenium as child process: http://stackoverflow.com/questions/27408864/cant-launch-selenium-phantomjs-ghostdriver-as-child-processes
