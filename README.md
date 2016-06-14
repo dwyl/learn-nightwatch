@@ -1,17 +1,18 @@
 # Learn Nightwatch
 
-Automate your acceptance tests and run them
+Automate your acceptance tests and run them in _real_ browsers!
 
 ![nightwatch-logo-with-slogan](https://cloud.githubusercontent.com/assets/194400/16045809/099207e2-3242-11e6-99d4-99b227d7a38a.png)
 
 
 ## _Why_?
 
-Testing what people _using_ your application/website will _see_
+Testing what the people _using_ your application/website will _see_
 and their ability _interact_ with the product is
 (_probably_) the most important part of building a web app/site.
-You can have amazing code, a super-fast backend and blazing ,
-but _none_ of that matters if the person is unable to _use_ it!
+You can have amazing code, a super-fast backend and blazing virtual DOM UI,
+but _none_ of that _matters_ if the person is unable to _use_ it!
+
 
 
 ## _How_?
@@ -24,19 +25,15 @@ First install the `nightwatch` node.js module from NPM:
 npm install nightwatch --save-dev
 ```
 
-> **Note**: while the Nightwatch docs instruct to install _globally_ (`-g`),
+> <small>**Note**: while the Nightwatch docs instruct to install _globally_ (`-g`),
 we _prefer_ to always install devDependencies _locally_ to the project
 and list them _explicitly_ in `package.json` so it's _clear_ to everyone
-viewing/using the project what is required to run the tests.
+viewing/using the project what is required to run the tests. </small>
 
 
 #### Selenium (_Web Driver_) Standalone Server
 
 In order to run Browser tests Nightwatch uses Selenium.
-There are a _couple_ of ways you can install Selenium, _manual_ or _easy_.
-
-##### _Easy_ (_Automated_) Install (_always-up-to-date_)
-
 We _prefer_ to _automate_ the installation of Selenium using
 [`selenium-download`](https://www.npmjs.com/package/selenium-download)
 which ensures that we always have the latest version.
@@ -49,7 +46,7 @@ selenium.ensure('./bin', function(error) {
    }
 });
 ```
-
+> <small>If you prefer to install Selenium *manually* see: </small>
 
 ### Setup
 
@@ -134,4 +131,5 @@ You should see something like this:
 
 Remind me to Respond to these:
 > + [ ] http://stackoverflow.com/questions/24314040/getting-started-with-nightwatch-js
+> + [ ] http://stackoverflow.com/questions/25919673/file-upload-testing-in-nightwatch-js
 > + [x] Run Selenium as child process: http://stackoverflow.com/questions/27408864/cant-launch-selenium-phantomjs-ghostdriver-as-child-processes
