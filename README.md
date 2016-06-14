@@ -93,8 +93,8 @@ Nightwatch test runner expects to find a `nightwatch.json` file at the root
 of your project, create it and paste the _default_ configuration from
 http://nightwatchjs.org/guide#settings-file
 
-The default is to look for tests in the `/tests` folder of your project.
-
+The default is to look for tests in the `/tests` folder of your project;
+you can change this to what ever you prefer.
 
 ## Research
 
@@ -105,6 +105,7 @@ The default is to look for tests in the `/tests` folder of your project.
 
 
 > Respond to: http://stackoverflow.com/questions/24314040/getting-started-with-nightwatch-js
+> Selenium as child process: http://stackoverflow.com/questions/27408864/cant-launch-selenium-phantomjs-ghostdriver-as-child-processes
 
 ### Background
 

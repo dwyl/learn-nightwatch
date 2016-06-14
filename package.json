@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "nightwatch",
-    "download-selenium": "node test/setup-selenium-download.js",
+    "download-selenium": "node bin/selenium_setup_download.js",
     "selenium-server": "java -jar bin/selenium.jar",
-    "e2e": "./node_modules/.bin/nightwatch"
+    "selenium": "node bin/selenium_child_process.js",
+    "selenium-shutdown": "node bin/selenium_kill_process.js",
+    "nightwatch": "./node_modules/.bin/nightwatch",
+    "e2e": "npm run selenium && npm run nightwatch && npm run selenium-shutdown"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,7 @@
   "homepage": "https://github.com/dwyl/learn-nightwatch#readme",
   "dependencies": {},
   "devDependencies": {
+    "daemon": "^1.1.0",
     "nightwatch": "^0.9.3",
     "selenium-download": "^2.0.2"
   },
