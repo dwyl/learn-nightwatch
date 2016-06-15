@@ -1,6 +1,7 @@
 node_modules/
 npm-debug.log
 nohup.out
+selenium-debug.log
 .DS_Store
 
 # exclued selenium.jar from GitHub it's 21MB!
