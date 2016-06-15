@@ -3,4 +3,6 @@ node_js:
   - 4.4.5
 before_install:
   - java -version
+before_script:
+  - npm install
   - npm run selenium
