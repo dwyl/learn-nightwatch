@@ -6,3 +6,4 @@ before_install:
 before_script:
   - npm install
   - npm run selenium
+  - java -jar bin/selenium.jar
