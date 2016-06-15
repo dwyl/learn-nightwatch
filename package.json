@@ -7,11 +7,9 @@
     "node": "4.4.5"
   },
   "scripts": {
-    "postinstall": "npm run selenium-download",
-    "selenium-download": "node bin/selenium_child_process.js",
+    "postinstall": "node bin/selenium_child_process.js",
     "selenium-close": "node bin/selenium_kill_process.js",
-    "nightwatch": "./node_modules/.bin/nightwatch",
-    "test": "npm run selenium-download && npm run nightwatch"
+    "test": "npm run postinstall && ./node_modules/.bin/nightwatch"
   },
   "repository": {
     "type": "git",
