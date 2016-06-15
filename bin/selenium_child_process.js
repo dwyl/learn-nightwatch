@@ -23,7 +23,9 @@ function start () {
   }).on('error', (e) => {
     console.log(`Got error: ${e.message}`);
     console.log('Starting Selenium ...');
+    var cmd = 'nohup java -jar ./bin/selenium.jar &';
+    console.log('$ ' + cmd);
     require('daemon')();
-    execSync('nohup java -jar ./bin/selenium.jar &');
+    execSync(cmd);
   });
 }
