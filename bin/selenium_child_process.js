@@ -6,7 +6,7 @@ selenium.ensure('./bin', function(error) {
   if (error) {
     throw new Error(error);
   } else {
-    return start();
+    // return start();
   }
 });
 

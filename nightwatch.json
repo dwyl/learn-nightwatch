@@ -7,8 +7,8 @@
   "globals_path" : "",
 
   "selenium" : {
-    "start_process" : false,
-    "server_path" : "",
+    "start_process" : true,
+    "server_path" : "bin/selenium.jar",
     "log_path" : "",
     "host" : "127.0.0.1",
     "port" : 4444,
