@@ -1,4 +1,4 @@
-# Learn Nightwatch
+# Learn Nightwatch [![Codeship](https://img.shields.io/codeship/d9151e40-1473-0134-47e0-12348d1f3442.svg?maxAge=2592000)](https://codeship.com/projects/157818)
 
 Automate your acceptance tests and run them in _real_ browsers!
 
@@ -17,7 +17,31 @@ but _none_ of that _matters_ if the person is unable to _use_ it!
 
 ## _How_?
 
-### Installation
+### 1. Clone
+
+```sh
+git clone https://github.com/nelsonic/learn-nightwatch.git && cd learn-nightwatch
+```
+
+### 2. Install
+
+```sh
+npm install
+```
+
+### 3. Run (_tests_)
+
+```sh
+npm test
+```
+
+You should expect to see:  
+![learn-nightwatch-tests-pass](https://cloud.githubusercontent.com/assets/194400/16053137/65adf41a-325f-11e6-9db2-c84e1991a3e4.png)
+
+> _If the tests fail, please **tell us**_!
+
+
+### Installation (_in detail_)
 
 First install the `nightwatch` node.js module from NPM:
 
@@ -46,7 +70,9 @@ selenium.ensure('./bin', function(error) {
    }
 });
 ```
-> <small>If you prefer to install Selenium *manually* see: </small>
+>
+> <small>If you prefer to install Selenium *manually* see:
+ [learn-nightwatch#**manual-selenium-install**](https://github.com/nelsonic/learn-nightwatch#manual-selenium-install)</small>
 
 ### Setup
 
@@ -72,6 +98,10 @@ you can change this to what ever you prefer.
 + Page Object Pattern: http://martinfowler.com/bliki/PageObject.html
 + Nightwatch with React: https://www.syncano.io/blog/testing-syncano/
 + How to run a _single_ Nightwatch test: http://stackoverflow.com/questions/28308990/how-to-run-a-single-test-in-nightwatch/29701199#29701199
++ Custom Commands: http://nightwatchjs.org/guide#writing-custom-commands
++ Nightwatch Global Variables:
+http://stackoverflow.com/questions/25067391/how-to-make-a-globally-accessible-variable/
++ Travis with Saucelabs: http://samsaccone.com/posts/testing-with-travis-and-sauce-labs.html
 
 
 #### Why Nightwatch instead of `xyz`...?
@@ -132,4 +162,5 @@ You should see something like this:
 Remind me to Respond to these:
 > + [ ] http://stackoverflow.com/questions/24314040/getting-started-with-nightwatch-js
 > + [ ] http://stackoverflow.com/questions/25919673/file-upload-testing-in-nightwatch-js
+> + [ ] http://stackoverflow.com/questions/31388280/can-i-create-reusable-test-steps-in-nightwatch-js/31393249#31393249
 > + [x] Run Selenium as child process: http://stackoverflow.com/questions/27408864/cant-launch-selenium-phantomjs-ghostdriver-as-child-processes

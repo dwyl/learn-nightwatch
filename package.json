@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Learn how to use nightwatch for front-end testing",
   "main": "index.js",
+  "engines": {
+    "node": "4.4.5"
+  },
   "scripts": {
     "selenium-server": "java -jar bin/selenium.jar",
     "selenium": "node bin/selenium_child_process.js",
