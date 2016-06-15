@@ -12,7 +12,7 @@ selenium.ensure('./bin', function(error) {
 function start () {
   console.log('Starting Selenium ...');
   require('daemon')();
-  execSync('java -jar ./bin/selenium.jar');
+  execSync('java -jar ./bin/selenium.jar && sleep 2');
 }
 
-console.log(' - - - - - - - - - - - - - - - - - -> process.env:', process.env);
+// console.log(' - - - - - - - - - - - - - - - - - -> process.env:', process.env);
