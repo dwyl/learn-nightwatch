@@ -12,7 +12,7 @@
     "selenium-start":"node bin/webdriver-manager-start.js",
     "selenium-close": "node bin/selenium_kill_process.js",
     "nightwatch": "./node_modules/.bin/nightwatch",
-    "test": "npm run selenium-start && npm run nightwatch && npm run selenium-close"
+    "test": "npm run selenium-download && npm run nightwatch && npm run selenium-close"
   },
   "repository": {
     "type": "git",
