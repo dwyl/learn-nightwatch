@@ -3,6 +3,8 @@ node_js:
   - 4.4.5
 before_install:
   - java -version
+  - npm run selenium-close
+  - sleep 10
 script:
-- sleep 10
-- npm test
+  - sleep 10
+  - npm test
