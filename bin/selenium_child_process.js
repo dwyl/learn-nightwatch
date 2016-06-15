@@ -12,7 +12,7 @@ selenium.ensure('./bin', function(error) {
 function start () {
   require('daemon')();
   // var cmd = ;
-  execSync('java -jar ./bin/selenium.jar');
+  execSync('nohup java -jar ./bin/selenium.jar &');
   console.log('Starting Selenium ...');
   var seconds = 5;
   while (new Date().getTime() <= (new Date().getTime() + (seconds * 1000))) {

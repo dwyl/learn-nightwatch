@@ -8,10 +8,10 @@
   },
   "scripts": {
     "selenium-server": "java -jar bin/selenium.jar",
-    "selenium": "node bin/selenium_child_process.js",
+    "selenium-background": "node bin/selenium_child_process.js",
     "selenium-close": "node bin/selenium_kill_process.js",
     "nightwatch": "./node_modules/.bin/nightwatch",
-    "test": "npm run selenium && npm run nightwatch && npm run selenium-close"
+    "test": "npm run selenium-background && npm run nightwatch && npm run selenium-close"
   },
   "repository": {
     "type": "git",
