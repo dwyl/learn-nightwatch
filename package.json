@@ -8,12 +8,11 @@
   },
   "scripts": {
     "postinstall": "npm run selenium-download",
-    "selenium-server": "java -jar bin/selenium.jar",
+    "selenium-server": "nohup java -jar bin/selenium.jar &",
     "selenium-download": "node bin/selenium_child_process.js",
-    "selenium-status": "sleep 3 && curl http://localhost:4444/wd/hub/status | json_pp",
     "selenium-close": "node bin/selenium_kill_process.js",
     "nightwatch": "./node_modules/.bin/nightwatch",
-    "test": "npm run selenium-download && npm run selenium-status && npm run nightwatch && npm run selenium-close"
+    "test": "npm run selenium-download && npm run nightwatch"
   },
   "repository": {
     "type": "git",

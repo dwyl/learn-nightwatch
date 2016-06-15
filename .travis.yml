@@ -8,5 +8,5 @@ before_install:
 #   # - node bin/webdriver-manager-start.js
 #   - npm run selenium-download
 #   - nohup java -jar bin/selenium.jar &
-# after_script:
-#   - cat nohup.out
+after_script:
+  - cat nohup.out
