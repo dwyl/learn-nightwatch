@@ -9,9 +9,10 @@
   "scripts": {
     "selenium-server": "java -jar bin/selenium.jar",
     "selenium-download": "node bin/selenium_child_process.js",
+    "selenium-start":"node bin/webdriver-manager-start.js",
     "selenium-close": "node bin/selenium_kill_process.js",
     "nightwatch": "./node_modules/.bin/nightwatch",
-    "test": "npm run selenium-download && npm run nightwatch && npm run selenium-close"
+    "test": "npm run selenium-start && npm run nightwatch && npm run selenium-close"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,8 @@
   "devDependencies": {
     "daemon": "^1.1.0",
     "nightwatch": "^0.9.3",
-    "selenium-download": "^2.0.2"
+    "selenium-download": "^2.0.2",
+    "webdriver-manager": "^10.0.4"
   },
   "keywords": [
     "nightwatch",
