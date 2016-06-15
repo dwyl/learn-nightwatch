@@ -104,6 +104,8 @@ http://stackoverflow.com/questions/25067391/how-to-make-a-globally-accessible-va
 + Travis with Saucelabs: http://samsaccone.com/posts/testing-with-travis-and-sauce-labs.html
 + Selenium Status:
 http://stackoverflow.com/questions/6517501/selenium-2-how-to-check-that-server-is-running-and-stop-the-server
++ Silence Selenium on Travis:
+http://andrew.yurisich.com/work/2014/08/30/silence-noisy-selenium-server-output-in-travis-ci/
 
 
 #### Why Nightwatch instead of `xyz`...?
@@ -163,6 +165,7 @@ You should see something like this:
 
 Remind me to Respond to these:
 > + [ ] http://stackoverflow.com/questions/24314040/getting-started-with-nightwatch-js
+> + [ ] http://stackoverflow.com/questions/37699036/is-it-possible-to-start-a-selenium-server-inside-travis
 > + [ ] http://stackoverflow.com/questions/25919673/file-upload-testing-in-nightwatch-js
 > + [ ] http://stackoverflow.com/questions/31388280/can-i-create-reusable-test-steps-in-nightwatch-js/31393249#31393249
 > + [x] Run Selenium as child process: http://stackoverflow.com/questions/27408864/cant-launch-selenium-phantomjs-ghostdriver-as-child-processes

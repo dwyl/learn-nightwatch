@@ -8,7 +8,6 @@
   },
   "scripts": {
     "postinstall": "npm run selenium-download",
-    "selenium-server": "nohup java -jar bin/selenium.jar &",
     "selenium-download": "node bin/selenium_child_process.js",
     "selenium-close": "node bin/selenium_kill_process.js",
     "nightwatch": "./node_modules/.bin/nightwatch",

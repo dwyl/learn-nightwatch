@@ -10,7 +10,7 @@
     "start_process" : false,
     "server_path" : "",
     "log_path" : "",
-    "host" : "http://localhost",
+    "host" : "127.0.0.1",
     "port" : 4444,
     "cli_args" : {
       "webdriver.chrome.driver" : "",
@@ -22,7 +22,7 @@
     "default" : {
       "launch_url" : "http://localhost",
       "selenium_port"  : 4444,
-      "selenium_host"  : "localhost",
+      "selenium_host"  : "127.0.0.1",
       "silent": true,
       "screenshots" : {
         "enabled" : true,
