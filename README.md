@@ -102,6 +102,8 @@ you can change this to what ever you prefer.
 + Nightwatch Global Variables:
 http://stackoverflow.com/questions/25067391/how-to-make-a-globally-accessible-variable/
 + Travis with Saucelabs: http://samsaccone.com/posts/testing-with-travis-and-sauce-labs.html
++ Selenium Status:
+http://stackoverflow.com/questions/6517501/selenium-2-how-to-check-that-server-is-running-and-stop-the-server
 
 
 #### Why Nightwatch instead of `xyz`...?
