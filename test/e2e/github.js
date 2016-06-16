@@ -8,7 +8,7 @@ module.exports = {
       .click('.org-module-link')
       // .pause(1000)
       .setValue('input[name=query]', 'Ines')
-      .saveScreenshot('reports/github.png')
+      .saveScreenshot(GLOBAL.IMGPATH() + 'github.png')
       .end();
   }
 };

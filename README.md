@@ -28,6 +28,11 @@ git clone https://github.com/nelsonic/learn-nightwatch.git && cd learn-nightwatc
 ```sh
 npm install
 ```
+<small>
+That will instal *all required* dependencies and *start* the local selenium server.  
+If you get an error, you might not have Java installed, see:
+[_install Java_](https://github.com/nelsonic/learn-nightwatch#installing-java-runtime-environment-jre)
+</small>
 
 ### 3. Run (_tests_)
 
@@ -36,7 +41,7 @@ npm test
 ```
 
 You should expect to see:  
-![learn-nightwatch-tests-pass](https://cloud.githubusercontent.com/assets/194400/16053137/65adf41a-325f-11e6-9db2-c84e1991a3e4.png)
+![learn-nightwatch-sample-test-run](https://cloud.githubusercontent.com/assets/194400/16112379/ffa5df92-33ae-11e6-88f5-b9204d7e6a78.png)
 
 > _If the tests fail, please **tell us**_!
 
@@ -82,6 +87,24 @@ http://nightwatchjs.org/guide#settings-file
 
 The default is to look for tests in the `/tests` folder of your project;
 you can change this to what ever you prefer.
+
+### CI
+
+Running your Nightwatch tests on CI is easy on CodeShip.
+
+Setup Commands:
+```js
+# install your desired Node.js version:
+nvm install 4.4.5
+# install all dependencies:
+npm install
+```
+Test Command:
+```js
+# run tests
+npm test
+```
+That's it.
 
 
 <br /> <br />
