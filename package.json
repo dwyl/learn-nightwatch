@@ -8,7 +8,7 @@
   },
   "scripts": {
     "postinstall": "node bin/selenium_child_process.js",
-    "selenium-close": "node bin/selenium_kill_process.js",
+    "selenium-exit": "node bin/selenium_kill_process.js",
     "test": "npm run postinstall && ./node_modules/.bin/nightwatch"
   },
   "repository": {
@@ -21,8 +21,11 @@
     "url": "https://github.com/dwyl/learn-nightwatch/issues"
   },
   "homepage": "https://github.com/dwyl/learn-nightwatch#readme",
-  "dependencies": {},
+  "dependencies": {
+    "env2": "^2.1.0"
+  },
   "devDependencies": {
+    "aws-sdk": "^2.4.0",
     "daemon": "^1.1.0",
     "nightwatch": "^0.9.3",
     "selenium-download": "^2.0.2"

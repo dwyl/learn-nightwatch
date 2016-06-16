@@ -34,6 +34,8 @@ If you get an error, you might not have Java installed, see:
 [_install Java_](https://github.com/nelsonic/learn-nightwatch#installing-java-runtime-environment-jre)
 </small>
 
+
+
 ### 3. Run (_tests_)
 
 ```sh
@@ -44,6 +46,21 @@ You should expect to see:
 ![learn-nightwatch-sample-test-run](https://cloud.githubusercontent.com/assets/194400/16112379/ffa5df92-33ae-11e6-88f5-b9204d7e6a78.png)
 
 > _If the tests fail, please **tell us**_!
+
+
+### _Optional_
+
+If you want the screenshots of your tests to be uploaded to S3,
+you will need to have the following environment variables declared:
+```sh
+export AWS_S3_BUCKET=yourbucket
+export AWS_REGION=eu-west-1
+export AWS_ACCESS_KEY_ID=IDHERE
+export AWS_SECRET_ACCESS_KEY=YOURKEY
+```
+
+
+<br />
 
 
 ### Installation (_in detail_)

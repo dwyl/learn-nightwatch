@@ -1,4 +1,7 @@
 module.exports = {
+  // before : function (browser) {
+  //   browser.resizeWindow(640, 960);
+  // },
   'Demo test Google' : function (browser) {
     browser
       .url('http://www.google.com')
