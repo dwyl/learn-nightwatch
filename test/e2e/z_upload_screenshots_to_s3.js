@@ -45,8 +45,12 @@ module.exports = {
             return fs.statSync(file).isFile() && file.indexOf('.json') === -1; // only include images?
         })
         var obj = {files: files};
+        uploadViewer(function(err, data){
+          console.log('viewer uploaded');
+          console.log(err, data);
+        });
         var countdown = files.length;
-
+        // console.log('COUNTDOWN:', countdown);
         files.forEach(function (file) {
           var body = fs.createReadStream(file);
           var params = { params: {
@@ -60,21 +64,17 @@ module.exports = {
             // on('httpUploadProgress', function(evt) { console.log(evt); }).
             send(function(err, data) {
               if (!err) {
-                if (!--countdown === 0) {
+                if (!--countdown) {
                   // save the meta.json locally so we can use it
                   fs.writeFileSync(path.join(GLOBAL.SCREENSHOT_PATH, 'meta.json'), JSON.stringify(obj, null, 2));
                   uploadMeta(obj, function (err, data) {
                     console.log(err, data);
                     browser.end();
                   });
-                  uploadViewer(function(err, data){
-                    console.log('viewer uploaded');
-                    console.log(err, data);
-                  });
                 }
               } else {
                 --countdown;
-                console.log(err);
+                console.log('ERROR:', err);
                 browser.end();
               }
             });

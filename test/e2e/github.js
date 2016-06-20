@@ -2,7 +2,7 @@ module.exports = {
   // before : function (browser) {
   //   browser.resizeWindow(640, 960);
   // },
-  'Demo test GitHub' : function (browser) {
+  'Demo test GitHub' : '' + function (browser) {
     browser
       .url('http://www.github.com/dwyl')   // visit the url
       .waitForElementVisible('body', 1000) // wait for the body to be rendered
@@ -12,6 +12,10 @@ module.exports = {
       .setValue('input[name=query]', 'Ines')
       .pause(1000)
       .saveScreenshot(GLOBAL.IMGPATH() + 'github.png')
+      .click('.member-username')
+      .pause(1000)
+      .saveScreenshot(GLOBAL.IMGPATH() + 'github_iteles.png')
+      .assert.containsText('.join-date', 'Apr 17, 2013')
       .end();
   }
 };
