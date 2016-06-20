@@ -1,3 +1,4 @@
+// this file is prefixed with a 'z_' to ensure that it runs Last (once screenshots created by other tests)
 require('env2')('.env');
 var fs = require('fs');
 var path = require('path');
@@ -18,6 +19,19 @@ function uploadMeta (obj, callback) {
   });
 }
 
+function uploadViewer (callback) {
+  var params = {
+    Key: GLOBAL.SCREENSHOT_PATH + 'index.html',
+    Body: fs.readFileSync('lib/index.html'),
+    ContentType: 'text/html',
+    ACL: 'public-read'
+  };
+  s3bucket.upload(params, function (err, data) {
+    console.log(err, data);
+    callback(err, data);
+  });
+}
+
 module.exports = {
   'Upload Screenshots': function s3_create (browser) {
     if(process.env.AWS_ACCESS_KEY_ID) {
@@ -28,10 +42,11 @@ module.exports = {
         files = files.map(function (file) {
             return path.join(GLOBAL.SCREENSHOT_PATH, file);
         }).filter(function (file) {
-            return fs.statSync(file).isFile(); // only include files?
+            return fs.statSync(file).isFile() && file.indexOf('.json') === -1; // only include images?
         })
-        var obj = {files: []};
+        var obj = {files: files};
         var countdown = files.length;
+
         files.forEach(function (file) {
           var body = fs.createReadStream(file);
           var params = { params: {
@@ -45,16 +60,22 @@ module.exports = {
             // on('httpUploadProgress', function(evt) { console.log(evt); }).
             send(function(err, data) {
               if (!err) {
-                obj.files.push(data.Location);
-                console.log(data.Location);
-                if (!--countdown) {
+                if (!--countdown === 0) {
+                  // save the meta.json locally so we can use it
+                  fs.writeFileSync(path.join(GLOBAL.SCREENSHOT_PATH, 'meta.json'), JSON.stringify(obj, null, 2));
                   uploadMeta(obj, function (err, data) {
                     console.log(err, data);
                     browser.end();
                   });
+                  uploadViewer(function(err, data){
+                    console.log('viewer uploaded');
+                    console.log(err, data);
+                  });
                 }
               } else {
+                --countdown;
                 console.log(err);
+                browser.end();
               }
             });
         });

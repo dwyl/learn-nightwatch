@@ -1,0 +1,64 @@
+<html>
+
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+  <title>Acceptance Test Screenshots</title>
+  <!-- <link href='lib/enlarge.css' rel='stylesheet' type='text/css'> -->
+</head>
+
+<body>
+  <div id='viewer'>
+    <img id='full'>
+  </div>
+  <div id='list'>
+    <div id='thumbnails'>
+    </div>
+    <
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    var base = 'https://isearch-ui.s3-eu-west-1.amazonaws.com/';
+    var meta = base + 'reports/screenshots/1.0.0/' + 'meta.json'
+    console.log(meta);
+    $.getJSON(meta, function(data, status) {
+      // console.log(data.files);
+      var imgsrc;
+      data.files.forEach(function(src) {
+        imgsrc = base + src; // images are a relative path!
+        var img = '<img class="thumb" src="' + imgsrc + '" />'
+        console.log(img);
+        $('#thumbnails').append(img);
+      });
+      $('#full').attr("src", imgsrc);
+      // attach event listeners
+      $('.thumb').click(function(e) {
+        var src = $(this).attr("src");
+        console.log(src);
+        $('#full').attr("src", src);
+      });
+    });
+
+  </script>
+  <style>
+    #full {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    .thumb {
+      width: 240px;
+      height: 160px;
+      background: #fff;
+      border-radius: 2px;
+      display: inline-block;
+      margin: 1rem;
+      position: relative;
+      float: left;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    }
+    .thumb:hover {
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+
+  </style>
+</body>
+</html>
