@@ -23,8 +23,8 @@ function start () {
     console.log(`Selenium NOT Running (yet) ... ${e.message}`);
     console.log('Starting Selenium ...');
     var cmd = 'nohup java -jar ./bin/selenium.jar &';
-    console.log('$ ' + cmd);
-    require('daemon')();
+    console.log('$ ' + cmd); // give user some feedback
+    require('daemon')(); // run the selenium process as a daemon (background)
     execSync(cmd);
   });
 }

@@ -24,6 +24,8 @@ module.exports = {
       .moveToElement('.articleTileImage', 200, 800)
       .pause(500)
       .saveScreenshot(GLOBAL.IMGPATH() + 'tc_result_article.png')
+
+      .waitForElementVisible('.packageContainer', 8000)
       .assert.containsText('.packageContainer', 'Spanien') //
       .moveToElement('.packageContainer', 10, 400)
       .saveScreenshot(GLOBAL.IMGPATH() + 'tc_result_package.png')

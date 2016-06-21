@@ -7,7 +7,7 @@ selenium-debug.log
 # exclued selenium.jar from GitHub it's 21MB!
 bin/selenium.jar
 
-# exclude chromedriver as its 12MB and changes often!
+# exclude chromedriver as its 12MB and changes frequently!
 bin/chromedriver
 
 reports
