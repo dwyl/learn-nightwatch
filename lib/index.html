@@ -5,62 +5,64 @@
   <title>Acceptance Test Screenshots</title>
   <link rel="shortcut icon" href="https://isearch-ui.s3.amazonaws.com/favicon.ico">
 </head>
-
 <body>
   <div id='viewer'>
     <img id='full'>
   </div>
   <div id='list'>
-    <div id='back'><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></div>
-    <div id='forward'><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    <div id='back'><i class="fa fa-arrow-circle-left" aria-hidden="true" title="Previous"></i></div>
+    <div id='forward'><i class="fa fa-arrow-circle-right" aria-hidden="true" title="Next"></i></div>
     <div id='thumbnails'></div>
   </div>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script>
-
-    var store = { images: [], index: 0, imgsrc:''}; // MUTABLE store
-
+    var store = { images: [], index: 0, imgsrc:'' }; // MUTABLE store
     var base = 'https://isearch-ui.s3-eu-west-1.amazonaws.com/';
     var meta = base + 'reports/screenshots/1.0.0/' + 'meta.json'
-    // console.log(meta);
+
     $.getJSON(meta, function(data, status) {
+
       data.files.forEach(function(src) {
         var imgsrc = base + src; // images are a relative path!
         store.images.push(imgsrc);
-        var img = '<img class="thumb" src="' + imgsrc + '" />'
-        // console.log(img);
-        $('#thumbnails').append(img);
       });
+
       setIndex(store.images[store.images.length - 1]);
-      $('#full').attr("src", store.imgsrc); // set last image as full
 
       // attach event listeners to thumbnails
       $('.thumb').click(function(e) {
         var src = $(this).attr("src");
-        console.log(src);
         setIndex(src);
-        $('#full').attr("src", src);
       });
-
-      console.log(store.images.length, store.index);
     });
+
+    function render () {
+      var images = [];
+      store.images.forEach(function(imgsrc) {
+        var active = '';
+        if (imgsrc === store.imgsrc) {
+          active = 'active';
+        }
+        images.push('<img class="thumb ' + active + '" src="' + imgsrc + '" />');
+      });
+      $('#thumbnails').html(images.join(''));
+      $('#full').attr("src", store.imgsrc); // set last image as full
+    }
 
     function setIndex (src) {
       store.imgsrc = src;
       store.index = store.images.indexOf(src);
-      console.log(store.imgsrc, store.index)
+      render();
     }
-    // loop back once we get to the end
 
     function next () {
       var nextindex = store.index + 1;
-      if(nextindex > store.images.length - 1) {
+      if(nextindex > store.images.length - 1) { // loop back once we get to the end
         nextindex = 0;
       }
       var src = store.images[nextindex];
-      $('#full').attr("src", src);
-      store.index = nextindex;
+      setIndex(src);
     }
 
     function previous () {
@@ -69,8 +71,7 @@
         previndex = store.images.length - 1;
       }
       var src = store.images[previndex];
-      $('#full').attr("src", src);
-      store.index = previndex;
+      setIndex(src);
     }
     // UI buttons
     $('#back').click(function(e) {
@@ -81,18 +82,16 @@
     });
     // bind to left/right keyboard arrow keys
     $(document).keydown(function(e) {
+      e.preventDefault(); // prevent the default action (scroll / move caret)
       switch(e.which) {
         case 37: // left
           previous();
           break;
-
         case 39: // right
           next();
           break;
-
         default: return; // exit this handler for other keys
       }
-      e.preventDefault(); // prevent the default action (scroll / move caret)
     });
   </script>
   <style>
@@ -117,7 +116,10 @@
     .thumb:hover {
       box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     }
-
+    .active {
+      border: 5px black solid;
+      border-radius: 5px;
+    }
     .fa-arrow-circle-left, .fa-arrow-circle-right {
       font-size: 3em;
     }
@@ -127,7 +129,6 @@
     .fa-arrow-circle-right {
       float:right;
     }
-
   </style>
 </body>
 </html>

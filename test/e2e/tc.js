@@ -1,9 +1,5 @@
 module.exports = {
   'Inspirational Search' : function (browser) {
-    var height = browser.window.innerHeight
-    console.log('height:', height);
-    // || document.documentElement.clientHeight
-    // || document.body.clientHeight;
     browser
       .url('http://www.tcdl.io.s3-website-eu-west-1.amazonaws.com/isearch/0.18/index.html')
       .waitForElementVisible('body', 1000)
