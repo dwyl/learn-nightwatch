@@ -14,7 +14,7 @@ function uploadMeta (obj, callback) {
     ACL: 'public-read'
   };
   s3bucket.upload(params, function (err, data) {
-    console.log(err, data);
+    // console.log(err, data);
     callback(err, data);
   });
 }
@@ -27,7 +27,7 @@ function uploadViewer (callback) {
     ACL: 'public-read'
   };
   s3bucket.upload(params, function (err, data) {
-    console.log(err, data);
+    // console.log(err, data);
     callback(err, data);
   });
 }
@@ -45,10 +45,6 @@ module.exports = {
             return fs.statSync(file).isFile() && file.indexOf('.json') === -1; // only include images?
         })
         var obj = {files: files};
-        uploadViewer(function(err, data){
-          console.log('viewer uploaded');
-          console.log(err, data);
-        });
         var countdown = files.length;
         // console.log('COUNTDOWN:', countdown);
         files.forEach(function (file) {
@@ -64,12 +60,14 @@ module.exports = {
             // on('httpUploadProgress', function(evt) { console.log(evt); }).
             send(function(err, data) {
               if (!err) {
-                if (!--countdown) {
+                if (--countdown === 0) {
                   // save the meta.json locally so we can use it
                   fs.writeFileSync(path.join(GLOBAL.SCREENSHOT_PATH, 'meta.json'), JSON.stringify(obj, null, 2));
                   uploadMeta(obj, function (err, data) {
-                    console.log(err, data);
                     browser.end();
+                  });
+                  uploadViewer(function(err, data){
+                    console.log('Visit:', data.Location);
                   });
                 }
               } else {

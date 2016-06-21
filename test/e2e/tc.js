@@ -11,7 +11,8 @@ module.exports = {
       .setValue('input[type=text]', 'Span')
       .waitForElementVisible('.list-group-item', 3000)
       .saveScreenshot(GLOBAL.IMGPATH() + 'tc_autocomplete.png')
-      .click('.list-group-item')
+      .click('.list-group-item') // click on "Spanien" in auto suggestions
+      .assert.containsText('.tags', 'Spanien') //
       .pause(5000)
       .saveScreenshot(GLOBAL.IMGPATH() + 'tc_result.png')
       // scroll .articleTileImage
