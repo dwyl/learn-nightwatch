@@ -28,8 +28,8 @@
         store.images.push(imgsrc);
       });
 
-      setIndex(store.images[store.images.length - 1]);
-
+      // setIndex(store.images[store.images.length - 1]); // last image
+      setIndex(store.images[0]); // first image
       // attach event listeners to thumbnails
       $('.thumb').click(function(e) {
         var src = $(this).attr("src");
@@ -108,7 +108,7 @@
       display: inline-block;
       margin: 1rem;
       position: relative;
-      float: left;
+      /*float: left;*/
       box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
       transition: all 0.3s cubic-bezier(.25,.8,.25,1);
       cursor: pointer; cursor: hand;
