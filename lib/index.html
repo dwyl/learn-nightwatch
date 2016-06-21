@@ -30,11 +30,7 @@
 
       // setIndex(store.images[store.images.length - 1]); // last image
       setIndex(store.images[0]); // first image
-      // attach event listeners to thumbnails
-      $('.thumb').click(function(e) {
-        var src = $(this).attr("src");
-        setIndex(src);
-      });
+
     });
 
     function render () {
@@ -48,6 +44,12 @@
       });
       $('#thumbnails').html(images.join(''));
       $('#full').attr("src", store.imgsrc); // set last image as full
+
+      // attach event listeners to thumbnails
+      $('.thumb').click(function(e) {
+        var src = $(this).attr("src");
+        setIndex(src);
+      });
     }
 
     function setIndex (src) {
