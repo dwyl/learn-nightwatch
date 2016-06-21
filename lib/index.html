@@ -30,7 +30,9 @@
 
       // setIndex(store.images[store.images.length - 1]); // last image
       setIndex(store.images[0]); // first image
-
+      store.interval = setInterval(function () {
+        next();
+      }, 2000);
     });
 
     function render () {
@@ -44,11 +46,11 @@
       });
       $('#thumbnails').html(images.join(''));
       $('#full').attr("src", store.imgsrc); // set last image as full
-
       // attach event listeners to thumbnails
       $('.thumb').click(function(e) {
         var src = $(this).attr("src");
         setIndex(src);
+        clearInterval(store.interval);
       });
     }
 
@@ -74,6 +76,7 @@
       }
       var src = store.images[previndex];
       setIndex(src);
+      clearInterval(store.interval);
     }
     // UI buttons
     $('#back').click(function(e) {

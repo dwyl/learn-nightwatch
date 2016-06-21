@@ -36,17 +36,18 @@ module.exports = {
       .saveScreenshot(GLOBAL.IMGPATH() + 'tc_package.png')
       // click on bookButton
       .click('.bookButton')
-      .pause(1000)
+      .pause(500)
       .waitForElementVisible('.quickfactheader', 8000)
       .assert.containsText('.quickfactheader', 'Hotelfakta')
       .saveScreenshot(GLOBAL.IMGPATH() + 'tc_booking_page.png')
       .execute(function () {
         window.history.back()
       })
-      .pause(1000)
+      .pause(500)
       .saveScreenshot(GLOBAL.IMGPATH() + 'tc_package_again.png')
       .click('.backButton')
       .waitForElementVisible('#container', 2000)
+      .pause(500)
       .assert.containsText('#container', 'Hvor vil du rejse hen')
       .saveScreenshot(GLOBAL.IMGPATH() + 'tc_isearch_home.png')
       .end();
