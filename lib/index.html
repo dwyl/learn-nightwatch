@@ -72,17 +72,28 @@
       $('#full').attr("src", src);
       store.index = previndex;
     }
-
+    // UI buttons
     $('#back').click(function(e) {
       previous();
     });
-
     $('#forward').click(function(e) {
       next();
     });
+    // bind to left/right keyboard arrow keys
+    $(document).keydown(function(e) {
+      switch(e.which) {
+        case 37: // left
+          previous();
+          break;
 
-    // bind to keyboard arrow keys
+        case 39: // right
+          next();
+          break;
 
+        default: return; // exit this handler for other keys
+      }
+      e.preventDefault(); // prevent the default action (scroll / move caret)
+    });
   </script>
   <style>
     #full {
