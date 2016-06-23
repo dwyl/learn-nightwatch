@@ -42,6 +42,9 @@ module.exports = {
         "enabled": true,
         "path": "reports/screenshots"
       },
+      "globals": {
+        "waitForConditionTimeout": 15000
+      },
       "desiredCapabilities": {
         "browserName": "chrome",
         "chromeOptions": {
