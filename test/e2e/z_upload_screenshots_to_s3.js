@@ -34,19 +34,23 @@ function uploadViewer (callback) {
 
 module.exports = {
   'Upload Screenshots': function s3_create (browser) {
-    if(process.env.AWS_ACCESS_KEY_ID) {
+    if(!process.env.AWS_ACCESS_KEY_ID) {
+      console.log(`If you want to upload Screenshots to S3
+        please set your Environment Variables.`);
+      browser.end();
+    }
+    else {
       fs.readdir(GLOBAL.SCREENSHOT_PATH, function (err, files) {
         if (err) {
-            throw err;
+          throw err;
         }
         files = files.map(function (file) {
             return path.join(GLOBAL.SCREENSHOT_PATH, file);
-        }).filter(function (file) {
-            return fs.statSync(file).isFile() && file.indexOf('.json') === -1; // only include images?
+        }).filter(function (file) { // only include images?
+          return fs.statSync(file).isFile() && file.indexOf('.json') === -1;
         })
         var obj = {files: files};
         var countdown = files.length;
-        // console.log('COUNTDOWN:', countdown);
         files.forEach(function (file) {
           var body = fs.createReadStream(file);
           var params = { params: {
@@ -62,7 +66,8 @@ module.exports = {
               if (!err) {
                 if (--countdown === 0) {
                   // save the meta.json locally so we can use it
-                  fs.writeFileSync(path.join(GLOBAL.SCREENSHOT_PATH, 'meta.json'), JSON.stringify(obj, null, 2));
+                  fs.writeFileSync(path.join(GLOBAL.SCREENSHOT_PATH,
+                    'meta.json'), JSON.stringify(obj, null, 2));
                   uploadMeta(obj, function (err, data) {
                     browser.end();
                   });
@@ -78,9 +83,6 @@ module.exports = {
             });
         });
       });
-    } else {
-      console.log('If you want to upload Screenshots to S3 please set your .env');
-      browser.end();
     }
   }
 }

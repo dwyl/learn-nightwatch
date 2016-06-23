@@ -9,7 +9,7 @@
   "scripts": {
     "postinstall": "node bin/selenium_child_process.js",
     "selenium-exit": "node bin/selenium_kill_process.js",
-    "test": "npm run postinstall && ./node_modules/.bin/nightwatch"
+    "test": "npm run postinstall && ./node_modules/.bin/nightwatch --config nightwatch.js --env local"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "aws-sdk": "^2.4.0",
     "daemon": "^1.1.0",
     "nightwatch": "^0.9.3",
+    "saucelabs": "^1.2.0",
     "selenium-download": "^2.0.2"
   },
   "keywords": [

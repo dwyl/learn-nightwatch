@@ -4,19 +4,31 @@ Automate your acceptance tests and run them in _real_ browsers!
 
 ![nightwatch-logo-with-slogan](https://cloud.githubusercontent.com/assets/194400/16045809/099207e2-3242-11e6-99d4-99b227d7a38a.png)
 
-
 ## _Why_?
 
 Testing what the people _using_ your application/website will _see_
 and their ability _interact_ with the product is
 (_probably_) the most important part of building a web app/site.
-You can have amazing code, a super-fast backend and blazing virtual DOM UI,
-but _none_ of that _matters_ if the person is unable to _use_ it!
+You can have amazing code, a super-fast backend and cutting-edge Virtual DOM UI,
+but _none_ of that _matters_ if the person is unable to _use_ it
+because of a basic bug!
+
+![dilbert-internet-full](https://cloud.githubusercontent.com/assets/194400/16302737/b0bb3486-3944-11e6-9875-6e691587ccd0.png)
+
+_**User Acceptance Testing**_ (**UAT**) with a tool like Nightwatch (_Selenium_)
+lets you to run real-world scenarios in your Web App which will give
+you _confidence_ that the app _works_ in the chosen device/browser.
 
 ## _What_?
 
+Automated Acceptance Testing.
+
 + Site: http://nightwatchjs.org/
 + Github: https://github.com/nightwatchjs/nightwatch
+
+## _Who_?
+
+
 
 ## _How_?
 
@@ -60,11 +72,15 @@ export AWS_S3_BUCKET=yourbucket
 export AWS_REGION=eu-west-1
 export AWS_ACCESS_KEY_ID=IDHERE
 export AWS_SECRET_ACCESS_KEY=YOURKEY
+export SAUCE_USERNAME=yourusername
+export SAUCE_ACCESS_KEY=private_key
 ```
-
 
 <br />
 
+
+
+<br />
 
 ### Installation (_in detail_)
 
@@ -126,6 +142,10 @@ npm test
 ```
 That's it.
 
+> ***Note***: while the tests run seamlessly on CodeShip we were unable
+ to get Selenium standalone working on Travis-CI
+if you have time to help us, please see:
+https://github.com/nelsonic/learn-nightwatch/issues/8
 
 <br /> <br />
 
@@ -133,9 +153,9 @@ That's it.
 
 > More detail than you will _probably_ need ... _but we're keeping for completeness_.
 
-### Background
+## Background
 
-## Research
+### Research
 
 + Basic intro: http://juristr.com/blog/2014/02/nightwatch-test-automation/
 + Page Object Pattern: http://martinfowler.com/bliki/PageObject.html
@@ -149,6 +169,8 @@ http://stackoverflow.com/questions/25067391/how-to-make-a-globally-accessible-va
 http://stackoverflow.com/questions/6517501/selenium-2-how-to-check-that-server-is-running-and-stop-the-server
 + Silence Selenium on Travis:
 http://andrew.yurisich.com/work/2014/08/30/silence-noisy-selenium-server-output-in-travis-ci/
++ Nightwatch on Saucelabs: https://github.com/saucelabs-sample-test-frameworks/JS-Nightwatch.js
++ Intro by @mikberg: https://medium.com/@mikaelberg/zero-to-hero-with-end-to-end-tests-using-nightwatch-saucelabs-and-travis-e932c8deb695
 
 
 #### Why Nightwatch instead of `xyz`...?
@@ -204,6 +226,12 @@ You should see something like this:
 
 > See: [http://stackoverflow.com/questions/24342886/how-to-**install-java-8**-on-**mac**](http://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac)
 
+### Sauce Connect
+
+https://wiki.saucelabs.com/display/DOCS/Setting+Up+Sauce+Connect
+http://saucelabs.com/downloads/Sauce-Connect-latest.zip
+
+
 ### StackOverflow Questions
 
 Remind me to Respond to these:
@@ -211,5 +239,10 @@ Remind me to Respond to these:
 > + [ ] http://stackoverflow.com/questions/37699036/is-it-possible-to-start-a-selenium-server-inside-travis
 > + [ ] http://stackoverflow.com/questions/25919673/file-upload-testing-in-nightwatch-js
 > + [ ] http://stackoverflow.com/questions/31388280/can-i-create-reusable-test-steps-in-nightwatch-js/31393249#31393249
+> + [ ] use saucelabs with nightwatch? http://stackoverflow.com/questions/36137270/how-to-use-saucelabs-with-nightwatch
 > + [x] keypress: http://stackoverflow.com/questions/31812935/nightwatch-testing-sendkeys-and-keys-not-sending-key-clicks ... [*answer*](http://stackoverflow.com/questions/31812935/nightwatch-testing-sendkeys-and-keys-not-sending-key-clicks/37950264#37950264)
 > + [x] Run Selenium as child process: http://stackoverflow.com/questions/27408864/cant-launch-selenium-phantomjs-ghostdriver-as-child-processes
+
+## Cons (_of using Nightwatch_)
+
++

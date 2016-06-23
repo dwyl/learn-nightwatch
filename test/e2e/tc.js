@@ -1,5 +1,5 @@
 module.exports = {
-  'Inspirational Search' : function (browser) {
+  'Inspirational Search': function (browser) {
     // console.log(browser.Keys.toString());
     console.log(' - - - - - - - - - - - - - - - - - ');
     browser

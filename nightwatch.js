@@ -1,4 +1,5 @@
-{
+
+module.exports = {
   "src_folders" : ["test/e2e"],
   "output_folder" : "reports",
   "custom_commands_path" : "",
@@ -19,7 +20,23 @@
   },
 
   "test_settings" : {
-    "default" : {
+    "default": {
+      launch_url: 'http://ondemand.saucelabs.com:80',
+      selenium_port: 80,
+      selenium_host: 'ondemand.saucelabs.com',
+      silent: true,
+      username: process.env.SAUCE_USERNAME,
+      access_key: process.env.SAUCE_ACCESS_KEY,
+      screenshots: {
+        enabled: false,
+        path: '',
+      },
+      globals: {
+        waitForConditionTimeout: 10000,
+      },
+    },
+
+    "local" : {
       "launch_url" : "http://localhost",
       "selenium_port"  : 4444,
       "selenium_host"  : "127.0.0.1",
@@ -47,6 +64,21 @@
         "javascriptEnabled": true,
         "acceptSslCerts": true
       }
-    }
+    },
+    "chromemac": {
+      desiredCapabilities: {
+        browserName: 'chrome',
+        platform: 'OS X 10.11',
+        version: '47',
+     },
+    },
+    "ie11": {
+      desiredCapabilities: {
+        browserName: 'internet explorer',
+        platform: 'Windows 10',
+        version: '11.0',
+      },
+    },
+
   }
 }
