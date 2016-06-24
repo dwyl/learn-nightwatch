@@ -64,7 +64,7 @@
 
     function next () {
       var nextindex = store.index + 1;
-      if(nextindex > store.images.length - 1) { // loop back once we get to the end
+      if(nextindex > store.images.length - 1) { // continuous loop
         nextindex = 0;
       }
       var src = store.images[nextindex];

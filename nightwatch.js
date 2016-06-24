@@ -21,7 +21,7 @@ module.exports = {
   },
   "test_settings": {
     "default": {
-      "launch_url": "http://ondemand.saucelabs.com:80",
+      "launch_url": "www.github.com",
       "selenium_port": 80,
       "selenium_host": "ondemand.saucelabs.com",
       "silent": true,
