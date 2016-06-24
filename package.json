@@ -1,6 +1,6 @@
 {
   "name": "learn-nightwatch",
-  "version": "1.0.18",
+  "version": "1.0.20",
   "description": "Learn how to use nightwatch for front-end testing",
   "main": "index.js",
   "engines": {
@@ -27,6 +27,7 @@
   "devDependencies": {
     "aws-sdk": "^2.4.0",
     "daemon": "^1.1.0",
+    "mime-types": "^2.1.11",
     "nightwatch": "^0.9.3",
     "saucelabs": "^1.2.0",
     "selenium-download": "^2.0.2"

@@ -18,12 +18,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script>
     var store = { images: [], index: 0, imgsrc:'' }; // MUTABLE store
-    var base = 'https://isearch-ui.s3-eu-west-1.amazonaws.com/';
-    var meta = base + 'reports/screenshots/1.0.0/' + 'meta.json'
+    // var base = 'https://isearch-ui.s3-eu-west-1.amazonaws.com/';
+    var base = window.location.href.replace('index.html', '');
+    console.log('base url:', base);
+    var meta = base + 'meta.json'
 
     $.getJSON(meta, function(data, status) {
 
-      data.files.forEach(function(src) {
+      data.images.forEach(function(src) {
         var imgsrc = base + src; // images are a relative path!
         store.images.push(imgsrc);
       });
