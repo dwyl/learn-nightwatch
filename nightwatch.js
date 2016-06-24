@@ -19,9 +19,10 @@ module.exports = {
       "webdriver.ie.driver": ""
     }
   },
+  // "test_workers" : {"enabled" : true, "workers" : "auto"},
   "test_settings": {
     "default": {
-      "launch_url": "www.github.com",
+      "launch_url": "http://localhost",
       "selenium_port": 80,
       "selenium_host": "ondemand.saucelabs.com",
       "silent": true,
@@ -29,6 +30,8 @@ module.exports = {
         "enabled": false,
         "path": ""
       },
+      "username" : "${SAUCE_USERNAME}",
+      "access_key" : "${SAUCE_ACCESS_KEY}",
       "globals": {
         "waitForConditionTimeout": 10000
       }
@@ -76,6 +79,36 @@ module.exports = {
         "browserName": "internet explorer",
         "platform": "Windows 10",
         "version": "11.0"
+      }
+    },
+    "firefox" : {
+      "desiredCapabilities": {
+        "platform": "XP",
+        "browserName": "firefox",
+        "version": "33"
+      }
+    },
+    "internet_explorer_10" : {
+      "desiredCapabilities": {
+        "platform": "Windows 7",
+        "browserName": "internet explorer",
+        "version": "10"
+      }
+    },
+    "android_s4_emulator": {
+      "desiredCapabilities": {
+        "browserName": "android",
+        "deviceOrientation": "portrait",
+        "deviceName": "Samsung Galaxy S4 Emulator"
+      }
+    },
+    "iphone_6_simulator": {
+      "desiredCapabilities": {
+        "browserName": "iPhone",
+        "deviceOrientation": "portrait",
+        "deviceName": "iPhone 6",
+        "platform": "OSX 10.10",
+        "version": "8.4"
       }
     }
   }

@@ -15,20 +15,23 @@ module.exports = {
       browser.end();
     }
     else {
+      fs.createReadStream('./lib/index.html') // copy index.html into folder
+        .pipe(fs.createWriteStream(process.env.SCREENSHOT_PATH + 'index.html'));
       // fist read the list of screenshots
-      var images = fs.readdirSync(GLOBAL.SCREENSHOT_PATH).filter(file => {
-        return fs.statSync(GLOBAL.SCREENSHOT_PATH + file).isFile()
+      console.log('>>>', process.env.SCREENSHOT_PATH);
+      var images = fs.readdirSync(process.env.SCREENSHOT_PATH).filter(file => {
+        return fs.statSync(process.env.SCREENSHOT_PATH + file).isFile()
           && file.indexOf('.png') > -1; // only screenshot images
       })
       // create meta.json with list of screenshots
-      fs.writeFileSync(path.join(GLOBAL.SCREENSHOT_PATH,
+      fs.writeFileSync(path.join(process.env.SCREENSHOT_PATH,
         'meta.json'), JSON.stringify({images: images}, null, 2));
 
       // get list of files we are going to upload to S3
-      var files = fs.readdirSync(GLOBAL.SCREENSHOT_PATH); // includes meta.json
+      var files = fs.readdirSync(process.env.SCREENSHOT_PATH); // includes meta.json
       var countdown = files.length;
       files.forEach(function (file) {
-        var filepath = path.join(GLOBAL.SCREENSHOT_PATH, file);
+        var filepath = path.join(process.env.SCREENSHOT_PATH, file);
         var s3obj = new AWS.S3({ params: {
           Bucket: process.env.AWS_S3_BUCKET,
           ACL: 'public-read',

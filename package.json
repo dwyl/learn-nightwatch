@@ -9,7 +9,8 @@
   "scripts": {
     "postinstall": "node bin/selenium_child_process.js",
     "selenium-exit": "node bin/selenium_kill_process.js",
-    "test": "npm run postinstall && ./node_modules/.bin/nightwatch --config nightwatch.js --env local"
+    "test": "npm run postinstall && ./node_modules/.bin/nightwatch --config nightwatch.js --env local",
+    "sauce": "./node_modules/.bin/nightwatch --config nightwatch.js --env local"
   },
   "repository": {
     "type": "git",

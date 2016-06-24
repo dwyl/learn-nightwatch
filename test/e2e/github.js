@@ -1,3 +1,5 @@
+var utils = require('./utils');
+
 module.exports = {
   // before : function (browser) {
   //   browser.resizeWindow(640, 960);
@@ -11,10 +13,10 @@ module.exports = {
       .click('.org-module-link')
       .setValue('input[name=query]', 'Ines')
       .pause(500)
-      .saveScreenshot(GLOBAL.IMGPATH() + 'github_find_ines.png')
+      // .saveScreenshot(utils.imgpath() + 'github_find_ines.png')
       .click('.member-username')
       .pause(500)
-      .saveScreenshot(GLOBAL.IMGPATH() + 'github_iteles_profile.png')
+      // .saveScreenshot(utils.imgpath() + 'github_iteles_profile.png')
       .assert.containsText('.join-date', 'Apr 17, 2013')
       .end();
   }
