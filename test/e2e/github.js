@@ -1,19 +1,15 @@
-var utils = require('./utils');
+var utils = require('../utils');
 
 module.exports = {
-  // before : function (browser) {
-  //   browser.resizeWindow(640, 960);
-  // },
-  'Demo test GitHub' : function (browser) {
+  'Demo test GitHub' : '' + function (browser) {
     browser
       .url('http://www.github.com/dwyl')   // visit the url
       .waitForElementVisible('body') // wait for the body to be rendered
       .assert.containsText('.main-content', 'do what you love') // assert contains
-      // .waitForElementVisible('button[name=btnG]', 1000)
       .click('.org-module-link')
       .setValue('input[name=query]', 'Ines')
       .pause(500)
-      // .saveScreenshot(utils.imgpath() + 'github_find_ines.png')
+      .saveScreenshot(utils.imgpath() + 'github_find_ines.png')
       .click('.member-username')
       .pause(500)
       // .saveScreenshot(utils.imgpath() + 'github_iteles_profile.png')

@@ -1,5 +1,5 @@
-var pkg = require('../../package.json');
-var config = require('../../nightwatch.js');
+var pkg = require('../package.json');
+var config = require('../nightwatch.js');
 var fs = require('fs');
 
 process.env.FILECOUNT = 0;
