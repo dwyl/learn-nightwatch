@@ -15,14 +15,14 @@ module.exports = {
       .saveScreenshot(GLOBAL.IMGPATH() + 'tc_autocomplete_click_first.png')
       .click('.list-group-item') // click on "Spanien" in auto suggestions
       .assert.containsText('.tags', 'Spanien') //
-      // .pause(1000)
+      // find the first article on the page:
       .waitForElementVisible('.articleTileImage')
+      .pause(500)
       .moveToElement('.tags', 800, 800)
       .saveScreenshot(GLOBAL.IMGPATH() + 'tc_tags.png')
       .moveToElement('.articleTileImage', 200, 800)
-      .saveScreenshot(GLOBAL.IMGPATH() + 'tc_result.png')
+      .saveScreenshot(GLOBAL.IMGPATH() + 'tc_result_initial.png')
       .moveToElement('.articleTileImage', 200, 800)
-      .pause(500)
       .saveScreenshot(GLOBAL.IMGPATH() + 'tc_result_article.png')
 
       .waitForElementVisible('.packageContainer')
