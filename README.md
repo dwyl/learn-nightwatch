@@ -151,6 +151,7 @@ We usually set the required (_minimum_) node version in our
   "node": "4.4.6"
 },
 ```
+Once you have the desired version of node installed.
 
 Setup Commands:
 ```js
@@ -166,7 +167,7 @@ That's it.
 
 > ***Note***: while the tests run seamlessly on CodeShip we were unable
  to get Selenium standalone working on Travis-CI
-if you have time to help us, please see:
+if you have time to ***help us***, please see:
 https://github.com/nelsonic/learn-nightwatch/issues/8
 
 <br /> <br />
