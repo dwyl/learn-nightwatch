@@ -21,16 +21,28 @@ you _confidence_ that the app _works_ in the chosen device/browser.
 
 ## _What_?
 
-Automated Acceptance Testing.
+_**Automated Acceptance Testing** using **Real Browsers**_.
 
-+ Site: http://nightwatchjs.org/
+Nightwatch is _quick_ to setup and the tests/scenarios are _easy_ to write.
+
+#### Background Links
+
++ Nightwatch website: http://nightwatchjs.org/
 + Github: https://github.com/nightwatchjs/nightwatch
 
 ## _Who_?
 
+Who should learn/use Nightwatch?
 
++ **Developers** - People writing code, building web apps needing to
+check that _everything_ works as expected.
++ **QA** - Quality Assurance people who have to _manually "click-test"_ apps/sites.
++ "**Testers**" - Many organisations _still_ have people who's job
+is to write tests for software.
 
 ## _How_?
+
+Try it on your local machine in 5 mins by following these 3 easy steps:
 
 ### 1. Clone
 
@@ -60,7 +72,7 @@ npm test
 You should expect to see:  
 ![learn-nightwatch-sample-test-run](https://cloud.githubusercontent.com/assets/194400/16112379/ffa5df92-33ae-11e6-88f5-b9204d7e6a78.png)
 
-> _If the tests fail, please **tell us**_!
+> _Note:_
 
 
 ### _Optional_
@@ -78,7 +90,7 @@ export SAUCE_ACCESS_KEY=private_key
 
 <br />
 
-
+## *Step-by-Step Tutorial*
 
 <br />
 
@@ -226,10 +238,17 @@ You should see something like this:
 
 > See: [http://stackoverflow.com/questions/24342886/how-to-**install-java-8**-on-**mac**](http://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac)
 
-### Sauce Connect
+### Saucelabs
+
+![browser logos](https://cloud.githubusercontent.com/assets/194400/16362868/8c29b448-3bb1-11e6-83f1-380edd462fb1.png)
+
+Most people _building_ web apps/sites don't have _easy_ access
+to _several_ devices/browsers to test their output, if you
+need to test in
 
 https://wiki.saucelabs.com/display/DOCS/Setting+Up+Sauce+Connect
 http://saucelabs.com/downloads/Sauce-Connect-latest.zip
+
 
 
 ### StackOverflow Questions
