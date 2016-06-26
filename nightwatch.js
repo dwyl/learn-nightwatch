@@ -10,12 +10,12 @@ module.exports = {
   "globals_path": "",
   "selenium": {
     "start_process": true,
-    "server_path": "bin/selenium.jar",
+    "server_path": "nightwatch/selenium.jar",
     "log_path": "",
     "host": "127.0.0.1",
     "port": 4444,
     "cli_args": {
-      "webdriver.chrome.driver" : "./bin/chromedriver"
+      "webdriver.chrome.driver" : "./nightwatch/chromedriver"
     }
   },
   // "test_workers" : {"enabled" : true, "workers" : "auto"},

@@ -7,7 +7,7 @@
     "node": "4.4.6"
   },
   "scripts": {
-    "postinstall": "node bin/selenium_child_process.js",
+    "postinstall": "node test/selenium-download.js",
     "selenium-exit": "node bin/selenium_kill_process.js",
     "test": "./node_modules/.bin/nightwatch --config nightwatch.js",
     "simple": "./node_modules/.bin/nightwatch --config nightwatch.js -e chrome",
