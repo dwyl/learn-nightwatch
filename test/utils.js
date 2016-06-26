@@ -3,7 +3,8 @@ var config = require('../nightwatch.js');
 var fs = require('fs');
 
 process.env.FILECOUNT = 0;
-process.env.SCREENSHOT_PATH = config.test_settings.local.screenshots.path + '/' + pkg.version + '/';
+// process.env.SCREENSHOT_PATH = config.test_settings.local.screenshots.path + '/' + pkg.version + '/';
+process.env.SCREENSHOT_PATH = 'reports/screenshots' + '/' + pkg.version + '/';
 
 function padLeft (count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
   if(count < 10) {

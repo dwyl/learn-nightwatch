@@ -9,7 +9,7 @@
   "scripts": {
     "postinstall": "node bin/selenium_child_process.js",
     "selenium-exit": "node bin/selenium_kill_process.js",
-    "test": "npm run postinstall && ./node_modules/.bin/nightwatch --config nightwatch.js --env local",
+    "test": "npm run postinstall && ./node_modules/.bin/nightwatch --config nightwatch.js",
     "simple": "./node_modules/.bin/nightwatch --config nightwatch.js -e chrome",
     "sauce": "./node_modules/.bin/nightwatch --config nightwatch.js -e chrome,ie11,android_s4_emulator,iphone_6_simulator",
     "upload": "node test/upload_screenshots_to_s3.js"

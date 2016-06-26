@@ -19,9 +19,9 @@ module.exports = {
       "webdriver.ie.driver": ""
     }
   },
-  "test_workers" : {"enabled" : true, "workers" : "auto"},
+  // "test_workers" : {"enabled" : true, "workers" : "auto"},
   "test_settings": {
-    "default": {
+    "sauce": {
       "launch_url": "http://localhost",
       "selenium_port": 80,
       "selenium_host": "ondemand.saucelabs.com",
@@ -36,7 +36,7 @@ module.exports = {
         "waitForConditionTimeout": 10000
       }
     },
-    "local": {
+    "default": {
       "launch_url": "http://localhost",
       "selenium_port": 4444,
       "selenium_host": "127.0.0.1",
