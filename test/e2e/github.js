@@ -12,7 +12,7 @@ module.exports = {
       .saveScreenshot(utils.imgpath() + 'github_find_ines.png')
       .click('.member-username')
       .pause(500)
-      // .saveScreenshot(utils.imgpath() + 'github_iteles_profile.png')
+      .saveScreenshot(utils.imgpath() + 'github_iteles_profile.png')
       .assert.containsText('.join-date', 'Apr 17, 2013')
       .end();
   }

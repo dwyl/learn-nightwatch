@@ -1,4 +1,4 @@
-# Learn Nightwatch [![Codeship](https://img.shields.io/codeship/d9151e40-1473-0134-47e0-12348d1f3442.svg?maxAge=2592000)](https://codeship.com/projects/157818)
+# Learn Nightwatch [![Codeship](https://img.shields.io/codeship/d9151e40-1473-0134-47e0-12348d1f3442.svg)](https://codeship.com/projects/157818)
 
 Automate your acceptance tests and run them in _real_ browsers!
 
@@ -29,6 +29,8 @@ Nightwatch is _quick_ to setup and the tests/scenarios are _easy_ to write.
 
 + Nightwatch website: http://nightwatchjs.org/
 + Github: https://github.com/nightwatchjs/nightwatch
++ Guide/docs: https://github.com/nightwatchjs/nightwatch-docs
+(_don't be put off by their lack of)
 
 ## _Who_?
 
@@ -72,7 +74,10 @@ npm test
 You should expect to see:  
 ![learn-nightwatch-sample-test-run](https://cloud.githubusercontent.com/assets/194400/16112379/ffa5df92-33ae-11e6-88f5-b9204d7e6a78.png)
 
-> _Note:_
+> _Note:_ If you see the following message while trying to run the tests:
+![no java](https://cloud.githubusercontent.com/assets/194400/16358578/dba5d748-3b0e-11e6-8acf-6be227bf974d.png)
+
+> See: [Java Installation section](https://github.com/nelsonic/learn-nightwatch#installing-java-runtime-environment-jre) below.
 
 
 ### _Optional_

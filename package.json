@@ -8,7 +8,6 @@
   },
   "scripts": {
     "postinstall": "node test/selenium-download.js",
-    "selenium-exit": "node bin/selenium_kill_process.js",
     "test": "./node_modules/.bin/nightwatch",
     "simple": "./node_modules/.bin/nightwatch --config nightwatch.js -e chrome",
     "sauce": "./node_modules/.bin/nightwatch --config nightwatch.js -e chrome,ie11,android_s4_emulator,iphone_6_simulator",
