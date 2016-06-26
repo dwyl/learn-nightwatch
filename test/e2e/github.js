@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = {
-  'Demo test GitHub' : '' + function (browser) {
+  'Demo test GitHub' : function (browser) {
     browser
       .url('http://www.github.com/dwyl')   // visit the url
       .waitForElementVisible('body') // wait for the body to be rendered
