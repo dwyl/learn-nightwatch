@@ -46,23 +46,23 @@ is to write tests for software.
 
 Try it on your local machine in 5 mins by following these 3 easy steps:
 
+
 ### 1. Clone
 
 ```sh
 git clone https://github.com/nelsonic/learn-nightwatch.git && cd learn-nightwatch
 ```
 
-### 2. Install
+### 2. Install<sup>1</sup>
 
 ```sh
 npm install
 ```
-<small>
-That will instal *all required* dependencies and *start* the local selenium server.  
-If you get an error, you might not have Java installed, see:
-[_install Java_](https://github.com/nelsonic/learn-nightwatch#installing-java-runtime-environment-jre)
-</small>
+That will instal the *required* dependencies
+including Selenium Server and `chromedriver`.
 
+<small><sup>1</sup>This _assumes_ you have node.js installed.
+If not, https://nodejs.org/en/download/ </small>
 
 
 ### 3. Run (_tests_)
@@ -74,10 +74,13 @@ npm test
 You should expect to see:  
 ![learn-nightwatch-sample-test-run](https://cloud.githubusercontent.com/assets/194400/16112379/ffa5df92-33ae-11e6-88f5-b9204d7e6a78.png)
 
+Once you see the tests pass you are well on your way
+to testing with Nightwatch!
+
 > _Note:_ If you see the following message while trying to run the tests:
 ![no java](https://cloud.githubusercontent.com/assets/194400/16358578/dba5d748-3b0e-11e6-8acf-6be227bf974d.png)
 
-> See: [Java Installation section](https://github.com/nelsonic/learn-nightwatch#installing-java-runtime-environment-jre) below.
+> See: [Java Installation section](https://github.com/nelsonic/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)
 
 
 ### _Optional_
@@ -89,6 +92,7 @@ export AWS_S3_BUCKET=yourbucket
 export AWS_REGION=eu-west-1
 export AWS_ACCESS_KEY_ID=IDHERE
 export AWS_SECRET_ACCESS_KEY=YOURKEY
+# to run your tests on SauceLabs you need to set the following variables:
 export SAUCE_USERNAME=yourusername
 export SAUCE_ACCESS_KEY=private_key
 ```

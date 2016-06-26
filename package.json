@@ -23,12 +23,9 @@
     "url": "https://github.com/dwyl/learn-nightwatch/issues"
   },
   "homepage": "https://github.com/dwyl/learn-nightwatch#readme",
-  "dependencies": {
-    "env2": "^2.1.0"
-  },
   "devDependencies": {
     "aws-sdk": "^2.4.0",
-    "daemon": "^1.1.0",
+    "env2": "^2.1.0",
     "mime-types": "^2.1.11",
     "nightwatch": "^0.9.3",
     "saucelabs": "^1.2.0",
