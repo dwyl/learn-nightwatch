@@ -144,11 +144,16 @@ you can change this to what ever you prefer.
 ### CI
 
 Running your Nightwatch tests on CI is easy on CodeShip.
+We usually set the required (_minimum_) node version in our
+`package.json` e.g:
+```js
+"engines": {
+  "node": "4.4.6"
+},
+```
 
 Setup Commands:
 ```js
-# install your desired Node.js version:
-nvm install 4.4.5
 # install all dependencies:
 npm install
 ```
