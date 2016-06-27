@@ -1,23 +1,24 @@
+var binpath = './node_modules/nightwatch/bin/';
 
-module.exports = { // we use a nightwatch.conf.js file so we can include comments and helper functions
+var config = {     // we use a nightwatch.conf.js file so we can include comments and helper functions
   "src_folders": [
     "test/e2e"     // we use /test as the name of our test directory by default. so test/e2e for e2e
   ],
   "output_folder": "./node_modules/nightwatch/reports", // reports (test outcome) output by nightwatch
   "selenium": {
     "start_process": true,
-    "server_path": "nightwatch/selenium.jar",
+    "server_path": binpath + "selenium.jar",
     "log_path": "",
     "host": "127.0.0.1",
     "port": 4444,
     "cli_args": {
-      "webdriver.chrome.driver" : "./node_modules/nightwatch/bin/chromedriver"
+      // "webdriver.chrome.driver" : binpath + "chromedriver"
     }
   },
-  "test_workers" : {"enabled" : true, "workers" : "auto"},
+  "test_workers" : {"enabled" : true, "workers" : "auto"}, // perform tests in parallel where possible
   "test_settings": {
-    "sauce": {
-      "launch_url": "http://localhost", // we are testing a Public or "staging" site on Saucelabs
+    "default": {
+      "launch_url": "http://localhost", // we're testing a Public or "staging" site on Saucelabs
       "selenium_port": 80,
       "selenium_host": "ondemand.saucelabs.com",
       "silent": true,
@@ -27,10 +28,10 @@ module.exports = { // we use a nightwatch.conf.js file so we can include comment
       "username" : "${SAUCE_USERNAME}",     // if you want to use Saucelabs remember to 
       "access_key" : "${SAUCE_ACCESS_KEY}", // export your environment variables (see readme)
       "globals": {
-        "waitForConditionTimeout": 10000    // wait for content on the page before continuing
+        "waitForConditionTimeout": 10000    // wait for content on the page bsauefore continuing
       }
     },
-    "default": {
+    "local": {
       "launch_url": "http://localhost",
       "selenium_port": 4444,
       "selenium_host": "127.0.0.1",
@@ -107,15 +108,15 @@ module.exports = { // we use a nightwatch.conf.js file so we can include comment
     }
   }
 }
+module.exports = config;
 
+var fs = require('fs');
 /**
  * selenium-download does exactly what it's name suggests; 
- * downloads (or updates) the version of Selenium (& chromedriver) to your
- * localhost where it will be used by Nightwatch. 
+ * downloads (or updates) the version of Selenium (& chromedriver)
+ * on your localhost where it will be used by Nightwatch. 
  */
-var fs = require('fs');
-var binpath = './node_modules/nightwatch/bin';
-fs.stat(binpath + '/selenium.jar', function (err, stat) { // alread downloaded?
+fs.stat(binpath + 'selenium.jar', function (err, stat) { // alread downloaded?
   if (err || !stat || stat.size < 1) {
     require('selenium-download').ensure(binpath, function(error) {
       if (error) throw new Error(error); // no point continueing so exit!
@@ -124,3 +125,25 @@ fs.stat(binpath + '/selenium.jar', function (err, stat) { // alread downloaded?
   }
 });
 
+var pkg = require('./package.json'); // so we can get the version of the project
+GLOBAL.FILECOUNT = GLOBAL.FILECOUNT || '0'; // "global" screenshot file count
+var SCREENSHOT_PATH = config.test_settings.local.screenshots.path + '/' + pkg.version + '/';
+
+function padLeft (count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
+  return count < 10 ? '0' + count : count;
+}
+// ensure that we increment the number for each screenshot saved
+function imgpath () {
+  console.log(GLOBAL.FILECOUNT)
+  var FILECOUNT = parseInt(GLOBAL.FILECOUNT, 10) + 1;
+  GLOBAL.FILECOUNT = FILECOUNT.toString(); // update the evironment var (must be string)
+  try {
+  var files = fs.readdirSync(SCREENSHOT_PATH);
+  console.log('files.length:', files.length);
+    FILECOUNT = files.length;
+  } catch (e) {
+    FILECOUNT = 0;
+  }
+  return SCREENSHOT_PATH + padLeft(FILECOUNT++) + '_';
+}
+module.exports.imgpath = imgpath;

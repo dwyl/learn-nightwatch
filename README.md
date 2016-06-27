@@ -72,7 +72,7 @@ npm test
 ```
 
 You should expect to see:  
-![learn-nightwatch-sample-test-run](https://cloud.githubusercontent.com/assets/194400/16112379/ffa5df92-33ae-11e6-88f5-b9204d7e6a78.png)
+![learn-nightwatch-console-output-success](https://cloud.githubusercontent.com/assets/194400/16376918/f2d9f8c0-3c5a-11e6-96c4-88e0bdb44638.png)
 
 Once you see the tests pass you are well on your way
 to testing with Nightwatch!
@@ -200,6 +200,7 @@ http://stackoverflow.com/questions/6517501/selenium-2-how-to-check-that-server-i
 http://andrew.yurisich.com/work/2014/08/30/silence-noisy-selenium-server-output-in-travis-ci/
 + Nightwatch on Saucelabs: https://github.com/saucelabs-sample-test-frameworks/JS-Nightwatch.js
 + Intro by @mikberg: https://medium.com/@mikaelberg/zero-to-hero-with-end-to-end-tests-using-nightwatch-saucelabs-and-travis-e932c8deb695
++ Intro (Angular-focussed): http://g00glen00b.be/e2e-testing-nightwatch-js/
 
 
 #### Why Nightwatch instead of `xyz`...?

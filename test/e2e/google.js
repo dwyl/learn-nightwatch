@@ -1,4 +1,4 @@
-var utils = require('../utils');
+var utils = require('../../nightwatch.conf.js');
 
 module.exports = {
   'Demo test Google' : function (browser) {
