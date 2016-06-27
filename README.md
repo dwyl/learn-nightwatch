@@ -81,23 +81,9 @@ to testing with Nightwatch!
 ![no java](https://cloud.githubusercontent.com/assets/194400/16358578/dba5d748-3b0e-11e6-8acf-6be227bf974d.png)
 
 > See: [Java Installation section](https://github.com/nelsonic/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)
+Once you have Java installed re-run the Nightwatch tests (`npm test`).
 
 
-### _Optional_
-
-If you want the screenshots of your tests to be uploaded to S3,
-you will need to have the following environment variables declared:
-```sh
-export AWS_S3_BUCKET=yourbucket
-export AWS_REGION=eu-west-1
-export AWS_ACCESS_KEY_ID=IDHERE
-export AWS_SECRET_ACCESS_KEY=YOURKEY
-# to run your tests on SauceLabs you need to set the following variables:
-export SAUCE_USERNAME=yourusername
-export SAUCE_ACCESS_KEY=private_key
-```
-
-<br />
 
 ## *Step-by-Step Tutorial*
 
@@ -144,6 +130,22 @@ http://nightwatchjs.org/guide#settings-file
 
 The default is to look for tests in the `/tests` folder of your project;
 you can change this to what ever you prefer.
+
+
+### _Optional_ Upload Screenshots to S3
+
+If you want the screenshots of tests to be uploaded to S3,
+you will need to have the following environment variables declared:
+```sh
+export AWS_S3_BUCKET=yourbucket
+export AWS_REGION=eu-west-1
+export AWS_ACCESS_KEY_ID=IDHERE
+export AWS_SECRET_ACCESS_KEY=YOURKEY
+# to run your tests on SauceLabs you need to set the following variables:
+export SAUCE_USERNAME=yourusername
+export SAUCE_ACCESS_KEY=private_key
+```
+<br />
 
 ### CI
 

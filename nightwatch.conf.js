@@ -1,13 +1,9 @@
 
-module.exports = {
+module.exports = { // we use a nightwatch.conf.js file so we can include comments and helper functions
   "src_folders": [
-    "test/e2e"
+    "test/e2e"     // we use /test as the name of our test directory by default. so test/e2e for e2e
   ],
-  "output_folder": "reports",
-  "custom_commands_path": "",
-  "custom_assertions_path": "",
-  "page_objects_path": "",
-  "globals_path": "",
+  "output_folder": "./node_modules/nightwatch/reports", // reports (test outcome) output by nightwatch
   "selenium": {
     "start_process": true,
     "server_path": "nightwatch/selenium.jar",
@@ -15,24 +11,23 @@ module.exports = {
     "host": "127.0.0.1",
     "port": 4444,
     "cli_args": {
-      "webdriver.chrome.driver" : "./nightwatch/chromedriver"
+      "webdriver.chrome.driver" : "./node_modules/nightwatch/bin/chromedriver"
     }
   },
-  // "test_workers" : {"enabled" : true, "workers" : "auto"},
+  "test_workers" : {"enabled" : true, "workers" : "auto"},
   "test_settings": {
     "sauce": {
-      "launch_url": "http://localhost",
+      "launch_url": "http://localhost", // we are testing a Public or "staging" site on Saucelabs
       "selenium_port": 80,
       "selenium_host": "ondemand.saucelabs.com",
       "silent": true,
       "screenshots": {
         "enabled": false,
-        "path": ""
       },
-      "username" : "${SAUCE_USERNAME}",
-      "access_key" : "${SAUCE_ACCESS_KEY}",
+      "username" : "${SAUCE_USERNAME}",     // if you want to use Saucelabs remember to 
+      "access_key" : "${SAUCE_ACCESS_KEY}", // export your environment variables (see readme)
       "globals": {
-        "waitForConditionTimeout": 10000
+        "waitForConditionTimeout": 10000    // wait for content on the page before continuing
       }
     },
     "default": {
@@ -42,10 +37,10 @@ module.exports = {
       "silent": true,
       "screenshots": {
         "enabled": true,
-        "path": "reports/screenshots"
+        "path": "./node_modules/nightwatch/screenshots" // save screenshots taken here
       },
       "globals": {
-        "waitForConditionTimeout": 15000
+        "waitForConditionTimeout": 15000 // on localhost sometimes internet is slow so wait...
       },
       "desiredCapabilities": {
         "browserName": "chrome",
@@ -112,3 +107,20 @@ module.exports = {
     }
   }
 }
+
+/**
+ * selenium-download does exactly what it's name suggests; 
+ * downloads (or updates) the version of Selenium (& chromedriver) to your
+ * localhost where it will be used by Nightwatch. 
+ */
+var fs = require('fs');
+var binpath = './node_modules/nightwatch/bin';
+fs.stat(binpath + '/selenium.jar', function (err, stat) { // alread downloaded?
+  if (err || !stat || stat.size < 1) {
+    require('selenium-download').ensure(binpath, function(error) {
+      if (error) throw new Error(error); // no point continueing so exit!
+      console.log('✔ Selenium & Chromedriver downloaded to:', binpath);
+    });
+  }
+});
+

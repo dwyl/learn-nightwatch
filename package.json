@@ -7,7 +7,7 @@
     "node": "4.4.6"
   },
   "scripts": {
-    "postinstall": "node test/selenium-download.js",
+    "postinstall": "node nightwatch.conf.js",
     "test": "./node_modules/.bin/nightwatch",
     "simple": "./node_modules/.bin/nightwatch --config nightwatch.js -e chrome",
     "sauce": "./node_modules/.bin/nightwatch --config nightwatch.js -e chrome,ie11,android_s4_emulator,iphone_6_simulator",
