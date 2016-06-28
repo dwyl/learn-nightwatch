@@ -61,7 +61,7 @@ npm install
 That will instal the *required* dependencies
 including Selenium Server and `chromedriver`.
 
-<small><sup>1</sup>This _assumes_ you have node.js installed.
+<sup>1</sup><small>This _assumes_ you have node.js installed.
 If not, https://nodejs.org/en/download/ </small>
 
 

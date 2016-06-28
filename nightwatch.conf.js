@@ -47,7 +47,8 @@ var config = {     // we use a nightwatch.conf.js file so we can include comment
         "browserName": "chrome",
         "chromeOptions": {
           "args": [
-            "--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A",
+            `--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) 
+            AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A`,
             "--window-size=1200,800"
           ]
         },
@@ -147,3 +148,4 @@ function imgpath () {
   return SCREENSHOT_PATH + padLeft(FILECOUNT++) + '_';
 }
 module.exports.imgpath = imgpath;
+
