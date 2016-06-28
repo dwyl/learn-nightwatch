@@ -1,6 +1,3 @@
-var https = require('https');
-var SauceLabs = require("saucelabs");
-
 module.exports = { // addapted from: https://git.io/vodU0
   '@tags': ['guineaPig'],
   'Guinea Pig Assert Title': function(client) {

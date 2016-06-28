@@ -12,7 +12,7 @@ var config = {     // we use a nightwatch.conf.js file so we can include comment
     "host": "127.0.0.1",
     "port": 4444,
     "cli_args": {
-      // "webdriver.chrome.driver" : binpath + "chromedriver"
+      "webdriver.chrome.driver" : binpath + "chromedriver"
     }
   },
   "test_workers" : {"enabled" : true, "workers" : "auto"}, // perform tests in parallel where possible
@@ -47,9 +47,9 @@ var config = {     // we use a nightwatch.conf.js file so we can include comment
         "browserName": "chrome",
         "chromeOptions": {
           "args": [
-            `--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3)
-            AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A`,
-            "--window-size=1200,800"
+            `Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46
+            (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3`,
+            "--window-size=640,1136" // iphone 5
           ]
         },
         "javascriptEnabled": true,
