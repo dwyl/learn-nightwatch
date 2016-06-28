@@ -1,4 +1,4 @@
-var binpath = './node_modules/nightwatch/bin/';
+var binpath = './node_modules/nightwatch/bin/'; // change if required.
 
 var config = {     // we use a nightwatch.conf.js file so we can include comments and helper functions
   "src_folders": [
@@ -131,10 +131,10 @@ GLOBAL.FILECOUNT = GLOBAL.FILECOUNT || '0'; // "global" screenshot file count
 var SCREENSHOT_PATH = config.test_settings.local.screenshots.path + '/' + pkg.version + '/';
 
 function padLeft (count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
-  return count < 10 ? '0' + count : count;
+  return count < 10 ? '0' + count : count.toString();
 }
 // ensure that we increment the number for each screenshot saved
-function imgpath () {
+function imgpath (filename) {
   // console.log(GLOBAL.FILECOUNT)
   var FILECOUNT = parseInt(GLOBAL.FILECOUNT, 10) + 1;
   GLOBAL.FILECOUNT = FILECOUNT.toString(); // update the evironment var (must be string)

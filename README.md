@@ -1,6 +1,6 @@
-# Learn Nightwatch [![Codeship](https://img.shields.io/codeship/d9151e40-1473-0134-47e0-12348d1f3442.svg)](https://codeship.com/projects/157818)
+# Learn Nightwatch [![Codeship](https://img.shields.io/codeship/d9151e40-1473-0134-47e0-12348d1f3442.svg)](https://codeship.com/projects/157818) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-nightwatch/issues)
 
-Automate your acceptance tests and run them in _real_ browsers!
+_**Automate** your **acceptance tests** and run them in **real browsers**_!
 
 ![nightwatch-logo-with-slogan](https://cloud.githubusercontent.com/assets/194400/16045809/099207e2-3242-11e6-99d4-99b227d7a38a.png)
 
@@ -10,7 +10,7 @@ Testing what the people _using_ your application/website will _see_
 and their ability _interact_ with the product is
 (_probably_) the most important part of building a web app/site.
 You can have amazing code, a super-fast backend and cutting-edge Virtual DOM UI,
-but _none_ of that _matters_ if the person is unable to _use_ it
+but _none_ of that _matters_ if people are unable to _use_ it
 because of a basic bug!
 
 ![dilbert-internet-full](https://cloud.githubusercontent.com/assets/194400/16302737/b0bb3486-3944-11e6-9875-6e691587ccd0.png)
@@ -25,12 +25,19 @@ _**Automated Acceptance Testing** using **Real Browsers**_.
 
 Nightwatch is _quick_ to setup and the tests/scenarios are _easy_ to write.
 
+> We _exhaustively_ read through all the tutorials, blog posts and documentation
+for Nightwatch (_including the mailing list & StackOverflow Q&A_)
+and have condensed our findings into this step-by-step guide.  
+We hope you find it _useful_ and decide to use it for your web app/site!  
+_**Please**_ give us _**feedback**_ and if you _get stuck_,
+[_**tell us!**_](https://github.com/nelsonic/learn-nightwatch/issues)
+
 #### Background Links
 
 + Nightwatch website: http://nightwatchjs.org/
 + Github: https://github.com/nightwatchjs/nightwatch
 + Guide/docs: https://github.com/nightwatchjs/nightwatch-docs
-(_don't be put off by their lack of)
+(_don't be put off by the lack of docs, we're here to help if you get stuck!_)
 
 ## _Who_?
 
@@ -44,7 +51,7 @@ is to write tests for software.
 
 ## _How_?
 
-Try it on your local machine in 5 mins by following these 3 easy steps:
+_**Try it**_ on your local machine in 5 mins by following these _**3 easy steps**_:
 
 
 ### 1. Clone
@@ -77,17 +84,20 @@ You should expect to see:
 Once you see the tests pass you are well on your way
 to testing with Nightwatch!
 
-> _Note:_ If you see the following message while trying to run the tests:
-![no java](https://cloud.githubusercontent.com/assets/194400/16358578/dba5d748-3b0e-11e6-8acf-6be227bf974d.png)
+<br />
 
-> See: [Java Installation section](https://github.com/nelsonic/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)
+> _**Note**:_ If you see the following message while trying to run the tests:
+![learn-nightwatch-java-not-installed](https://cloud.githubusercontent.com/assets/194400/16425985/0e2a9e5e-3d5f-11e6-9bf0-d2eebcd97c2b.png)
+
+> See: [Java Installation section](https://github.com/nelsonic/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)  
 Once you have Java installed re-run the Nightwatch tests (`npm test`).
 
-
+<br />
 
 ## *Step-by-Step Tutorial*
 
-<br />
+Now that you've had a _taste_ for running tests with Nightwatch,
+let's walk through each of the steps to get this working in _your_ project.
 
 ### Installation (_in detail_)
 
@@ -100,7 +110,7 @@ npm install nightwatch --save-dev
 > <small>**Note**: while the Nightwatch docs instruct to install _globally_ (`-g`),
 we _prefer_ to always install devDependencies _locally_ to the project
 and list them _explicitly_ in `package.json` so it's _clear_ to everyone
-viewing/using the project what is required to run the tests. </small>
+viewing/using the project _exactly_ which version is required to run the tests. </small>
 
 
 #### Selenium (_Web Driver_) Standalone Server
@@ -215,19 +225,6 @@ If _night**mare**_ ever change their name, we _could re-consider_ it.
 
 ### Setup (*Detail*)
 
-#### Manual Selenium Install
-
-If you prefer to install it _manually_ that's an option.
-
-> Visit: http://www.seleniumhq.org/download/ and download the latest version.
-
-When downloading the `selenium-server-standalone-2.53.0.jar`
-you _may_ see a _warning_ in your browser:  
-![download-selenium-chrome-warning](https://cloud.githubusercontent.com/assets/194400/16004469/b865583a-3159-11e6-9b6a-40bd754ef209.png)  
-Click on "keep" to save the file.
-Once you have it, put it in the `bin` directory of your project
-and re-name it to `selenium.jar` (_without the version number_).
-
 #### Installing Java (_Runtime Environment JRE_)
 
 While we prefer _not_ to run `Java` on our machines for
@@ -255,6 +252,20 @@ You should see something like this:
 ![install-java-with-homebrew-cask](https://cloud.githubusercontent.com/assets/194400/16007040/296f1bfc-3168-11e6-8009-8f39b715239d.png)
 
 > See: [http://stackoverflow.com/questions/24342886/how-to-**install-java-8**-on-**mac**](http://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac)
+
+#### Manual Selenium Install
+
+If you prefer to install it _manually_ that's an option.
+
+> Visit: http://www.seleniumhq.org/download/ and download the latest version.
+
+When downloading the `selenium-server-standalone-2.53.0.jar`
+you _may_ see a _warning_ in your browser:  
+![download-selenium-chrome-warning](https://cloud.githubusercontent.com/assets/194400/16004469/b865583a-3159-11e6-9b6a-40bd754ef209.png)  
+Click on "keep" to save the file.
+Once you have it, put it in the `bin` directory of your project
+and re-name it to `selenium.jar` (_without the version number_).
+
 
 ### Saucelabs
 
