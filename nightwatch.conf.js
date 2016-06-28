@@ -25,7 +25,7 @@ var config = {     // we use a nightwatch.conf.js file so we can include comment
       "screenshots": {
         "enabled": false,
       },
-      "username" : "${SAUCE_USERNAME}",     // if you want to use Saucelabs remember to 
+      "username" : "${SAUCE_USERNAME}",     // if you want to use Saucelabs remember to
       "access_key" : "${SAUCE_ACCESS_KEY}", // export your environment variables (see readme)
       "globals": {
         "waitForConditionTimeout": 10000    // wait for content on the page bsauefore continuing
@@ -47,7 +47,7 @@ var config = {     // we use a nightwatch.conf.js file so we can include comment
         "browserName": "chrome",
         "chromeOptions": {
           "args": [
-            `--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) 
+            `--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3)
             AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A`,
             "--window-size=1200,800"
           ]
@@ -113,9 +113,9 @@ module.exports = config;
 
 var fs = require('fs');
 /**
- * selenium-download does exactly what it's name suggests; 
+ * selenium-download does exactly what it's name suggests;
  * downloads (or updates) the version of Selenium (& chromedriver)
- * on your localhost where it will be used by Nightwatch. 
+ * on your localhost where it will be used by Nightwatch.
  */
 fs.stat(binpath + 'selenium.jar', function (err, stat) { // alread downloaded?
   if (err || !stat || stat.size < 1) {
@@ -135,12 +135,12 @@ function padLeft (count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
 }
 // ensure that we increment the number for each screenshot saved
 function imgpath () {
-  console.log(GLOBAL.FILECOUNT)
+  // console.log(GLOBAL.FILECOUNT)
   var FILECOUNT = parseInt(GLOBAL.FILECOUNT, 10) + 1;
   GLOBAL.FILECOUNT = FILECOUNT.toString(); // update the evironment var (must be string)
   try {
   var files = fs.readdirSync(SCREENSHOT_PATH);
-  console.log('files.length:', files.length);
+  // console.log('files.length:', files.length);
     FILECOUNT = files.length;
   } catch (e) {
     FILECOUNT = 0;
@@ -148,4 +148,3 @@ function imgpath () {
   return SCREENSHOT_PATH + padLeft(FILECOUNT++) + '_';
 }
 module.exports.imgpath = imgpath;
-

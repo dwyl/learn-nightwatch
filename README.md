@@ -198,10 +198,10 @@ http://stackoverflow.com/questions/25067391/how-to-make-a-globally-accessible-va
 http://stackoverflow.com/questions/6517501/selenium-2-how-to-check-that-server-is-running-and-stop-the-server
 + Silence Selenium on Travis:
 http://andrew.yurisich.com/work/2014/08/30/silence-noisy-selenium-server-output-in-travis-ci/
-+ Nightwatch on Saucelabs: https://github.com/saucelabs-sample-test-frameworks/JS-Nightwatch.js
 + Intro by @mikberg: https://medium.com/@mikaelberg/zero-to-hero-with-end-to-end-tests-using-nightwatch-saucelabs-and-travis-e932c8deb695
 + Intro (Angular-focussed): http://g00glen00b.be/e2e-testing-nightwatch-js/
-
++ Nightwatchjs: how to check if element exists without creating an error/failure/exception
+http://stackoverflow.com/questions/31687027/nightwatchjs-how-to-check-if-element-exists-without-creating-an-error-failure-e
 
 #### Why Nightwatch instead of `xyz`...?
 
@@ -264,9 +264,7 @@ Most people _building_ web apps/sites don't have _easy_ access
 to _several_ devices/browsers to test their output, if you
 need to test in
 
-https://wiki.saucelabs.com/display/DOCS/Setting+Up+Sauce+Connect
-http://saucelabs.com/downloads/Sauce-Connect-latest.zip
-
++ Nightwatch on ***Saucelabs***: https://github.com/saucelabs-sample-test-frameworks/JS-Nightwatch.js
 
 
 ### StackOverflow Questions
