@@ -1,13 +1,14 @@
-var binpath = './node_modules/nightwatch/bin/'; // change if required.
+const binpath = './node_modules/nightwatch/bin/'; // change if required.
+const pkg = require('./package.json'); // so we can get the version of the project
 
-var config = {     // we use a nightwatch.conf.js file so we can include comments and helper functions
+const config = { // we use a nightwatch.conf.js file so we can include comments and helper functions
   "src_folders": [
     "test/e2e"     // we use /test as the name of our test directory by default. so test/e2e for e2e
   ],
   "output_folder": "./node_modules/nightwatch/reports", // reports (test outcome) output by nightwatch
   "selenium": {
     "start_process": true,
-    "server_path": binpath + "selenium.jar",
+    "server_path": binpath + "selenium.jar", // downloaded by selenium-download module (see below)
     "log_path": "",
     "host": "127.0.0.1",
     "port": 4444,
@@ -23,7 +24,8 @@ var config = {     // we use a nightwatch.conf.js file so we can include comment
       "selenium_host": "ondemand.saucelabs.com",
       "silent": true,
       "screenshots": {
-        "enabled": false,
+        "enabled": true,
+        "path": "./node_modules/nightwatch/screenshots/" + pkg.version + "/"
       },
       "username" : "${SAUCE_USERNAME}",     // if you want to use Saucelabs remember to
       "access_key" : "${SAUCE_ACCESS_KEY}", // export your environment variables (see readme)
@@ -37,9 +39,9 @@ var config = {     // we use a nightwatch.conf.js file so we can include comment
       "selenium_host": "127.0.0.1",
       "silent": true,
       "screenshots": {
-        "enabled": true,
-        "path": "./node_modules/nightwatch/screenshots" // save screenshots taken here
-      },
+        "enabled": true, // save screenshots taken here
+        "path": "./node_modules/nightwatch/screenshots/" + pkg.version + "/"
+      }, // this allows us to control the
       "globals": {
         "waitForConditionTimeout": 15000 // on localhost sometimes internet is slow so wait...
       },
@@ -88,7 +90,8 @@ var config = {     // we use a nightwatch.conf.js file so we can include comment
       "desiredCapabilities": {
         "platform": "Windows 7",
         "browserName": "internet explorer",
-        "version": "10"
+        "version": "10",
+        "codename":"Win7ie11"
       }
     },
     "android_s4_emulator": {
@@ -111,7 +114,7 @@ var config = {     // we use a nightwatch.conf.js file so we can include comment
 }
 module.exports = config;
 
-var fs = require('fs');
+const fs = require('fs');
 /**
  * selenium-download does exactly what it's name suggests;
  * downloads (or updates) the version of Selenium (& chromedriver)
@@ -126,25 +129,27 @@ fs.stat(binpath + 'selenium.jar', function (err, stat) { // alread downloaded?
   }
 });
 
-var pkg = require('./package.json'); // so we can get the version of the project
-GLOBAL.FILECOUNT = GLOBAL.FILECOUNT || '0'; // "global" screenshot file count
-var SCREENSHOT_PATH = config.test_settings.local.screenshots.path + '/' + pkg.version + '/';
+GLOBAL.FILECOUNT = GLOBAL.FILECOUNT || 0; // "global" screenshot file count
+const SCREENSHOT_PATH = config.test_settings.local.screenshots.path;
 
 function padLeft (count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
   return count < 10 ? '0' + count : count.toString();
 }
 // ensure that we increment the number for each screenshot saved
-function imgpath (filename) {
-  // console.log(GLOBAL.FILECOUNT)
-  var FILECOUNT = parseInt(GLOBAL.FILECOUNT, 10) + 1;
-  GLOBAL.FILECOUNT = FILECOUNT.toString(); // update the evironment var (must be string)
-  try {
-  var files = fs.readdirSync(SCREENSHOT_PATH);
-  // console.log('files.length:', files.length);
-    FILECOUNT = files.length;
-  } catch (e) {
-    FILECOUNT = 0;
-  }
-  return SCREENSHOT_PATH + padLeft(FILECOUNT++) + '_';
+function imgpath (testfile, browser) {
+
+  // Object.keys(process.env).forEach(function(k) {
+  //   if(k.indexOf('npm_') === -1) { console.log(k + ' : ' + process.env[k])}
+  // });
+  // console.log('>>>>>', userAgent(browser));
+  var testname = testfile.split('/')[testfile.split('/').length-1].replace('.js', '');
+  var agent = userAgent(browser);
+  return SCREENSHOT_PATH + agent + '~' + testname + '_' + padLeft(FILECOUNT++) + '_';
 }
+
+function userAgent(browser) { // see: https://git.io/vobdn
+  var a = browser.options.desiredCapabilities;
+  return (a.platform + '~' + a.browserName + '~' + a.version).replace(/ /g, '');
+}
+
 module.exports.imgpath = imgpath;
