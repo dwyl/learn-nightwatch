@@ -51,10 +51,14 @@ is to write tests for software.
 
 ## _How_?
 
+### _Quick Start (5mins)_
+
 _**Try it**_ on your local machine in 5 mins by following these _**3 easy steps**_:
 
 
 ### 1. Clone
+
+Clone the repository by _copy-pasting_ the following command into your terminal:
 
 ```sh
 git clone https://github.com/nelsonic/learn-nightwatch.git && cd learn-nightwatch
@@ -62,21 +66,22 @@ git clone https://github.com/nelsonic/learn-nightwatch.git && cd learn-nightwatc
 
 ### 2. Install<sup>1</sup>
 
+Install the *required* dependencies
+including Selenium Server and `chromedriver`:
+
 ```sh
 npm install
 ```
-That will instal the *required* dependencies
-including Selenium Server and `chromedriver`.
-
-<sup>1</sup><small>This _assumes_ you have node.js installed.
-If not, https://nodejs.org/en/download/ </small>
 
 
-### 3. Run (_tests_)
+### 3. Run (_tests_)<sup>2</sup>
+
+Run the Nightwatch tests:
 
 ```sh
 npm test
 ```
+
 
 You should expect to see:  
 ![learn-nightwatch-console-output-success](https://cloud.githubusercontent.com/assets/194400/16376918/f2d9f8c0-3c5a-11e6-96c4-88e0bdb44638.png)
@@ -84,13 +89,11 @@ You should expect to see:
 Once you see the tests pass you are well on your way
 to testing with Nightwatch!
 
-<br />
 
-> _**Note**:_ If you see the following message while trying to run the tests:
-![learn-nightwatch-java-not-installed](https://cloud.githubusercontent.com/assets/194400/16425985/0e2a9e5e-3d5f-11e6-9bf0-d2eebcd97c2b.png)
-
-> See: [Java Installation section](https://github.com/nelsonic/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)  
-Once you have Java installed re-run the Nightwatch tests (`npm test`).
+<sup>1</sup><small>This _assumes_ you have node.js installed.
+If not, https://nodejs.org/en/download/ </small>  
+<sup>2</sup><small>Selenium Requires Java/JDK see: [Java Installation section](https://github.com/nelsonic/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)
+Once you have Java installed re-run the Nightwatch tests (`npm test`).</small>
 
 <br />
 
@@ -212,6 +215,8 @@ http://andrew.yurisich.com/work/2014/08/30/silence-noisy-selenium-server-output-
 + Intro (Angular-focussed): http://g00glen00b.be/e2e-testing-nightwatch-js/
 + Nightwatchjs: how to check if element exists without creating an error/failure/exception
 http://stackoverflow.com/questions/31687027/nightwatchjs-how-to-check-if-element-exists-without-creating-an-error-failure-e
++ Can I create reusable test steps in nightwatch.js?
+http://stackoverflow.com/questions/31388280/can-i-create-reusable-test-steps-in-nightwatch-js
 
 #### Why Nightwatch instead of `xyz`...?
 
@@ -226,6 +231,9 @@ If _night**mare**_ ever change their name, we _could re-consider_ it.
 ### Setup (*Detail*)
 
 #### Installing Java (_Runtime Environment JRE_)
+
+If you see the following message while trying to run the tests:
+![learn-nightwatch-java-not-installed](https://cloud.githubusercontent.com/assets/194400/16425985/0e2a9e5e-3d5f-11e6-9bf0-d2eebcd97c2b.png)
 
 While we prefer _not_ to run `Java` on our machines for
 [_security reasons_](http://krebsonsecurity.com/tag/java/) Selenium is _still_
@@ -273,7 +281,7 @@ and re-name it to `selenium.jar` (_without the version number_).
 
 Most people _building_ web apps/sites don't have _easy_ access
 to _several_ devices/browsers to test their output, if you
-need to test in
+need to test in a _range_ of browsers
 
 + Nightwatch on ***Saucelabs***: https://github.com/saucelabs-sample-test-frameworks/JS-Nightwatch.js
 
@@ -288,6 +296,7 @@ Remind me to Respond to these:
 > + [ ] use saucelabs with nightwatch? http://stackoverflow.com/questions/36137270/how-to-use-saucelabs-with-nightwatch
 > + [x] keypress: http://stackoverflow.com/questions/31812935/nightwatch-testing-sendkeys-and-keys-not-sending-key-clicks ... [*answer*](http://stackoverflow.com/questions/31812935/nightwatch-testing-sendkeys-and-keys-not-sending-key-clicks/37950264#37950264)
 > + [x] Run Selenium as child process: http://stackoverflow.com/questions/27408864/cant-launch-selenium-phantomjs-ghostdriver-as-child-processes
+> + [x] Current running browser: http://stackoverflow.com/questions/38102543/when-running-nightwatch-js-test-how-can-i-get-the-name-of-browser-currently-runn
 
 ## Cons (_of using Nightwatch_)
 
