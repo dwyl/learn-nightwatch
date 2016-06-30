@@ -1,5 +1,8 @@
-# Learn Nightwatch [![Codeship](https://img.shields.io/codeship/d9151e40-1473-0134-47e0-12348d1f3442.svg)](https://codeship.com/projects/157818) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-nightwatch/issues)
-[![Dependency Status](https://david-dm.org/dwyl/learn-nightwatch.svg)](https://david-dm.org/dwyl/learn-nightwatch) [![devDependency Status](https://david-dm.org/dwyl/learn-nightwatch/dev-status.svg)](https://david-dm.org/dwyl/learn-nightwatch#info=devDependencies)
+# Learn Nightwatch  
+[![Codeship](https://img.shields.io/codeship/d9151e40-1473-0134-47e0-12348d1f3442.svg)](https://codeship.com/projects/157818)
+[![Dependency Status](https://david-dm.org/dwyl/learn-nightwatch.svg)](https://david-dm.org/dwyl/learn-nightwatch)
+[![devDependency Status](https://david-dm.org/dwyl/learn-nightwatch/dev-status.svg)](https://david-dm.org/dwyl/learn-nightwatch#info=devDependencies)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-nightwatch/issues)
 
 _**Automate** your **acceptance tests** and run them in **real browsers**_!
 
@@ -39,6 +42,7 @@ _**Please**_ give us _**feedback**_ and if you _get stuck_,
 + Github: https://github.com/nightwatchjs/nightwatch
 + Guide/docs: https://github.com/nightwatchjs/nightwatch-docs
 (_don't be put off by the lack of docs, we're here to help if you get stuck!_)
++ Configuration file settings: http://nightwatchjs.org/guide#settings-file
 
 ## _Who_?
 
@@ -48,7 +52,8 @@ Who should learn/use Nightwatch?
 check that _everything_ works as expected.
 + **QA** - Quality Assurance people who have to _manually "click-test"_ apps/sites.
 + "**Testers**" - Many organisations _still_ have people who's job
-is to write tests for software.
+is to write tests for software. If you describe yourself as a "Tester"
+and want an _easier/faster_ way to write your acceptance tests, read on!
 
 ## _How_?
 
@@ -93,7 +98,7 @@ to testing with Nightwatch!
 
 <sup>1</sup><small>This _assumes_ you have node.js installed.
 If not, https://nodejs.org/en/download/ </small>  
-<sup>2</sup><small>Selenium Requires Java/JDK see: [Java Installation section](https://github.com/dwyl/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)
+<sup>2</sup><small>Selenium Requires Java/JDK see: [Java Installation section](https://github.com/dwyl/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)  
 Once you have Java installed re-run the Nightwatch tests (`npm test`).</small>
 
 <br />
@@ -153,14 +158,15 @@ Once you've installed `nightwatch`, you will need to create a configuration file
 _Some_ Nightwatch tutorials use a `nightwatch.json` file;
 this is good for the most _basic_ cases
 but if you want to use variables in your
-configuration we _recommend_ using a `.js` file; specifically called `nightwatch.conf.js`.
+configuration we _recommend_ using a `.js` file;
+_specifically_ called `nightwatch.conf.js`.
 
-The most _basic_ configuration is:
+The most _basic_ configuration is: [`nightwatch.conf.BASIC.js`](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.BASIC.js)
 
 ```js
 module.exports = {
   "src_folders": [
-    "test/e2e"// Where you are storing your Nightwatch e2e tests
+    "test/e2e"// Where you are storing your Nightwatch e2e/UAT tests
   ],
   "output_folder": "./reports", // reports (test outcome) output by nightwatch
   "selenium": { // downloaded by selenium-download module (see readme)
@@ -195,17 +201,12 @@ module.exports = {
 }
 ```
 
-> One of our favourite things about using a `.js` file is the ability to add
-_comments_ in the file. This makes it _much_ easier for new people to
-_understand_ what's going on. We have a slightly more _evolved_ `nightwatch.conf.js` see:
+> One of our _favourite_ things about using a `.js` file
+is the ability to add _comments_ in the file.  
+This makes it _much_ easier for new people to
+_understand_ what's going on.  
+We have a slightly more _evolved_ `nightwatch.conf.js` (_with Saucelabs_) see:
 [github.com/dwyl/learn-nightwatch/**nightwatch.conf.js**](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.js)
-
-
-### Setup
-
-Nightwatch test runner expects to find a `nightwatch.json` file at the root
-of your project, create it and paste the _default_ configuration from
-http://nightwatchjs.org/guide#settings-file
 
 
 ### Create Your Nightwatch Test
@@ -232,13 +233,31 @@ module.exports = { // addapted from: https://git.io/vodU0
 
 ### Run your Test
 
-Depending on what you called your
+Depending on what you named your configuration file,
+run it with a command _resembling_ the following:
 
 ```sh
 node_modules/.bin/nightwatch --config nightwatch.conf.BASIC.js
 ```
+If you called your config file `nightwatch.conf.js` (_as we suggested_)
+you can run your tests without specifying the config file:
 
+```sh
+node_modules/.bin/nightwatch
+```
+We add an entry in our `package.json` `"scripts"` section
+to _not_ have to type all that each time. e.g:
 
+```js
+"scripts": {
+  "e2e": "node_modules/.bin/nightwatch"
+}
+```
+Then _run_ it as:
+
+```js
+npm run e2e
+```
 
 ## _Optional_ (_Level Up_)
 
