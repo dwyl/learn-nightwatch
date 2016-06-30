@@ -104,6 +104,8 @@ let's walk through each of the steps to get this working in **_your_ project**.
 
 ### Installation (_in detail_)
 
+#### Install `nightwatch`
+
 First install the `nightwatch` node.js module from NPM:
 
 ```sh
@@ -115,36 +117,88 @@ we _prefer_ to always install devDependencies _locally_ to the project
 and list them _explicitly_ in `package.json` so it's _clear_ to everyone
 viewing/using the project _exactly_ which version is required to run the tests. </small>
 
+### Install `selenium-download`
+
+In order to run Browser tests Nightwatch uses [Selenium](http://www.seleniumhq.org/).
+We _prefer_ to _automate_ the installation of Selenium using
+[`selenium-download`](https://www.npmjs.com/package/selenium-download)
+which ensures that everyone on our team always has the latest version.
+
+```sh
+npm install selenium-download --save-dev
+```
+
+#### Download Selenium (_Web Driver_) Standalone Server (_Script_)
+
+Once you've downloaded the the `selenium-download` node module,
+put the following code at the bottom of your `nightwatch.conf.js` file:
+
+```js
+require('selenium-download').ensure('./bin', function(error) {  
+   if (error) {
+     return console.log(error);
+   } else {
+     console.log('✔ Selenium & Chromedriver downloaded to:', './bin');
+   }
+});
+```
+We run include this script in our `nightwatch.conf.js` which
+checks for the existence of `selenium.jar` before trying to run our tests.
+_You will create your `nightwatch.conf.js` file in the next step_.
+
 ### Configuration
 
-Once you've installed `nightwatch`, you will need to create a configuration file.
-_Some_ Nightwatch tutorials use a `nightwatch.json` file,
+Once you've installed `nightwatch`, you will need to create a configuration file.  
+_Some_ Nightwatch tutorials use a `nightwatch.json` file;
 this is good for the most _basic_ cases
 but if you want to use variables in your
 configuration we _recommend_ using a `.js` file; specifically called `nightwatch.conf.js`.
 
-> One of our favourite things about using a `.js` file is the ability to add
-_comments_ in the file. This makes it _much_ easier for new people to
-_understand_ what's going on. 
-
-#### Selenium (_Web Driver_) Standalone Server
-
-In order to run Browser tests Nightwatch uses Selenium.
-We _prefer_ to _automate_ the installation of Selenium using
-[`selenium-download`](https://www.npmjs.com/package/selenium-download)
-which ensures that we always have the latest version.
+The most _basic_ configuration is:
 
 ```js
-var selenium = require('selenium-download');  
-selenium.ensure('./bin', function(error) {  
-   if (error) {
-      return callback(error);
-   }
-});
+module.exports = {
+  "src_folders": [
+    "test/e2e"// Where you are storing your Nightwatch e2e tests
+  ],
+  "output_folder": "./reports", // reports (test outcome) output by nightwatch
+  "selenium": { // downloaded by selenium-download module (see readme)
+    "start_process": true, // tells nightwatch to start/stop the selenium process
+    "server_path": "./node_modules/nightwatch/bin/selenium.jar",
+    "host": "127.0.0.1",
+    "port": 4444,
+    "cli_args": { // chromedriver is downloaded by selenium-download (see readme)
+      "webdriver.chrome.driver" : "./node_modules/nightwatch/bin/chromedriver"
+    }
+  },
+  "test_settings": {
+    "default": {
+      "screenshots": {
+        "enabled": true,
+        "path": './screenshots' // save screenshots here
+      },
+      "globals": {
+        "waitForConditionTimeout": 5000 // sometimes internet is slow so wait.
+      },
+      "desiredCapabilities": { // use Chrome as the default browser for tests
+        "browserName": "chrome"
+      }
+    },
+    "chrome": {
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true
+      }
+    }
+  }
+}
 ```
->
-> <small>If you prefer to install Selenium *manually* see:
- [learn-nightwatch#**manual-selenium-install**](https://github.com/nelsonic/learn-nightwatch#manual-selenium-install)</small>
+
+> One of our favourite things about using a `.js` file is the ability to add
+_comments_ in the file. This makes it _much_ easier for new people to
+_understand_ what's going on. see:
+[github.com/dwyl/learn-nightwatch/**nightwatch.conf.js**](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.js)
+
 
 ### Setup
 
@@ -152,11 +206,33 @@ Nightwatch test runner expects to find a `nightwatch.json` file at the root
 of your project, create it and paste the _default_ configuration from
 http://nightwatchjs.org/guide#settings-file
 
-The default is to look for tests in the `/tests` folder of your project;
-you can change this to what ever you prefer.
+The nightwatch default is to look for tests in the `/tests` folder of your project;
+you can change this to what ever you prefer. We use `test/e2e`.
+
+### Create Your Nightwatch Test
 
 
-### _Optional_ Upload Screenshots to S3
+
+### Run your Test
+
+
+
+
+## _Optional_
+
+### `postinstall` script
+
+We also need an entry in the `"scripts"` section of our `package.json` to
+_run_ this script after all `node_modules` have been installed. e.g:
+
+```js
+  "scripts": {
+    "postinstall": "node nightwatch.conf.js"
+  }
+```
+
+
+### Upload Screenshots to S3
 
 If you want the screenshots of tests to be uploaded to S3,
 you will need to have the following environment variables declared:
