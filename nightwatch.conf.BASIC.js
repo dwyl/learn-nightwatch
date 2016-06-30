@@ -8,7 +8,7 @@ module.exports = {
     "start_process": true, // tells nightwatch to start/stop the selenium process
     "server_path": "./node_modules/nightwatch/bin/selenium.jar",
     "host": "127.0.0.1",
-    "port": 4444,
+    "port": 4444, // standard selenium port
     "cli_args": { // chromedriver is downloaded by selenium-download (see readme)
       "webdriver.chrome.driver" : "./node_modules/nightwatch/bin/chromedriver"
     }
@@ -16,7 +16,7 @@ module.exports = {
   "test_settings": {
     "default": {
       "screenshots": {
-        "enabled": true,
+        "enabled": true, // if you want to keep screenshots
         "path": './screenshots' // save screenshots here
       },
       "globals": {
@@ -29,7 +29,7 @@ module.exports = {
     "chrome": {
       "desiredCapabilities": {
         "browserName": "chrome",
-        "javascriptEnabled": true
+        "javascriptEnabled": true // turn off to test progressive enhancement
       }
     }
   }

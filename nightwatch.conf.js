@@ -59,14 +59,14 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
         "acceptSslCerts": true
       }
     },
-    "chrome": {
+    "chrome": { // your local chrom browser (chromedriver)
       "desiredCapabilities": {
         "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true
       }
     },
-    "chromemac": {
+    "chromemac": { // browsers used on saucelabs:
       "desiredCapabilities": {
         "browserName": "chrome",
         "platform": "OS X 10.11",
@@ -91,8 +91,7 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
       "desiredCapabilities": {
         "platform": "Windows 7",
         "browserName": "internet explorer",
-        "version": "10",
-        "codename":"Win7ie11"
+        "version": "10"
       }
     },
     "android_s4_emulator": {
@@ -116,16 +115,15 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
 }
 module.exports = config;
 
-const fs = require('fs');
 /**
  * selenium-download does exactly what it's name suggests;
  * downloads (or updates) the version of Selenium (& chromedriver)
  * on your localhost where it will be used by Nightwatch.
  */
-fs.stat(BINPATH + 'selenium.jar', function (err, stat) { // alread downloaded?
+require('fs').stat(BINPATH + 'selenium.jar', function (err, stat) { // got it?
   if (err || !stat || stat.size < 1) {
     require('selenium-download').ensure(BINPATH, function(error) {
-      if (error) throw new Error(error); // no point continueing so exit!
+      if (error) throw new Error(error); // no point continuing so exit!
       console.log('✔ Selenium & Chromedriver downloaded to:', BINPATH);
     });
   }
@@ -142,7 +140,6 @@ var FILECOUNT = 0; // "global" screenshot file count
  * function that returns the correct path for storing our screenshots.
  * While we're at it, we are adding some meta-data to the filename, specifically
  * the Platform/Browser where the test was run and the test (file) name.
- *
  */
 function imgpath (browser) {
   var a = browser.options.desiredCapabilities;

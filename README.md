@@ -166,7 +166,7 @@ module.exports = {
     "start_process": true, // tells nightwatch to start/stop the selenium process
     "server_path": "./node_modules/nightwatch/bin/selenium.jar",
     "host": "127.0.0.1",
-    "port": 4444,
+    "port": 4444, // standard selenium port
     "cli_args": { // chromedriver is downloaded by selenium-download (see readme)
       "webdriver.chrome.driver" : "./node_modules/nightwatch/bin/chromedriver"
     }
@@ -174,7 +174,7 @@ module.exports = {
   "test_settings": {
     "default": {
       "screenshots": {
-        "enabled": true,
+        "enabled": true, // if you want to keep screenshots
         "path": './screenshots' // save screenshots here
       },
       "globals": {
@@ -187,7 +187,7 @@ module.exports = {
     "chrome": {
       "desiredCapabilities": {
         "browserName": "chrome",
-        "javascriptEnabled": true
+        "javascriptEnabled": true // set to false to test progressive enhancement
       }
     }
   }
@@ -196,7 +196,7 @@ module.exports = {
 
 > One of our favourite things about using a `.js` file is the ability to add
 _comments_ in the file. This makes it _much_ easier for new people to
-_understand_ what's going on. see:
+_understand_ what's going on. We have a slightly more _evolved_ `nightwatch.conf.js` see:
 [github.com/dwyl/learn-nightwatch/**nightwatch.conf.js**](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.js)
 
 
@@ -206,31 +206,49 @@ Nightwatch test runner expects to find a `nightwatch.json` file at the root
 of your project, create it and paste the _default_ configuration from
 http://nightwatchjs.org/guide#settings-file
 
-The nightwatch default is to look for tests in the `/tests` folder of your project;
-you can change this to what ever you prefer. We use `test/e2e`.
 
 ### Create Your Nightwatch Test
 
+Nightwatch "looks" for tests in the `/tests` folder of your project by default;
+you can change this to what ever you prefer. We keep our Nightwatch tests in `test/e2e`.
 
+This is the _simplest_ test you can write for Nightwatch
+
+```
+module.exports = { // addapted from: https://git.io/vodU0
+  'Guinea Pig Assert Title': function(browser) {
+    browser
+      .url('https://saucelabs.com/test/guinea-pig')
+      .waitForElementVisible('body')
+      .assert.title('I am a page title - Sauce Labs')
+      .saveScreenshot('ginea-pig-test.png')
+      .end();
+  }
+};
+```
+
+> See: [github.com/dwyl/learn-nightwatch/**test/e2e**](https://github.com/dwyl/learn-nightwatch/tree/master/test/e2e)
 
 ### Run your Test
 
-
+```sh
+node_modules/.bin/nightwatch --config nightwatch.conf.BASIC.js
+```
 
 
 ## _Optional_
 
 ### `postinstall` script
 
-We also need an entry in the `"scripts"` section of our `package.json` to
-_run_ this script after all `node_modules` have been installed. e.g:
+We put an entry in the `"scripts"` section of our `package.json` to
+_run_ the `selenium-download` script after all `node_modules`
+have been installed. e.g:
 
 ```js
   "scripts": {
     "postinstall": "node nightwatch.conf.js"
   }
 ```
-
 
 ### Upload Screenshots to S3
 
@@ -241,15 +259,12 @@ export AWS_S3_BUCKET=yourbucket
 export AWS_REGION=eu-west-1
 export AWS_ACCESS_KEY_ID=IDHERE
 export AWS_SECRET_ACCESS_KEY=YOURKEY
-# to run your tests on SauceLabs you need to set the following variables:
-export SAUCE_USERNAME=yourusername
-export SAUCE_ACCESS_KEY=private_key
 ```
 <br />
 
-### CI
+### Running your Nightwatch tests on your _Continuous Integration_ (CI)
 
-Running your Nightwatch tests on CI is easy on CodeShip.
+Running your Nightwatch tests on CI is easy on CodeShip.  
 We usually set the required (_minimum_) node version in our
 `package.json` e.g:
 ```js
@@ -261,7 +276,7 @@ Once you have the desired version of node installed.
 
 Setup Commands:
 ```js
-# install all dependencies:
+# install dependencies:
 npm install
 ```
 Test Command:

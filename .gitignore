@@ -12,4 +12,5 @@ nightwatch/selenium.jar
 nightwatch/chromedriver
 
 reports
+screenshots
 .env
