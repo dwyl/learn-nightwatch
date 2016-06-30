@@ -14,10 +14,11 @@ function s3_create () {
       please set your AWS Environment Variables (see readme).`);
   }
   else {
-    fs.createReadStream('./lib/index.html') // copy index.html into folder
-      .pipe(fs.createWriteStream(conf.SCREENSHOT_PATH + 'index.html'));
+    fs.writeFileSync(conf.SCREENSHOT_PATH + 'index.html',
+      fs.readFileSync(path.join(__dirname + '/index.html')), 'utf8');
+    // fs.createReadStream(path.join(__dirname + '/index.html'))
+    //   .pipe(fs.createWriteStream(conf.SCREENSHOT_PATH + 'index.html'));
     // fist read the list of screenshots
-    console.log('>>>', conf.SCREENSHOT_PATH);
     var images = fs.readdirSync(conf.SCREENSHOT_PATH).filter(file => {
       return fs.statSync(conf.SCREENSHOT_PATH + file).isFile()
         && file.indexOf('.png') > -1; // only screenshot images
@@ -26,10 +27,10 @@ function s3_create () {
     fs.writeFileSync(path.join(conf.SCREENSHOT_PATH,
       'meta.json'), JSON.stringify({images: images}, null, 2));
 
-    // get list of files we are going to upload to S3
-    var files = fs.readdirSync(conf.SCREENSHOT_PATH); // includes meta.json
-    files.forEach(function (file) {
+    // get list of files to upload to S3 (including meta.json & index.html)
+    fs.readdirSync(conf.SCREENSHOT_PATH).forEach(function (file) {
       var filepath = path.join(conf.SCREENSHOT_PATH, file);
+      console.log(filepath, ' > ', mime.lookup(filepath))
       var s3path = filepath.split('node_modules/nightwatch/screenshots/')[1];
       var s3obj = new AWS.S3({ params: {
         Bucket: process.env.AWS_S3_BUCKET,
@@ -42,9 +43,8 @@ function s3_create () {
         if (e) {
           console.log(' >>> ERROR:', e);
         }
-        console.log(data);
         if (filepath.indexOf('index.html') > -1) {
-          console.log('Done.', files.length, data.Location);
+          console.log('Uploaded ', images.length, 'screenshots >> ', data.Location);
         }
       });
     });
