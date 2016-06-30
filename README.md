@@ -297,7 +297,8 @@ Which corresponds to the following _complete_ command:
 ./node_modules/.bin/nightwatch -e chrome,ie11,android_s4_emulator,iphone_6_simulator
 ```
 
-This just means
+> This just means "_Run Nightwatch using the default configuration
+(Suacelabs in our case) and execute all tests in this list of browsers_."
 
 **Note**: you will need to have the following _**environment variables**_
 exported for Saucelabs to run your test:
@@ -333,7 +334,7 @@ The _script_ we wrote to perform the uploading is:
 [github.com/dwyl/learn-nightwatch/test/upload_screenshots_to_s3.js](https://github.com/dwyl/learn-nightwatch/blob/master/test/upload_screenshots_to_s3.js)
 
 The screenshots taken on Saucelabs browsers/devices are saved _locally_
-and uploaded to S3 when tests succeed. 
+and uploaded to S3 when tests succeed.
 
 <br />
 
