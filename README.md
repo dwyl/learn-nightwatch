@@ -30,7 +30,7 @@ for Nightwatch (_including the mailing list & StackOverflow Q&A_)
 and have condensed our findings into this step-by-step guide.  
 We hope you find it _useful_ and decide to use it for your web app/site!  
 _**Please**_ give us _**feedback**_ and if you _get stuck_,
-[_**tell us!**_](https://github.com/nelsonic/learn-nightwatch/issues)
+[_**tell us!**_](https://github.com/dwyl/learn-nightwatch/issues)
 
 #### Background Links
 
@@ -61,7 +61,7 @@ _**Try it**_ on your local machine in 5 mins by following these _**3 easy steps*
 Clone the repository by _copy-pasting_ the following command into your terminal:
 
 ```sh
-git clone https://github.com/nelsonic/learn-nightwatch.git && cd learn-nightwatch
+git clone https://github.com/dwyl/learn-nightwatch.git && cd learn-nightwatch
 ```
 
 ### 2. Install<sup>1</sup>
@@ -92,7 +92,7 @@ to testing with Nightwatch!
 
 <sup>1</sup><small>This _assumes_ you have node.js installed.
 If not, https://nodejs.org/en/download/ </small>  
-<sup>2</sup><small>Selenium Requires Java/JDK see: [Java Installation section](https://github.com/nelsonic/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)
+<sup>2</sup><small>Selenium Requires Java/JDK see: [Java Installation section](https://github.com/dwyl/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)
 Once you have Java installed re-run the Nightwatch tests (`npm test`).</small>
 
 <br />
@@ -231,12 +231,15 @@ module.exports = { // addapted from: https://git.io/vodU0
 
 ### Run your Test
 
+Depending on what you called your
+
 ```sh
 node_modules/.bin/nightwatch --config nightwatch.conf.BASIC.js
 ```
 
 
-## _Optional_
+
+## _Optional_ (_Level Up_)
 
 ### `postinstall` script
 
@@ -250,7 +253,53 @@ have been installed. e.g:
   }
 ```
 
+
+### Saucelabs
+
+Most people _building_ web apps/sites don't have _easy_ access
+to _several_ devices/browsers to test their output, if you
+need to test in a _range_ of browsers/devices Saucelabs is a great option.
+
+![browser logos](https://cloud.githubusercontent.com/assets/194400/16362868/8c29b448-3bb1-11e6-83f1-380edd462fb1.png)
+
+In our [`nightwatch.conf.js`](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.js)
+we have defined _saucelabs_ as our `"default"` setting.
+
+We _run_ our tests on saucelabs by running the following npm script/command:
+
+```sh
+npm run sauce
+```
+
+Which corresponds to the following _complete_ command:
+
+```js
+./node_modules/.bin/nightwatch -e chrome,ie11,android_s4_emulator,iphone_6_simulator
+```
+
+This just means
+
+**Note**: you will need to have the following _**environment variables**_
+exported for Saucelabs to run your test:
+```sh
+export SAUCE_USERNAME=your-username
+export SAUCE_ACCESS_KEY=your-key
+```
+
+> If you're _new_ to Saucelabs, checkout:
+[github.com/dwyl/**learn-saucelabs**](https://github.com/dwyl/learn-saucelabs)
+
 ### Upload Screenshots to S3
+
+If you decide to use Saucelabs to run your tests (_in several devices/browsers_),
+it will take screenshots for you and keep them inside Saucelabs.
+That's _nice_ for people who are _used_ to using Saucelabs, but what about the
+_other_ stakeholders?
+
+We decided to upload our screenshots to S3 and created a _super-simple_ `.html`
+file which shows a slideshow of the images.
+
+
 
 If you want the screenshots of tests to be uploaded to S3,
 you will need to have the following environment variables declared:
@@ -261,6 +310,8 @@ export AWS_ACCESS_KEY_ID=IDHERE
 export AWS_SECRET_ACCESS_KEY=YOURKEY
 ```
 <br />
+
+
 
 ### Running your Nightwatch tests on your _Continuous Integration_ (CI)
 
@@ -289,7 +340,7 @@ That's it.
 > ***Note***: while the tests run seamlessly on CodeShip we were unable
  to get Selenium standalone working on Travis-CI
 if you have time to ***help us***, please see:
-https://github.com/nelsonic/learn-nightwatch/issues/8
+https://github.com/dwyl/learn-nightwatch/issues/8
 
 <br /> <br />
 
@@ -298,6 +349,15 @@ https://github.com/nelsonic/learn-nightwatch/issues/8
 > More detail than you will _probably_ need ... _but we're keeping for completeness_.
 
 ## Background
+
+### Why Nightwatch instead of `xyz`...?
+
+We _first_ looked at [`NightmareJS`](https://github.com/segmentio/nightmare),
+and even though it _looks_ really good (_fast_), we saw the _reaction_
+non-technical people had when we mentioned it and did not want to have to _explain_
+the _name_ to people/clients every time, so instead opted for _night**watch**_.
+If _night**mare**_ ever change their name, we _could re-consider_ it.
+
 
 ### Research
 
@@ -319,14 +379,7 @@ http://andrew.yurisich.com/work/2014/08/30/silence-noisy-selenium-server-output-
 http://stackoverflow.com/questions/31687027/nightwatchjs-how-to-check-if-element-exists-without-creating-an-error-failure-e
 + Can I create reusable test steps in nightwatch.js?
 http://stackoverflow.com/questions/31388280/can-i-create-reusable-test-steps-in-nightwatch-js
-
-#### Why Nightwatch instead of `xyz`...?
-
-We _first_ looked at [`NightmareJS`](https://github.com/segmentio/nightmare),
-and even though it _looks_ really good (_fast_), we saw the _reaction_
-non-technical people had when we mentioned it and did not want to have to _explain_
-the _name_ to people/clients every time, so instead opted for _night**watch**_.
-If _night**mare**_ ever change their name, we _could re-consider_ it.
++ Nightwatch on ***Saucelabs***: https://github.com/saucelabs-sample-test-frameworks/JS-Nightwatch.js
 
 <br />
 
@@ -377,17 +430,6 @@ Once you have it, put it in the `bin` directory of your project
 and re-name it to `selenium.jar` (_without the version number_).
 
 
-### Saucelabs
-
-![browser logos](https://cloud.githubusercontent.com/assets/194400/16362868/8c29b448-3bb1-11e6-83f1-380edd462fb1.png)
-
-Most people _building_ web apps/sites don't have _easy_ access
-to _several_ devices/browsers to test their output, if you
-need to test in a _range_ of browsers
-
-+ Nightwatch on ***Saucelabs***: https://github.com/saucelabs-sample-test-frameworks/JS-Nightwatch.js
-
-
 ### StackOverflow Questions
 
 Remind me to Respond to these:
@@ -402,4 +444,4 @@ Remind me to Respond to these:
 
 ## Cons (_of using Nightwatch_)
 
-+
++ Selenium is not the fastest way to run tests.

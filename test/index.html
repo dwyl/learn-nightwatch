@@ -1,5 +1,4 @@
 <html>
-
 <head>
   <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
   <title>Acceptance Test Screenshots</title>
@@ -23,7 +22,7 @@
     console.log('base url:', base);
     var meta = base + 'meta.json'
 
-    $.getJSON(meta, function(data, status) {
+    $.getJSON(meta, function(data, status) { // feel free to re-factor this
 
       data.images.forEach(function(src) {
         var imgsrc = base + src; // images are a relative path!

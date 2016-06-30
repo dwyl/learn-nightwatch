@@ -30,23 +30,26 @@ function s3_create () {
     // get list of files to upload to S3 (including meta.json & index.html)
     fs.readdirSync(conf.SCREENSHOT_PATH).forEach(function (file) {
       var filepath = path.join(conf.SCREENSHOT_PATH, file);
-      console.log(filepath, ' > ', mime.lookup(filepath))
-      var s3path = filepath.split('node_modules/nightwatch/screenshots/')[1];
-      var s3obj = new AWS.S3({ params: {
-        Bucket: process.env.AWS_S3_BUCKET,
-        ACL: 'public-read',
-        Key: s3path,
-        ContentType: mime.lookup(filepath),
-      }});
-      // upload (stream) the files to S3 in parallel
-      s3obj.upload({Body: fs.createReadStream(filepath)}).send(function(e, data) {
-        if (e) {
-          console.log(' >>> ERROR:', e);
-        }
-        if (filepath.indexOf('index.html') > -1) {
-          console.log('Uploaded ', images.length, 'screenshots >> ', data.Location);
-        }
-      });
+      var mimetype = mime.lookup(filepath);
+      // console.log(filepath, ' > ', mime.lookup(filepath));
+      if (mimetype) {
+        var s3path = filepath.split('node_modules/nightwatch/screenshots/')[1];
+        var s3obj = new AWS.S3({ params: {
+          Bucket: process.env.AWS_S3_BUCKET,
+          ACL: 'public-read',
+          Key: s3path,
+          ContentType: mimetype,
+        }});
+        // upload (stream) the files to S3 in parallel
+        s3obj.upload({Body: fs.createReadStream(filepath)}).send(function(e, data) {
+          if (e) {
+            console.log(' >>> ERROR:', e);
+          }
+          if (filepath.indexOf('index.html') > -1) {
+            console.log('Uploaded ', images.length, 'screenshots >> ', data.Location);
+          }
+        });
+      }
     });
   }
 }
