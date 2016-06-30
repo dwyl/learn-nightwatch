@@ -99,8 +99,8 @@ Once you have Java installed re-run the Nightwatch tests (`npm test`).</small>
 
 ## *Step-by-Step Tutorial*
 
-Now that you've had a _taste_ for running tests with Nightwatch,
-let's walk through each of the steps to get this working in _your_ project.
+Now that you have had a _taste_ for running tests with Nightwatch,
+let's walk through each of the steps to get this working in **_your_ project**.
 
 ### Installation (_in detail_)
 
@@ -115,6 +115,17 @@ we _prefer_ to always install devDependencies _locally_ to the project
 and list them _explicitly_ in `package.json` so it's _clear_ to everyone
 viewing/using the project _exactly_ which version is required to run the tests. </small>
 
+### Configuration
+
+Once you've installed `nightwatch`, you will need to create a configuration file.
+_Some_ Nightwatch tutorials use a `nightwatch.json` file,
+this is good for the most _basic_ cases
+but if you want to use variables in your
+configuration we _recommend_ using a `.js` file; specifically called `nightwatch.conf.js`.
+
+> One of our favourite things about using a `.js` file is the ability to add
+_comments_ in the file. This makes it _much_ easier for new people to
+_understand_ what's going on. 
 
 #### Selenium (_Web Driver_) Standalone Server
 

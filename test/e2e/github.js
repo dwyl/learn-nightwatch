@@ -15,7 +15,7 @@ module.exports = {
     // part two:
     browser
       .assert.containsText('body', 'do what you love') // assert contains
-      .saveScreenshot(conf.imgpath(__filename, browser) + 'dwyl.png')
+      .saveScreenshot(conf.imgpath(browser) + 'dwyl.png')
       .end();
   }
 };

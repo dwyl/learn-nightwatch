@@ -1,5 +1,6 @@
-const binpath = './node_modules/nightwatch/bin/'; // change if required.
-const pkg = require('./package.json'); // so we can get the version of the project
+const PKG = require('./package.json'); // so we can get the version of the project
+const BINPATH = './node_modules/nightwatch/bin/'; // change if required.
+const SCREENSHOT_PATH = "./node_modules/nightwatch/screenshots/" + PKG.version + "/"
 
 const config = { // we use a nightwatch.conf.js file so we can include comments and helper functions
   "src_folders": [
@@ -8,12 +9,12 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
   "output_folder": "./node_modules/nightwatch/reports", // reports (test outcome) output by nightwatch
   "selenium": {
     "start_process": true,
-    "server_path": binpath + "selenium.jar", // downloaded by selenium-download module (see below)
+    "server_path": BINPATH + "selenium.jar", // downloaded by selenium-download module (see below)
     "log_path": "",
     "host": "127.0.0.1",
     "port": 4444,
     "cli_args": {
-      "webdriver.chrome.driver" : binpath + "chromedriver"
+      "webdriver.chrome.driver" : BINPATH + "chromedriver" // also downloaded by selenium-download
     }
   },
   "test_workers" : {"enabled" : true, "workers" : "auto"}, // perform tests in parallel where possible
@@ -24,8 +25,8 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
       "selenium_host": "ondemand.saucelabs.com",
       "silent": true,
       "screenshots": {
-        "enabled": true,
-        "path": "./node_modules/nightwatch/screenshots/" + pkg.version + "/"
+        "enabled": true, // save screenshots to this directory (excluded by .gitignore)
+        "path": SCREENSHOT_PATH
       },
       "username" : "${SAUCE_USERNAME}",     // if you want to use Saucelabs remember to
       "access_key" : "${SAUCE_ACCESS_KEY}", // export your environment variables (see readme)
@@ -40,7 +41,7 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
       "silent": true,
       "screenshots": {
         "enabled": true, // save screenshots taken here
-        "path": "./node_modules/nightwatch/screenshots/" + pkg.version + "/"
+        "path": SCREENSHOT_PATH
       }, // this allows us to control the
       "globals": {
         "waitForConditionTimeout": 15000 // on localhost sometimes internet is slow so wait...
@@ -98,7 +99,8 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
       "desiredCapabilities": {
         "browserName": "android",
         "deviceOrientation": "portrait",
-        "deviceName": "Samsung Galaxy S4 Emulator"
+        "deviceName": "Samsung Galaxy S4 Emulator",
+        "version": "4.4"
       }
     },
     "iphone_6_simulator": {
@@ -120,36 +122,37 @@ const fs = require('fs');
  * downloads (or updates) the version of Selenium (& chromedriver)
  * on your localhost where it will be used by Nightwatch.
  */
-fs.stat(binpath + 'selenium.jar', function (err, stat) { // alread downloaded?
+fs.stat(BINPATH + 'selenium.jar', function (err, stat) { // alread downloaded?
   if (err || !stat || stat.size < 1) {
-    require('selenium-download').ensure(binpath, function(error) {
+    require('selenium-download').ensure(BINPATH, function(error) {
       if (error) throw new Error(error); // no point continueing so exit!
-      console.log('✔ Selenium & Chromedriver downloaded to:', binpath);
+      console.log('✔ Selenium & Chromedriver downloaded to:', BINPATH);
     });
   }
 });
 
-GLOBAL.FILECOUNT = GLOBAL.FILECOUNT || 0; // "global" screenshot file count
-const SCREENSHOT_PATH = config.test_settings.local.screenshots.path;
-
 function padLeft (count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
   return count < 10 ? '0' + count : count.toString();
 }
-// ensure that we increment the number for each screenshot saved
-function imgpath (testfile, browser) {
 
-  // Object.keys(process.env).forEach(function(k) {
-  //   if(k.indexOf('npm_') === -1) { console.log(k + ' : ' + process.env[k])}
-  // });
-  // console.log('>>>>>', userAgent(browser));
-  var testname = testfile.split('/')[testfile.split('/').length-1].replace('.js', '');
-  var agent = userAgent(browser);
-  return SCREENSHOT_PATH + agent + '~' + testname + '_' + padLeft(FILECOUNT++) + '_';
-}
-
-function userAgent(browser) { // see: https://git.io/vobdn
+var FILECOUNT = 0; // "global" screenshot file count
+/**
+ * The default is to save screenshots to the root of your project even though
+ * there is a screenshots path in the config object above! ... so we need a
+ * function that returns the correct path for storing our screenshots.
+ * While we're at it, we are adding some meta-data to the filename, specifically
+ * the Platform/Browser where the test was run and the test (file) name.
+ *
+ */
+function imgpath (browser) {
   var a = browser.options.desiredCapabilities;
-  return (a.platform + '~' + a.browserName + '~' + a.version).replace(/ /g, '');
+  var meta = [a.platform];
+  meta.push(a.browserName ? a.browserName : 'any');
+  meta.push(a.version ? a.version : 'any');
+  meta.push(a.name); // this is the test filename so always exists.
+  var metadata = meta.join('~').toLowerCase().replace(/ /g, '');
+  return SCREENSHOT_PATH + metadata + '_' + padLeft(FILECOUNT++) + '_';
 }
 
 module.exports.imgpath = imgpath;
+module.exports.SCREENSHOT_PATH = SCREENSHOT_PATH;
