@@ -1,7 +1,7 @@
 {
   "name": "learn-nightwatch",
-  "version": "1.0.20",
-  "description": "Learn how to use nightwatch for front-end testing",
+  "version": "1.0.21",
+  "description": "Learn how to use nightwatch for front-end testing. step-by-step tutorial",
   "main": "index.js",
   "engines": {
     "node": "4.4.6"
@@ -24,13 +24,15 @@
     "url": "https://github.com/dwyl/learn-nightwatch/issues"
   },
   "homepage": "https://github.com/dwyl/learn-nightwatch#readme",
-  "devDependencies": {
-    "aws-sdk": "^2.4.0",
-    "env2": "^2.1.0",
-    "mime-types": "^2.1.11",
+  "dependencies": {
     "nightwatch": "^0.9.3",
     "saucelabs": "^1.2.0",
     "selenium-download": "^2.0.2"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.4.0",
+    "env2": "^2.1.0",
+    "mime-types": "^2.1.11"
   },
   "keywords": [
     "nightwatch",

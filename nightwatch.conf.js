@@ -1,3 +1,4 @@
+require('env2')('.env'); // optionally store youre Evironment Variables in .env
 const PKG = require('./package.json'); // so we can get the version of the project
 const BINPATH = './node_modules/nightwatch/bin/'; // change if required.
 const SCREENSHOT_PATH = "./node_modules/nightwatch/screenshots/" + PKG.version + "/"

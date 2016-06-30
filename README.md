@@ -1,4 +1,5 @@
 # Learn Nightwatch [![Codeship](https://img.shields.io/codeship/d9151e40-1473-0134-47e0-12348d1f3442.svg)](https://codeship.com/projects/157818) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-nightwatch/issues)
+[![Dependency Status](https://david-dm.org/dwyl/learn-nightwatch.svg)](https://david-dm.org/dwyl/learn-nightwatch) [![devDependency Status](https://david-dm.org/dwyl/learn-nightwatch/dev-status.svg)](https://david-dm.org/dwyl/learn-nightwatch#info=devDependencies)
 
 _**Automate** your **acceptance tests** and run them in **real browsers**_!
 
@@ -9,7 +10,7 @@ _**Automate** your **acceptance tests** and run them in **real browsers**_!
 Testing what the people _using_ your application/website will _see_
 and their ability _interact_ with the product is
 (_probably_) the most important part of building a web app/site.
-You can have amazing code, a super-fast backend and cutting-edge Virtual DOM UI,
+You can have amazing code, a super-fast backend and gorgeous UI,
 but _none_ of that _matters_ if people are unable to _use_ it
 because of a basic bug!
 
@@ -17,7 +18,7 @@ because of a basic bug!
 
 _**User Acceptance Testing**_ (**UAT**) with a tool like Nightwatch (_Selenium_)
 lets you to run real-world scenarios in your Web App which will give
-you _confidence_ that the app _works_ in the chosen device/browser.
+you _confidence_ that the app _works_ in the chosen device(s)/browser(s).
 
 ## _What_?
 
