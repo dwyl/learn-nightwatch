@@ -19,6 +19,15 @@
     var store = { images: [], index: 0, imgsrc:'' }; // MUTABLE store
     // var base = 'https://isearch-ui.s3-eu-west-1.amazonaws.com/';
     var base = window.location.href.replace('index.html', '');
+    if(window.location.hash) {
+      console.log('HASH!', window.location.hash);
+      base = base.replace(window.location.hash, '');
+      var src = base + window.location.hash.replace('#', '');
+      setIndex(src);
+      setTimeout(function() {
+        clearInterval(store.interval);
+      }, 1800); // clear the interval *just* before it ticks over to next image
+    }
     console.log('base url:', base);
     var meta = base + 'meta.json'
 
@@ -28,9 +37,12 @@
         var imgsrc = base + src; // images are a relative path!
         store.images.push(imgsrc);
       });
-
-      // setIndex(store.images[store.images.length - 1]); // last image
-      setIndex(store.images[0]); // first image
+      if(store.imgsrc) {
+        setIndex(store.imgsrc);
+      } else {
+        // setIndex(store.images[store.images.length - 1]); // last image
+        setIndex(store.images[0]); // first image
+      }
       store.interval = setInterval(function () {
         next();
       }, 2000);
@@ -50,6 +62,7 @@
       // attach event listeners to thumbnails
       $('.thumb').click(function(e) {
         var src = $(this).attr("src");
+        console.log('view:', src);
         setIndex(src);
         clearInterval(store.interval);
       });
@@ -58,6 +71,8 @@
     function setIndex (src) {
       store.imgsrc = src;
       store.index = store.images.indexOf(src);
+      // change the url hash so we can
+      window.location.hash = src.split('/')[src.split('/').length - 1];
       render();
     }
 
