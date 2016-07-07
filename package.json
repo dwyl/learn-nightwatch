@@ -1,6 +1,6 @@
 {
   "name": "learn-nightwatch",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Learn how to use nightwatch for front-end testing. step-by-step tutorial",
   "main": "index.js",
   "engines": {

@@ -14,26 +14,31 @@ function s3_create () {
       please set your AWS Environment Variables (see readme).`);
   }
   else {
-    fs.writeFileSync(conf.SCREENSHOT_PATH + 'index.html',
+    var SP = conf.SCREENSHOT_PATH;
+    var version = SP.split('/')[ SP.split('/').length - 2 ];
+    console.log('SP:', SP);
+    console.log('VERSION:', version);
+    fs.writeFileSync(conf.SCREENSHOT_PATH + 'index.html', // don't overwrite index
       fs.readFileSync(path.join(__dirname + '/index.html')), 'utf8');
     // fs.createReadStream(path.join(__dirname + '/index.html'))
     //   .pipe(fs.createWriteStream(conf.SCREENSHOT_PATH + 'index.html'));
     // fist read the list of screenshots
-    var images = fs.readdirSync(conf.SCREENSHOT_PATH).filter(file => {
-      return fs.statSync(conf.SCREENSHOT_PATH + file).isFile()
+    var images = fs.readdirSync(SP).filter(file => {
+      return fs.statSync(SP + file).isFile()
         && file.indexOf('.png') > -1; // only screenshot images
     })
     // create meta.json with list of screenshots
-    fs.writeFileSync(path.join(conf.SCREENSHOT_PATH,
+    fs.writeFileSync(path.join(SP,
       'meta.json'), JSON.stringify({images: images}, null, 2));
 
     // get list of files to upload to S3 (including meta.json & index.html)
-    fs.readdirSync(conf.SCREENSHOT_PATH).forEach(function (file) {
-      var filepath = path.join(conf.SCREENSHOT_PATH, file);
+    fs.readdirSync(SP).forEach(function (file) {
+      var filepath = path.join(SP, file);
       var mimetype = mime.lookup(filepath);
-      // console.log(filepath, ' > ', mime.lookup(filepath));
       if (mimetype) {
-        var s3path = filepath.split('node_modules/nightwatch/screenshots/')[1];
+        var s3path = version + '/uat' + filepath.split('node_modules/nightwatch/screenshots/' + version)[1];
+
+        console.log(s3path);
         var s3obj = new AWS.S3({ params: {
           Bucket: process.env.AWS_S3_BUCKET,
           ACL: 'public-read',
