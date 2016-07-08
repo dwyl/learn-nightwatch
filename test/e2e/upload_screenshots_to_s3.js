@@ -1,5 +1,5 @@
 require('env2')('.env'); // optionally store youre Evironment Variables in .env
-var conf = require('../nightwatch.conf.js')
+var conf = require('../../nightwatch.conf.js')
 var fs = require('fs'); // read the screenshot files
 var path = require('path');
 var AWS = require('aws-sdk');
@@ -15,8 +15,6 @@ function s3_create () {
   else {
     var SP = conf.SCREENSHOT_PATH;
     var version = SP.split('/')[ SP.split('/').length - 2 ];
-    console.log('SP:', SP);
-    console.log('VERSION:', version);
     fs.writeFileSync(conf.SCREENSHOT_PATH + 'index.html', // don't overwrite index
       fs.readFileSync(path.join(__dirname + '/index.html')), 'utf8');
     // fs.createReadStream(path.join(__dirname + '/index.html'))
@@ -49,7 +47,7 @@ function s3_create () {
             console.log(' >>> ERROR:', e);
           }
           if (filepath.indexOf('index.html') > -1) {
-            console.log('Uploaded ', images.length, 'screenshots >> ', data.Location);
+            console.log('Uploaded', images.length, 'screenshots >> ', data.Location);
           }
         });
       }

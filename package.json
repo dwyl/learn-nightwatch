@@ -11,7 +11,7 @@
     "test": "./node_modules/.bin/nightwatch --env local",
     "ie": "./node_modules/.bin/nightwatch -e ie11",
     "sauce": "./node_modules/.bin/nightwatch -e chrome,ie11,android_s4_emulator,iphone_6_simulator",
-    "upload": "node test/upload_screenshots_to_s3.js",
+    "upload": "node test/e2e/upload_screenshots_to_s3.js",
     "e2e": "npm run sauce; npm run upload",
     "dev": "./node_modules/.bin/nodemon -w test/index.html --delay 250ms --exec 'npm run upload'"
   },
