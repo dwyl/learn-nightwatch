@@ -1,4 +1,3 @@
-// this file is prefixed with a 'z_' to ensure that it runs Last (once screenshots created by other tests)
 require('env2')('.env'); // optionally store youre Evironment Variables in .env
 var conf = require('../nightwatch.conf.js')
 var fs = require('fs'); // read the screenshot files
@@ -28,17 +27,16 @@ function s3_create () {
         && file.indexOf('.png') > -1; // only screenshot images
     })
     // create meta.json with list of screenshots
-    fs.writeFileSync(path.join(SP,
-      'meta.json'), JSON.stringify({images: images}, null, 2));
+    var meta = {images: images}
+    fs.writeFileSync(path.join(SP, 'meta.json'), JSON.stringify(meta, null, 2));
 
     // get list of files to upload to S3 (including meta.json & index.html)
     fs.readdirSync(SP).forEach(function (file) {
       var filepath = path.join(SP, file);
       var mimetype = mime.lookup(filepath);
       if (mimetype) {
-        var s3path = version + '/uat' + filepath.split('node_modules/nightwatch/screenshots/' + version)[1];
-
-        console.log(s3path);
+        var s3path = version + '/uat' +
+          filepath.split('node_modules/nightwatch/screenshots/' + version)[1];
         var s3obj = new AWS.S3({ params: {
           Bucket: process.env.AWS_S3_BUCKET,
           ACL: 'public-read',
