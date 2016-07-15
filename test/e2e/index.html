@@ -5,6 +5,19 @@
   <link rel="shortcut icon" href="https://isearch-ui.s3.amazonaws.com/favicon.ico">
 </head>
 <body>
+  <table cellspacing="0" cellpadding="0">
+    <tr>
+      <th>Platform</th>
+      <th>Browser</th>
+      <th>Version</th>
+      <th>Screnshot Filename</th>
+    </tr>
+    <tr id='info'>
+      <td>Android</td>
+      <td>Stock</td>
+      <td>4.4</td>
+    </tr>
+  </table>
   <div id='viewer'>
     <img id='full'>
   </div>
@@ -19,6 +32,15 @@
     var store = { images: [], index: 0, imgsrc:'' }; // MUTABLE store
     // var base = 'https://isearch-ui.s3-eu-west-1.amazonaws.com/';
     var base = window.location.href.replace('index.html', '');
+    if(window.location.hash) {
+      console.log('HASH!', window.location.hash);
+      base = base.replace(window.location.hash, '');
+      var src = base + window.location.hash.replace('#', '');
+      setIndex(src);
+      setTimeout(function() {
+        clearInterval(store.interval);
+      }, 1800); // clear the interval *just* before it ticks over to next image
+    }
     console.log('base url:', base);
     var meta = base + 'meta.json'
 
@@ -28,13 +50,21 @@
         var imgsrc = base + src; // images are a relative path!
         store.images.push(imgsrc);
       });
+      if(store.imgsrc) {
+        setIndex(store.imgsrc);
+      } else {
+        setIndex(store.images[0]); // first image
+      }
+      slideshow();
+    });
 
-      // setIndex(store.images[store.images.length - 1]); // last image
-      setIndex(store.images[0]); // first image
+    console.log('change!!!!');
+    function slideshow () {
+      console.log('Slideshow started.');
       store.interval = setInterval(function () {
         next();
       }, 2000);
-    });
+    }
 
     function render () {
       var images = [];
@@ -58,7 +88,15 @@
     function setIndex (src) {
       store.imgsrc = src;
       store.index = store.images.indexOf(src);
+      // change the url hash so we can share a link to specific image
+      window.location.hash = src.split('/')[src.split('/').length - 1];
       render();
+      setInfo(src);
+    }
+
+    function setInfo (src) { // set the info row in the table
+      var info = src.split('/')[src.split('/').length - 1].split('~');
+      $('#info').html('<td>' + info.join('</td><td>') + '</td>');
     }
 
     function next () {
@@ -86,10 +124,22 @@
     $('#forward').click(function(e) {
       next();
     });
-    // bind to left/right keyboard arrow keys
+    // bind to left/right keyboard arrow keys, space & ESC
     $(document).keydown(function(e) {
       e.preventDefault(); // prevent the default action (scroll / move caret)
       switch(e.which) {
+        case 27: // ESC
+          clearInterval(store.interval);
+          break;
+        case 32: // space
+        console.log('space ...', store.interval);
+          if (store.interval) {
+            clearInterval(store.interval);
+          }
+          else {
+            slideshow();
+          }
+          break;
         case 37: // left
           previous();
           break;
@@ -101,6 +151,19 @@
     });
   </script>
   <style>
+    body { font-family: Helvetica, Arial, sans-serif; }
+    table { border: none; table-layout: fixed; margin-bottom: 5px;}
+    th { background-color: #212121; color: #fff; }
+    th, td { padding: 10px; }
+    table th:first-child {
+      border-radius:5px 0 0 0;
+    }
+    table th:last-child {
+      border-radius:0px 5px 0 0;
+    }
+    tr#info td {
+      border:1px solid #212121;
+    }
     #full {
       box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
       border: 10px black solid;
@@ -123,7 +186,7 @@
       box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     }
     .active {
-      border: 5px black solid;
+      border: 5px #27ae60 solid;
       border-radius: 5px;
     }
     .fa-arrow-circle-left, .fa-arrow-circle-right {
