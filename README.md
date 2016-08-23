@@ -460,7 +460,7 @@ and re-name it to `selenium.jar` (_without the version number_).
 ### StackOverflow Questions
 
 Remind me to Respond to these:
-> + [ ] http://stackoverflow.com/questions/24314040/getting-started-with-nightwatch-js
+> + [x] http://stackoverflow.com/questions/24314040/getting-started-with-nightwatch-js
 > + [ ] http://stackoverflow.com/questions/37699036/is-it-possible-to-start-a-selenium-server-inside-travis
 > + [ ] http://stackoverflow.com/questions/25919673/file-upload-testing-in-nightwatch-js
 > + [ ] http://stackoverflow.com/questions/31388280/can-i-create-reusable-test-steps-in-nightwatch-js/31393249#31393249
