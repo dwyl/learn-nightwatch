@@ -67,8 +67,10 @@ _**Try it**_ on your local machine in 5 mins by following these _**3 easy steps*
 Clone the repository by _copy-pasting_ the following command into your terminal:
 
 ```sh
-git clone https://github.com/dwyl/learn-nightwatch.git && cd learn-nightwatch
+git clone https://github.com/dwyl/learn-nightwatch.git && cd learn-nightwatch && cp sample.env .env
 ```
+
+> Note: if you're _curious_ what that last part is, see: https://github.com/dwyl/env2
 
 ### 2. Install<sup>1</sup>
 
