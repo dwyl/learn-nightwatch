@@ -161,7 +161,7 @@ _Some_ Nightwatch tutorials use a `nightwatch.json` file;
 this is good for the most _basic_ cases
 but if you want to use variables in your
 configuration we _recommend_ using a `.js` file;
-_specifically_ called `nightwatch.conf.js`.
+_specifically_ called `nightwatch.conf.js`. Save this file to your project directory.
 
 The most _basic_ configuration is: [`nightwatch.conf.BASIC.js`](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.BASIC.js)
 
@@ -210,6 +210,14 @@ _understand_ what's going on.
 We have a slightly more _evolved_ `nightwatch.conf.js` (_with Saucelabs_) see:
 [github.com/dwyl/learn-nightwatch/**nightwatch.conf.js**](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.js)
 
+
+### Additional Steps for Testing a Non-NPM Project
+
+You will need to run the config file you created to download the Selenium driver.
+
+```sh
+node nightwatch.conf.BASIC.js
+```
 
 ### Create Your Nightwatch Test
 
