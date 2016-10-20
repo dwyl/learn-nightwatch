@@ -341,7 +341,7 @@ export AWS_ACCESS_KEY_ID=IDHERE
 export AWS_SECRET_ACCESS_KEY=YOURKEY
 ```
 The _script_ we wrote to perform the uploading is:
-[github.com/dwyl/learn-nightwatch/test/upload_screenshots_to_s3.js](https://github.com/dwyl/learn-nightwatch/blob/master/test/upload_screenshots_to_s3.js)
+[github.com/dwyl/learn-nightwatch/test/e2e/upload_screenshots_to_s3.js](https://github.com/dwyl/learn-nightwatch/blob/master/test/e2e/upload_screenshots_to_s3.js)
 
 The screenshots taken on Saucelabs browsers/devices are saved _locally_
 and uploaded to S3 when tests succeed.
