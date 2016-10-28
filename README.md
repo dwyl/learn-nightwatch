@@ -349,10 +349,14 @@ and uploaded to S3 when tests succeed.
 <br />
 
 
+### Running your Nightwatch tests on your application being served locally
+- Before the test can run you have to set up sauce connect, there are many way to do this [docs here](https://wiki.saucelabs.com/display/DOCS/Setting+Up+Sauce+Connect). The simplest way I have found is to use Sauce Connect launcher, which is an addon for firefox.
+- Sauce Connect is sets up a tunnel to allow Sauce labs access to your local host, this means you can test what ever is being severed from your local.
+- To run the tests you must make sure the application is being served in one terminal and that the tunnel is open(this can be checked from the saucelabs dashboard), you then run your e2e test command in another terminal window.
 
 ### Running your Nightwatch tests on your _Continuous Integration_ (CI)
 
-Running your Nightwatch tests on CI is easy on CodeShip.  
+####Running your Nightwatch tests on CI is easy on CodeShip.
 We usually set the required (_minimum_) node version in our
 `package.json` e.g:
 ```js
@@ -378,6 +382,39 @@ That's it.
  to get Selenium standalone working on Travis-CI
 if you have time to ***help us***, please see:
 https://github.com/dwyl/learn-nightwatch/issues/8
+
+####Running your Nightwatch tests on CircleCi.
+To run the test on circle ci you need to make some adjustments to you circle.yml
+Here is an Example from the circle ci [docs](https://circleci.com/docs/browser-testing-with-sauce-labs/)
+```
+dependencies:
+  post:
+    - wget https://saucelabs.com/downloads/sc-latest-linux.tar.gz
+    - tar -xzf sc-latest-linux.tar.gz
+
+test:
+  override:
+    - cd sc-*-linux && ./bin/sc --user $SAUCE_USERNAME --api-key $SAUCE_ACCESS_KEY --readyfile ~/sauce_is_ready:
+        background: true
+    #Wait for tunnel to be ready
+    - while [ ! -e ~/sauce_is_ready ]; do sleep 1; done
+    - npm start
+        background: true
+    # Wait for app to be ready
+    - curl --retry 10 --retry-delay 2 -v http://localhost:5000
+    # Run selenium tests
+    - npm run test:e2e
+  post:
+    - killall --wait sc  # wait for Sauce Connect to close the tunnel
+```
+The test override starts the selenium server for you. Once it is ready the application is started in the
+ background. Finally when ready, the tests are started.
+You can run multiple test commands i.e.
+```
+- npm run test:unit; npm run test:e2e
+```
+ just like in the package.json
+
 
 <br /> <br />
 
