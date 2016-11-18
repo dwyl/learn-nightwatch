@@ -418,6 +418,18 @@ You can run multiple test commands i.e.
 
 <br /> <br />
 
+#### Running a single nightwatch test
+Nightwatch tests can be quite time-consuming so sometimes you may just want to run one test at a time
+
+This can be done by giving each test a tag by adding `tags: [ 'tagname' ]` to the beginning of your exported test scenario. You can then run the individual test (in this case with tag 'test1') with the script:
+` "node_modules/.bin/nightwatch --tag test1"`
+
+If you want to dynamically choose which test to run using the command line, you could create another script in your package.json
+e.g.
+`"e2etag": "./node_modules/.bin/nightwatch --env local --tag"`
+
+and then in your command line you can just run
+`npm run e2etag -- test1`
 # tl;dr
 
 > More detail than you will _probably_ need ... _but we're keeping for completeness_.
