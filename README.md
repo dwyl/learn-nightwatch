@@ -216,7 +216,7 @@ We have a slightly more _evolved_ `nightwatch.conf.js` (_with Saucelabs_) see:
 You will need to run the config file you created to download the Selenium driver.
 
 ```sh
-node nightwatch.conf.BASIC.js
+node nightwatch.conf.js
 ```
 
 ### Create Your Nightwatch Test
@@ -247,7 +247,7 @@ Depending on what you named your configuration file,
 run it with a command _resembling_ the following:
 
 ```sh
-node_modules/.bin/nightwatch --config nightwatch.conf.BASIC.js
+node_modules/.bin/nightwatch --config nightwatch.conf.js
 ```
 If you called your config file `nightwatch.conf.js` (_as we suggested_)
 you can run your tests without specifying the config file:
@@ -268,6 +268,43 @@ Then _run_ it as:
 ```js
 npm run e2e
 ```
+#### Installing Java (_Runtime Environment JRE_)
+
+If you see the following message while trying to run the tests:
+![learn-nightwatch-java-not-installed](https://cloud.githubusercontent.com/assets/194400/16425985/0e2a9e5e-3d5f-11e6-9bf0-d2eebcd97c2b.png)
+
+While we prefer _not_ to run `Java` on our machines for
+[_security reasons_](http://krebsonsecurity.com/tag/java/) Selenium is _still_
+the best way of running tests in _real_ browsers.
+
+_Check_ if you have `Java` installed on your local machine:
+
+> How do I install Java? https://www.java.com/en/download/help/download_options.xml
+> pick your Operating System and follow the instructions
+
+Some people have had issues running Selenium with newer versions of Java so the version I would recommend would be: Java(TM) SE Runtime Environment (build 1.7.0_79-b15)
+##### Mac OSX? (_use homebrew_)
+
+If you haven't updated `brew` in a while, do that first:
+```sh
+brew update
+```
+That will install [`cask`](https://caskroom.github.io/) which is now _part_ of Homebrew.
+
+Now you can install Java:
+```sh
+brew cask install java
+```
+You should see something like this:
+![install-java-with-homebrew-cask](https://cloud.githubusercontent.com/assets/194400/16007040/296f1bfc-3168-11e6-8009-8f39b715239d.png)
+
+> See: [http://stackoverflow.com/questions/24342886/how-to-**install-java-8**-on-**mac**](http://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac)
+
+Or type
+```
+java -version
+```
+into your terminal and you should see your version number if you have Java installed.
 
 ## _Optional_ (_Level Up_)
 
@@ -470,37 +507,6 @@ http://stackoverflow.com/questions/31388280/can-i-create-reusable-test-steps-in-
 <br />
 
 ### Setup (*Detail*)
-
-#### Installing Java (_Runtime Environment JRE_)
-
-If you see the following message while trying to run the tests:
-![learn-nightwatch-java-not-installed](https://cloud.githubusercontent.com/assets/194400/16425985/0e2a9e5e-3d5f-11e6-9bf0-d2eebcd97c2b.png)
-
-While we prefer _not_ to run `Java` on our machines for
-[_security reasons_](http://krebsonsecurity.com/tag/java/) Selenium is _still_
-the best way of running tests in _real_ browsers.
-
-_Check_ if you have `Java` installed on your local machine:
-
-> How do I install Java? https://www.java.com/en/download/help/download_options.xml
-> pick your Operating System and follow the instructions
-
-##### Mac OSX? (_use homebrew_)
-
-If you haven't updated `brew` in a while, do that first:
-```sh
-brew update
-```
-That will install [`cask`](https://caskroom.github.io/) which is now _part_ of Homebrew.
-
-Now you can install Java:
-```sh
-brew cask install java
-```
-You should see something like this:
-![install-java-with-homebrew-cask](https://cloud.githubusercontent.com/assets/194400/16007040/296f1bfc-3168-11e6-8009-8f39b715239d.png)
-
-> See: [http://stackoverflow.com/questions/24342886/how-to-**install-java-8**-on-**mac**](http://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac)
 
 #### Manual Selenium Install
 
