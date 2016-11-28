@@ -104,15 +104,49 @@ If not, https://nodejs.org/en/download/ </small>
 Once you have Java installed re-run the Nightwatch tests (`npm test`).</small>
 
 <br />
-
-## *Step-by-Step Tutorial*
+- - - - - - -
+## *Step-by-Step Tutorial to end to end test on your OWN PROJECT*
 
 Now that you have had a _taste_ for running tests with Nightwatch,
 let's walk through each of the steps to get this working in **_your_ project**.
 
 ### Installation (_in detail_)
 
-#### Install `nightwatch`
+#### 1) Make sure you have Java(_Runtime Environment JRE_) installed
+
+While we prefer _not_ to run `Java` on our machines for
+[_security reasons_](http://krebsonsecurity.com/tag/java/) Selenium is _still_
+the best way of running tests in _real_ browsers.
+
+You can check by typing
+`
+java -version
+`
+into your terminal and you should see your version number if you have Java installed.
+
+> How do I install Java? https://www.java.com/en/download/help/download_options.xml
+> pick your Operating System and follow the instructions
+
+##### Mac OSX? (_use homebrew_)
+
+If you haven't updated `brew` in a while, do that first:
+```sh
+brew update
+```
+That will install [`cask`](https://caskroom.github.io/) which is now _part_ of Homebrew.
+
+Now you can install Java:
+```sh
+brew cask install java
+```
+You should see something like this:
+![install-java-with-homebrew-cask](https://cloud.githubusercontent.com/assets/194400/16007040/296f1bfc-3168-11e6-8009-8f39b715239d.png)
+
+> See: [http://stackoverflow.com/questions/24342886/how-to-**install-java-8**-on-**mac**](http://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac)
+
+#### 2) `cd` into your project
+
+#### 3) Install `nightwatch`
 
 First install the `nightwatch` node.js module from NPM:
 
@@ -125,7 +159,7 @@ we _prefer_ to always install devDependencies _locally_ to the project
 and list them _explicitly_ in `package.json` so it's _clear_ to everyone
 viewing/using the project _exactly_ which version is required to run the tests. </small>
 
-### Install `selenium-download`
+### 4)Install `selenium-download`
 
 In order to run Browser tests Nightwatch uses [Selenium](http://www.seleniumhq.org/).
 We _prefer_ to _automate_ the installation of Selenium using
@@ -136,25 +170,15 @@ which ensures that everyone on our team always has the latest version.
 npm install selenium-download --save-dev
 ```
 
-#### Download Selenium (_Web Driver_) Standalone Server (_Script_)
+#### 5) Download Selenium (_Web Driver_) Standalone Server (_Script_)
 
 Once you've downloaded the the `selenium-download` node module,
 put the following code at the bottom of your `nightwatch.conf.js` file:
 
-```js
-require('selenium-download').ensure('./bin', function(error) {  
-   if (error) {
-     return console.log(error);
-   } else {
-     console.log('✔ Selenium & Chromedriver downloaded to:', './bin');
-   }
-});
-```
-We run include this script in our `nightwatch.conf.js` which
-checks for the existence of `selenium.jar` before trying to run our tests.
+
 _You will create your `nightwatch.conf.js` file in the next step_.
 
-### Configuration
+### 6) Configuration
 
 Once you've installed `nightwatch`, you will need to create a configuration file.  
 _Some_ Nightwatch tutorials use a `nightwatch.json` file;
@@ -163,12 +187,19 @@ but if you want to use variables in your
 configuration we _recommend_ using a `.js` file;
 _specifically_ called `nightwatch.conf.js`. Save this file to your project directory.
 
-The most _basic_ configuration is: [`nightwatch.conf.BASIC.js`](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.BASIC.js)
+You can copy over our basic configuration saved in nightwatch.conf.BASIC.js: [`nightwatch.conf.BASIC.js`](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.BASIC.js)
+
+Or copy the following into a file called nightwatch.conf.BASIC.js
 
 ```js
+require('env2')('.env'); // optionally store youre Evironment Variables in .env
+const SCREENSHOT_PATH = "./screenshots/";
+const BINPATH = './node_modules/nightwatch/bin/';
+
+// we use a nightwatch.conf.js file so we can include comments and helper functions
 module.exports = {
   "src_folders": [
-    "test/e2e"// Where you are storing your Nightwatch e2e/UAT tests
+    "test/e2e"// Where you are storing your Nightwatch e2e tests
   ],
   "output_folder": "./reports", // reports (test outcome) output by nightwatch
   "selenium": { // downloaded by selenium-download module (see readme)
@@ -196,11 +227,51 @@ module.exports = {
     "chrome": {
       "desiredCapabilities": {
         "browserName": "chrome",
-        "javascriptEnabled": true // set to false to test progressive enhancement
+        "javascriptEnabled": true // turn off to test progressive enhancement
       }
     }
   }
 }
+/**
+ * selenium-download does exactly what it's name suggests;
+ * downloads (or updates) the version of Selenium (& chromedriver)
+ * on your localhost where it will be used by Nightwatch.
+ /the following code checks for the existence of `selenium.jar` before trying to run our tests.
+ */
+
+require('fs').stat(BINPATH + 'selenium.jar', function (err, stat) { // got it?
+  if (err || !stat || stat.size < 1) {
+    require('selenium-download').ensure(BINPATH, function(error) {
+      if (error) throw new Error(error); // no point continuing so exit!
+      console.log('✔ Selenium & Chromedriver downloaded to:', BINPATH);
+    });
+  }
+});
+
+function padLeft (count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
+  return count < 10 ? '0' + count : count.toString();
+}
+
+var FILECOUNT = 0; // "global" screenshot file count
+/**
+ * The default is to save screenshots to the root of your project even though
+ * there is a screenshots path in the config object above! ... so we need a
+ * function that returns the correct path for storing our screenshots.
+ * While we're at it, we are adding some meta-data to the filename, specifically
+ * the Platform/Browser where the test was run and the test (file) name.
+ */
+function imgpath (browser) {
+  var a = browser.options.desiredCapabilities;
+  var meta = [a.platform];
+  meta.push(a.browserName ? a.browserName : 'any');
+  meta.push(a.version ? a.version : 'any');
+  meta.push(a.name); // this is the test filename so always exists.
+  var metadata = meta.join('~').toLowerCase().replace(/ /g, '');
+  return SCREENSHOT_PATH + metadata + '_' + padLeft(FILECOUNT++) + '_';
+}
+
+module.exports.imgpath = imgpath;
+module.exports.SCREENSHOT_PATH = SCREENSHOT_PATH;
 ```
 
 > One of our _favourite_ things about using a `.js` file
@@ -211,29 +282,31 @@ We have a slightly more _evolved_ `nightwatch.conf.js` (_with Saucelabs_) see:
 [github.com/dwyl/learn-nightwatch/**nightwatch.conf.js**](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.js)
 
 
-### Additional Steps for Testing a Non-NPM Project
+### 7) Running config file
 
 You will need to run the config file you created to download the Selenium driver.
 
 ```sh
-node nightwatch.conf.js
+node nightwatch.conf.BASIC.js
 ```
 
-### Create Your Nightwatch Test
+### 8) Create Your Nightwatch Test
 
 Nightwatch "looks" for tests in the `/tests` folder of your project by default;
 you can change this to what ever you prefer. We keep our Nightwatch tests in `test/e2e`.
 
 This is the _simplest_ test you can write for Nightwatch
 
-```
-module.exports = { // addapted from: https://git.io/vodU0
+```js
+var config = require('../../nightwatch.conf.BASIC.js');
+
+module.exports = { // adapted from: https://git.io/vodU0
   'Guinea Pig Assert Title': function(browser) {
     browser
       .url('https://saucelabs.com/test/guinea-pig')
       .waitForElementVisible('body')
       .assert.title('I am a page title - Sauce Labs')
-      .saveScreenshot('ginea-pig-test.png')
+      .saveScreenshot('guinea-pig-test.png')
       .end();
   }
 };
@@ -241,70 +314,41 @@ module.exports = { // addapted from: https://git.io/vodU0
 
 > See: [github.com/dwyl/learn-nightwatch/**test/e2e**](https://github.com/dwyl/learn-nightwatch/tree/master/test/e2e)
 
-### Run your Test
+### 9) Run your Test
 
 Depending on what you named your configuration file,
 run it with a command _resembling_ the following:
 
 ```sh
-node_modules/.bin/nightwatch --config nightwatch.conf.js
+node_modules/.bin/nightwatch --config nightwatch.conf.BASIC.js
 ```
-If you called your config file `nightwatch.conf.js` (_as we suggested_)
-you can run your tests without specifying the config file:
 
-```sh
-node_modules/.bin/nightwatch
-```
 We add an entry in our `package.json` `"scripts"` section
 to _not_ have to type all that each time. e.g:
 
 ```js
 "scripts": {
-  "e2e": "node_modules/.bin/nightwatch"
+  "e2e": "node_modules/.bin/nightwatch --config nightwatch.conf.BASIC.js"
 }
 ```
-Then _run_ it as:
+
+Then _run_  your tests as:
 
 ```js
 npm run e2e
 ```
-#### Installing Java (_Runtime Environment JRE_)
+
+If you called your config file `nightwatch.conf.js`
+you can run your tests without specifying the config file, i.e.
+
+```sh
+node_modules/.bin/nightwatch
+```
 
 If you see the following message while trying to run the tests:
 ![learn-nightwatch-java-not-installed](https://cloud.githubusercontent.com/assets/194400/16425985/0e2a9e5e-3d5f-11e6-9bf0-d2eebcd97c2b.png)
 
-While we prefer _not_ to run `Java` on our machines for
-[_security reasons_](http://krebsonsecurity.com/tag/java/) Selenium is _still_
-the best way of running tests in _real_ browsers.
-
-_Check_ if you have `Java` installed on your local machine:
-
-> How do I install Java? https://www.java.com/en/download/help/download_options.xml
-> pick your Operating System and follow the instructions
-
-Some people have had issues running Selenium with newer versions of Java so the version I would recommend would be: Java(TM) SE Runtime Environment (build 1.7.0_79-b15)
-##### Mac OSX? (_use homebrew_)
-
-If you haven't updated `brew` in a while, do that first:
-```sh
-brew update
-```
-That will install [`cask`](https://caskroom.github.io/) which is now _part_ of Homebrew.
-
-Now you can install Java:
-```sh
-brew cask install java
-```
-You should see something like this:
-![install-java-with-homebrew-cask](https://cloud.githubusercontent.com/assets/194400/16007040/296f1bfc-3168-11e6-8009-8f39b715239d.png)
-
-> See: [http://stackoverflow.com/questions/24342886/how-to-**install-java-8**-on-**mac**](http://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac)
-
-Or type
-```
-java -version
-```
-into your terminal and you should see your version number if you have Java installed.
+Then return to step 2 to install Java
 
 ## _Optional_ (_Level Up_)
 
