@@ -199,7 +199,7 @@ const BINPATH = './node_modules/nightwatch/bin/';
 // we use a nightwatch.conf.js file so we can include comments and helper functions
 module.exports = {
   "src_folders": [
-    "tests/e2e"// Where you are storing your Nightwatch e2e tests
+    "test/e2e"// Where you are storing your Nightwatch e2e tests
   ],
   "output_folder": "./reports", // reports (test outcome) output by nightwatch
   "selenium": { // downloaded by selenium-download module (see readme)
@@ -292,7 +292,7 @@ node nightwatch.conf.BASIC.js
 
 ### 8) Create Your Nightwatch Test
 
-Nightwatch "looks" for tests in the `/tests` folder of your project by default;
+Nightwatch "looks" for tests in the `/test` folder of your project by default;
 you can change this to what ever you prefer. We keep our Nightwatch tests in `test/e2e`.
 
 This is the _simplest_ test you can write for Nightwatch
