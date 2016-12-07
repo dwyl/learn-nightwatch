@@ -292,7 +292,7 @@ node nightwatch.conf.BASIC.js
 
 ### 8) Create Your Nightwatch Test
 
-Nightwatch "looks" for tests in the `/tests` folder of your project by default;
+Nightwatch "looks" for tests in the `/test` folder of your project by default;
 you can change this to what ever you prefer. We keep our Nightwatch tests in `test/e2e`.
 
 This is the _simplest_ test you can write for Nightwatch
