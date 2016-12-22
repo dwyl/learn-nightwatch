@@ -1,13 +1,13 @@
-require('env2')('.env'); // optionally store youre Evironment Variables in .env
+require('env2')('.env'); // optionally store your environment variables in .env
 const PKG = require('./package.json'); // so we can get the version of the project
 const BINPATH = './node_modules/nightwatch/bin/'; // change if required.
-const SCREENSHOT_PATH = "./node_modules/nightwatch/screenshots/" + PKG.version + "/"
+const SCREENSHOT_PATH = "./node_modules/nightwatch/screenshots/" + PKG.version + "/";
 
 const config = { // we use a nightwatch.conf.js file so we can include comments and helper functions
   "src_folders": [
-    "test/e2e"     // we use /test as the name of our test directory by default. so test/e2e for e2e
+    "test/e2e"     // we use '/test' as the name of our test directory by default. So 'test/e2e' for 'e2e'.
   ],
-  "output_folder": "./node_modules/nightwatch/reports", // reports (test outcome) output by nightwatch
+  "output_folder": "./node_modules/nightwatch/reports", // reports (test outcome) output by Nightwatch
   "selenium": {
     "start_process": true,
     "server_path": BINPATH + "selenium.jar", // downloaded by selenium-download module (see below)
@@ -32,7 +32,7 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
       "username" : "${SAUCE_USERNAME}",     // if you want to use Saucelabs remember to
       "access_key" : "${SAUCE_ACCESS_KEY}", // export your environment variables (see readme)
       "globals": {
-        "waitForConditionTimeout": 10000    // wait for content on the page bsauefore continuing
+        "waitForConditionTimeout": 10000    // wait for content on the page before continuing
       }
     },
     "local": {
@@ -60,7 +60,7 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
         "acceptSslCerts": true
       }
     },
-    "chrome": { // your local chrom browser (chromedriver)
+    "chrome": { // your local Chrome browser (chromedriver)
       "desiredCapabilities": {
         "browserName": "chrome",
         "javascriptEnabled": true,
