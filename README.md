@@ -296,18 +296,6 @@ You can copy it and just call it to install selenium locally to your `BINPATH`:
 node install-selenium.js
 ```
 
-Also, by setting such a command as a `postinstall` hook in your `package.json`, you can ensure that selenium is installed after an `npm install` call:
-
-```js
-
-"scripts": {
-  "postinstall": "node install-selenium.js",
-  
-  ...
-  
-},
-```
-
 ### 8) Create Your Nightwatch Test
 
 Nightwatch "looks" for tests in the `/test` folder of your project by default;
@@ -378,10 +366,10 @@ have been installed. e.g:
 
 ```js
   "scripts": {
-    "postinstall": "node nightwatch.conf.js"
+    "postinstall": "node install-selenium.js"
   }
 ```
-
+So whenever an `npm install` or `yarn` command is invoked, the `selenium-download` package will download and install `selenium`.
 
 ### Saucelabs
 
