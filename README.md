@@ -462,13 +462,13 @@ That's it.
 #### Running your Nightwatch tests on Travis-CI with sauce connect
 Since we are testing on the localhost we have to make sure that the server is started before the tests are run and closes after the tests finish. So we need to boot up a server to serve our content. Travis makes this easy enough via a before_script task. In the task we will just start a python simple server and give it a few seconds to boot. The ampersand at the end of the python line tells travis to run the process in the background instead of blocking the execution thread, allowing us to run tasks at the same time.
 
-```
+```yml
 language: node_js
 before_script:
   - python -m SimpleHTTPServer &
   - sleep 2
 node_js:
-    - "0.12"
+    - "6.0"
 ```
 
 One other way to run a server before running a test is to use the `before` and `after` methods present in nightwatch.
@@ -548,7 +548,7 @@ You can run multiple test commands i.e.
 ```
 - npm run test:unit; npm run test:e2e
 ```
-You can see the working code [here](https://github.com/ritz078/embed.js/pull/228/files) and the corresponding test [here](https://travis-ci.org/ritz078/embed.js/builds/211089816)
+You can see the working code [here](https://github.com/ritz078/embed.js/pull/228/files) and the corresponding test on travis [here](https://travis-ci.org/ritz078/embed.js/builds/211089816)
 
 
 #### Running your Nightwatch tests on CircleCi.
