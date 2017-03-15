@@ -437,7 +437,7 @@ and uploaded to S3 when tests succeed.
 
 ### Running your Nightwatch tests on your _Continuous Integration_ (CI)
 
-####Running your Nightwatch tests on CI is easy on CodeShip.
+#### Running your Nightwatch tests on CI is easy on CodeShip.
 We usually set the required (_minimum_) node version in our
 `package.json` e.g:
 ```js
