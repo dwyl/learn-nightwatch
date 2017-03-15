@@ -480,24 +480,24 @@ One other way to run a server before running a test is to use the `before` and `
 
 ```js
 module.exports = {
-	before: function (browser, done) {
-		server = require('../server')(done) // done is a callback that executes when the server is started
-	},
+  before: function (browser, done) {
+  	server = require('../server')(done) // done is a callback that executes when the server is started
+  },
 
-	after: function () {
-		server.close()
-	},
+  after: function () {
+  	server.close()
+  },
 
   'Demo test': function (browser) {
-		browser
-			.url('localhost:3000')   // visit the local url
-			.waitForElementVisible('body'); // wait for the body to be rendered
+    browser
+      .url('localhost:3000')   // visit the local url
+      .waitForElementVisible('body'); // wait for the body to be rendered
 
-		browser
-			.assert.containsText('body','hello') // assert contains
-			.saveScreenshot(conf.imgpath(browser) + 'dwyl.png')
-			.end()
-	}
+    browser
+      .assert.containsText('body','hello') // assert contains
+      .saveScreenshot(conf.imgpath(browser) + 'dwyl.png')
+      .end()
+  }
 }
 ```
 
@@ -505,18 +505,18 @@ The `server.js` can be a simple express server.
 
 ```js
 function makeServer(done) {
-	var express = require('express');
-	var path = require('path');
-	var app = express();
+  var express = require('express');
+  var path = require('path');
+  var app = express();
 
-	app.get('/', function (req, res) {
-		res.status(200).sendFile(`index.html`, {root: path.resolve()});
-	});
-	var server = app.listen(3000, function () {
-		var port = server.address().port;
-		done()
-	});
-	return server;
+  app.get('/', function (req, res) {
+  	res.status(200).sendFile(`index.html`, {root: path.resolve()});
+  });
+  var server = app.listen(3000, function () {
+  	var port = server.address().port;
+  	done()
+  });
+  return server;
 }
 module.exports = makeServer;
 ```
