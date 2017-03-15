@@ -464,6 +464,98 @@ That's it.
 if you have time to ***help us***, please see:
 https://github.com/dwyl/learn-nightwatch/issues/8
 
+####Running your Nightwatch tests on Travis-CI with sauce connect
+Since we are testing on the localhost we have to make sure that the server is started before the tests are run and closes after the tests finish. So we need to boot up a server to serve our content. Travis makes this easy enough via a before_script task. In the task we will just start a python simple server and give it a few seconds to boot. The ampersand at the end of the python line tells travis to run the process in the background instead of blocking the execution thread, allowing us to run tasks at the same time.
+
+```
+language: node_js
+before_script:
+  - python -m SimpleHTTPServer &
+  - sleep 2
+node_js:
+    - "0.12"
+```
+
+One other way to run a server before running a test is to use the `before` and `after` methods present in nightwatch.
+
+```js
+module.exports = {
+	before: function (browser, done) {
+		server = require('../server')(done) // done is a callback that executes when the server is started
+	},
+
+	after: function () {
+		server.close()
+	},
+
+  'Demo test': function (browser) {
+		browser
+			.url('localhost:3000')   // visit the local url
+			.waitForElementVisible('body'); // wait for the body to be rendered
+
+		browser
+			.assert.containsText('body','hello') // assert contains
+			.saveScreenshot(conf.imgpath(browser) + 'dwyl.png')
+			.end()
+	}
+}
+```
+
+The `server.js` can be a simple express server.
+
+```js
+function makeServer(done) {
+	var express = require('express');
+	var path = require('path');
+	var app = express();
+
+	app.get('/', function (req, res) {
+		res.status(200).sendFile(`index.html`, {root: path.resolve()});
+	});
+	var server = app.listen(3000, function () {
+		var port = server.address().port;
+		done()
+	});
+	return server;
+}
+module.exports = makeServer;
+```
+
+This is all we need to run a test on browser. Now we have set up saucelabs on travis.
+
+To run the test on Travis-CI and use sauce connect you need to add a addon to you .travis.yml
+```
+addons:
+  sauce_connect: true
+```
+
+The `username` and `access_key` can be optionally stored in `.travis.yml` or can be stored on travis-ci website as environment variables. There are various methods of storing the `username` and `access_key` of saucelabs and you can read more about them [here](https://docs.travis-ci.com/user/sauce-connect/). In our case we have preferred to save it on travis website so that our `.travis.yml` is simple.
+
+Now you have to make some changes in `nightwatch.conf.js`
+
+```js
+const TRAVIS_JOB_NUMBER = process.env.TRAVIS_JOB_NUMBER;
+// in test_settings.default:
+default: {
+  launch_url: 'http://ondemand.saucelabs.com:80',
+
+  username : process.env.SAUCE_USERNAME,     
+  access_key : process.env.SAUCE_ACCESS_KEY,
+  ...
+  desiredCapabilities: {
+    build: `build-${TRAVIS_JOB_NUMBER}`,
+    'tunnel-identifier': TRAVIS_JOB_NUMBER,
+  },
+}
+```
+See the modified final config [here](./nightwatch.conf.TRAVIS.js)
+You can run multiple test commands i.e.
+```
+- npm run test:unit; npm run test:e2e
+```
+You can see the working code [here](https://github.com/ritz078/embed.js/pull/228/files) and the corresponding test [here](https://travis-ci.org/ritz078/embed.js/builds/211089816)
+
+
 ####Running your Nightwatch tests on CircleCi.
 To run the test on circle ci you need to make some adjustments to you circle.yml
 Here is an Example from the circle ci [docs](https://circleci.com/docs/browser-testing-with-sauce-labs/)
