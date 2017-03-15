@@ -464,7 +464,7 @@ That's it.
 if you have time to ***help us***, please see:
 https://github.com/dwyl/learn-nightwatch/issues/8
 
-####Running your Nightwatch tests on Travis-CI with sauce connect
+#### Running your Nightwatch tests on Travis-CI with sauce connect
 Since we are testing on the localhost we have to make sure that the server is started before the tests are run and closes after the tests finish. So we need to boot up a server to serve our content. Travis makes this easy enough via a before_script task. In the task we will just start a python simple server and give it a few seconds to boot. The ampersand at the end of the python line tells travis to run the process in the background instead of blocking the execution thread, allowing us to run tasks at the same time.
 
 ```
@@ -556,7 +556,7 @@ You can run multiple test commands i.e.
 You can see the working code [here](https://github.com/ritz078/embed.js/pull/228/files) and the corresponding test [here](https://travis-ci.org/ritz078/embed.js/builds/211089816)
 
 
-####Running your Nightwatch tests on CircleCi.
+#### Running your Nightwatch tests on CircleCi.
 To run the test on circle ci you need to make some adjustments to you circle.yml
 Here is an Example from the circle ci [docs](https://circleci.com/docs/browser-testing-with-sauce-labs/)
 ```
