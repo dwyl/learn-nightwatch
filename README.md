@@ -459,11 +459,6 @@ npm test
 ```
 That's it.
 
-> ***Note***: while the tests run seamlessly on CodeShip we were unable
- to get Selenium standalone working on Travis-CI
-if you have time to ***help us***, please see:
-https://github.com/dwyl/learn-nightwatch/issues/8
-
 #### Running your Nightwatch tests on Travis-CI with sauce connect
 Since we are testing on the localhost we have to make sure that the server is started before the tests are run and closes after the tests finish. So we need to boot up a server to serve our content. Travis makes this easy enough via a before_script task. In the task we will just start a python simple server and give it a few seconds to boot. The ampersand at the end of the python line tells travis to run the process in the background instead of blocking the execution thread, allowing us to run tasks at the same time.
 
