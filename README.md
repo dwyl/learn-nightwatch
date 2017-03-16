@@ -515,8 +515,9 @@ function makeServer(done) {
 }
 module.exports = makeServer;
 ```
+**Note** : In the above example you can see that the port is fixed. It will run fine if you are running tests on single device but in case you are running tests on multiple devices on saucelabs, this will give you an error that the port is already in use as all the devices try to start the server on same port (in our current approach). So we need to dynamically allot available ports to prevent this error. You can use [get-port](https://github.com/sindresorhus/get-port) for this.
 
-This is all we need to run a test on browser. Now we have set up saucelabs on travis.
+This is all we need to run a test on browser/s. Now we have set up saucelabs on travis.
 
 To run the test on Travis-CI and use sauce connect you need to add a addon to you .travis.yml
 ```
@@ -549,6 +550,12 @@ You can run multiple test commands i.e.
 - npm run test:unit; npm run test:e2e
 ```
 You can see the working code [here](https://github.com/ritz078/embed.js/pull/228/files) and the corresponding test on travis [here](https://travis-ci.org/ritz078/embed.js/builds/211089816)
+
+**Note-1**: Tests on the PRs of _forked repos_ will fail as the secured environment variables are not accessible to them on travis. You will recieve authentication error in that case.
+
+**Note-2**: Running tests on IE still seems tricky. Will have to explore more. Any help is appreciated.
+
+**Note-3**: If you are recieving timeout error, maybe you are running tests on many devices. Try to adjust the time or decrease the number of devices.
 
 
 #### Running your Nightwatch tests on CircleCi.
