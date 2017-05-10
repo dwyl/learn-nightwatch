@@ -192,7 +192,7 @@ You can copy over our basic configuration saved in nightwatch.conf.BASIC.js: [`n
 Or copy the following into a file called nightwatch.conf.BASIC.js
 
 ```js
-require('env2')('.env'); // optionally store youre Evironment Variables in .env
+require('env2')('.env'); // optionally store your Evironment Variables in .env
 const SCREENSHOT_PATH = "./screenshots/";
 const BINPATH = './node_modules/nightwatch/bin/';
 
