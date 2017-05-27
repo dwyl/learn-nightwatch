@@ -14,8 +14,8 @@ module.exports = {
       });
     // part two:
     browser
-      .assert.containsText('body', 'do what you love') // assert contains
+      .assert.containsText('body', 'dwyl.io') // assert contains
       .saveScreenshot(conf.imgpath(browser) + 'dwyl.png')
       .end();
-  }
-};
+    }
+  };
