@@ -215,7 +215,7 @@ module.exports = {
     "default": {
       "screenshots": {
         "enabled": true, // if you want to keep screenshots
-        "path": './screenshots' // save screenshots here
+        "path": SCREENSHOT_PATH // save screenshots here
       },
       "globals": {
         "waitForConditionTimeout": 5000 // sometimes internet is slow so wait.
@@ -328,7 +328,7 @@ to _not_ have to type all that each time. e.g:
 
 ```js
 "scripts": {
-  "e2e": "node_modules/.bin/nightwatch --config nightwatch.conf.BASIC.js"
+  "e2e": "nightwatch --config nightwatch.conf.BASIC.js"
 }
 ```
 
