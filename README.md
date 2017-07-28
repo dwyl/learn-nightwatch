@@ -295,7 +295,9 @@ node nightwatch.conf.BASIC.js
 Nightwatch "looks" for tests in the `/test` folder of your project by default;
 you can change this to what ever you prefer. We keep our Nightwatch tests in `test/e2e`.
 
-This is the _simplest_ test you can write for Nightwatch
+This is the _simplest_ test you can write for Nightwatch.
+
+Assuming you're using the same folder structure as we are (tests in `test/e2e`), create a file named `guineaPig.js` inside that folder, containing the following code:
 
 ```js
 var config = require('../../nightwatch.conf.BASIC.js');
@@ -322,6 +324,10 @@ run it with a command _resembling_ the following:
 ```sh
 node_modules/.bin/nightwatch --config nightwatch.conf.BASIC.js
 ```
+
+The camelCase filename ("guineaPig") is used to display the test's name in the console as in:
+
+`Running:  Guinea Pig Assert Title`
 
 We add an entry in our `package.json` `"scripts"` section
 to _not_ have to type all that each time. e.g:
