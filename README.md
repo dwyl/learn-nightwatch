@@ -3,6 +3,7 @@
 [![Dependency Status](https://david-dm.org/dwyl/learn-nightwatch.svg)](https://david-dm.org/dwyl/learn-nightwatch)
 [![devDependency Status](https://david-dm.org/dwyl/learn-nightwatch/dev-status.svg)](https://david-dm.org/dwyl/learn-nightwatch#info=devDependencies)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-nightwatch/issues)
+[![Hit Count](http://hits.dwyl.io/dwyl/learn-nightwatch.svg)](http://hits.dwyl.io/dwyl/learn-nightwatch)
 
 _**Automate** your **acceptance tests** and run them in **real browsers**_!
 
