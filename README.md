@@ -1,12 +1,17 @@
-# Learn Nightwatch  
-[![Codeship](https://img.shields.io/codeship/d9151e40-1473-0134-47e0-12348d1f3442.svg)](https://codeship.com/projects/157818)
-[![Dependency Status](https://david-dm.org/dwyl/learn-nightwatch.svg)](https://david-dm.org/dwyl/learn-nightwatch)
-[![devDependency Status](https://david-dm.org/dwyl/learn-nightwatch/dev-status.svg)](https://david-dm.org/dwyl/learn-nightwatch#info=devDependencies)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-nightwatch/issues)
+# Learn Nightwatch: Complete Beginners Tutorial
+
 
 _**Automate** your **acceptance tests** and run them in **real browsers**_!
 
 ![nightwatch-logo-with-slogan](https://cloud.githubusercontent.com/assets/194400/16045809/099207e2-3242-11e6-99d4-99b227d7a38a.png)
+
+<div align="center">
+
+[![Codeship Build Status](https://img.shields.io/codeship/d9151e40-1473-0134-47e0-12348d1f3442.svg?style=flat-square)](https://codeship.com/projects/157818)
+[![Dependency Status](https://img.shields.io/david/dwyl/learn-nightwatch.svg?style=flat-square)](https://david-dm.org/dwyl/learn-nightwatch)
+[![devDependency Status](https://img.shields.io/david/dev/dwyl/learn-nightwatch.svg?style=flat-square)](https://david-dm.org/dwyl/learn-nightwatch#info=devDependencies)
+[![Hit Count](http://hits.dwyl.io/dwyl/learn-nightwatch.svg)](http://hits.dwyl.io/dwyl/learn-nightwatch)
+</div>
 
 ## _Why_?
 
