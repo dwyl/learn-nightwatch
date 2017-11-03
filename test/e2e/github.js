@@ -14,7 +14,7 @@ module.exports = {
       });
     // part two:
     browser
-      .assert.containsText('body', 'http://dwyl.com') // assert contains
+      .assert.containsText('body', 'dwyl.com') // assert body contains text
       .saveScreenshot(conf.imgpath(browser) + 'dwyl.png')
       .end();
     }
