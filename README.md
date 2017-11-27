@@ -237,21 +237,6 @@ module.exports = {
     }
   }
 }
-/**
- * selenium-download does exactly what it's name suggests;
- * downloads (or updates) the version of Selenium (& chromedriver)
- * on your localhost where it will be used by Nightwatch.
- /the following code checks for the existence of `selenium.jar` before trying to run our tests.
- */
-
-require('fs').stat(BINPATH + 'selenium.jar', function (err, stat) { // got it?
-  if (err || !stat || stat.size < 1) {
-    require('selenium-download').ensure(BINPATH, function(error) {
-      if (error) throw new Error(error); // no point continuing so exit!
-      console.log('✔ Selenium & Chromedriver downloaded to:', BINPATH);
-    });
-  }
-});
 
 function padLeft (count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
   return count < 10 ? '0' + count : count.toString();
@@ -287,12 +272,33 @@ We have a slightly more _evolved_ `nightwatch.conf.js` (_with Saucelabs_) see:
 [github.com/dwyl/learn-nightwatch/**nightwatch.conf.js**](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.js)
 
 
-### 7) Running config file
+### 7) Installing Selenium
 
-You will need to run the config file you created to download the Selenium driver.
+Thanks to [selenium-download](https://github.com/groupon/selenium-download) we can download and install a selenium instance locally in our project. We have this small javaScript to download and install selenium:
+
+`install-selenium.js`
+```js
+const BINPATH = require('./constants').BINPATH;
+
+/**
+ * selenium-download does exactly what it's name suggests;
+ * downloads (or updates) the version of Selenium (& chromedriver)
+ * on your localhost where it will be used by Nightwatch.
+ */
+require('fs').stat(BINPATH + 'selenium.jar', function (err, stat) { // got it?
+  if (err || !stat || stat.size < 1) {
+    require('selenium-download').ensure(BINPATH, function(error) {
+      if (error) throw new Error(error); // no point continuing so exit!
+      console.log('✔ Selenium & Chromedriver downloaded to:', BINPATH);
+    });
+  }
+});
+```
+
+You can copy it and just call it to install selenium locally to your `BINPATH`:
 
 ```sh
-node nightwatch.conf.BASIC.js
+node install-selenium.js
 ```
 
 ### 8) Create Your Nightwatch Test
@@ -371,10 +377,10 @@ have been installed. e.g:
 
 ```js
   "scripts": {
-    "postinstall": "node nightwatch.conf.js"
+    "postinstall": "node install-selenium.js"
   }
 ```
-
+So whenever an `npm install` or `yarn` command is invoked, the `selenium-download` package will download and install `selenium`.
 
 ### Saucelabs
 

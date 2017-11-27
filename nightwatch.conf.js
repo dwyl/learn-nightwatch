@@ -1,7 +1,11 @@
 require('env2')('.env'); // optionally store your environment variables in .env
-const PKG = require('./package.json'); // so we can get the version of the project
-const BINPATH = './node_modules/nightwatch/bin/'; // change if required.
-const SCREENSHOT_PATH = "./node_modules/nightwatch/screenshots/" + PKG.version + "/";
+
+const CONSTANTS = require('./constants');
+
+const PKG = CONSTANTS.PKG; // so we can get the version of the project
+const BINPATH = CONSTANTS.BINPATH // change if required.
+const SCREENSHOT_PATH = CONSTANTS.SCREENSHOT_PATH;
+
 
 const config = { // we use a nightwatch.conf.js file so we can include comments and helper functions
   "src_folders": [
@@ -116,19 +120,7 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
 }
 module.exports = config;
 
-/**
- * selenium-download does exactly what it's name suggests;
- * downloads (or updates) the version of Selenium (& chromedriver)
- * on your localhost where it will be used by Nightwatch.
- */
-require('fs').stat(BINPATH + 'selenium.jar', function (err, stat) { // got it?
-  if (err || !stat || stat.size < 1) {
-    require('selenium-download').ensure(BINPATH, function(error) {
-      if (error) throw new Error(error); // no point continuing so exit!
-      console.log('✔ Selenium & Chromedriver downloaded to:', BINPATH);
-    });
-  }
-});
+
 
 function padLeft (count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
   return count < 10 ? '0' + count : count.toString();
