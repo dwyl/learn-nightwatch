@@ -164,26 +164,18 @@ we _prefer_ to always install devDependencies _locally_ to the project
 and list them _explicitly_ in `package.json` so it's _clear_ to everyone
 viewing/using the project _exactly_ which version is required to run the tests. </small>
 
-### 4)Install `selenium-download`
+### 4)Install `selenium-server` and
 
 In order to run Browser tests Nightwatch uses [Selenium](http://www.seleniumhq.org/).
 We _prefer_ to _automate_ the installation of Selenium using
-[`selenium-download`](https://www.npmjs.com/package/selenium-download)
+[`selenium-server`](https://www.npmjs.com/package/selenium-server)
 which ensures that everyone on our team always has the latest version.
 
 ```sh
-npm install selenium-download --save-dev
+npm install selenium-server --save-dev
 ```
 
-#### 5) Download Selenium (_Web Driver_) Standalone Server (_Script_)
-
-Once you've downloaded the the `selenium-download` node module,
-put the following code at the bottom of your `nightwatch.conf.js` file:
-
-
-_You will create your `nightwatch.conf.js` file in the next step_.
-
-### 6) Configuration
+### 5) Configuration
 
 Once you've installed `nightwatch`, you will need to create a configuration file.  
 _Some_ Nightwatch tutorials use a `nightwatch.json` file;
@@ -198,8 +190,9 @@ Or copy the following into a file called nightwatch.conf.BASIC.js
 
 ```js
 require('env2')('.env'); // optionally store your Evironment Variables in .env
+const seleniumServer = require("selenium-server");
+const chromedriver = require("chromedriver");
 const SCREENSHOT_PATH = "./screenshots/";
-const BINPATH = './node_modules/nightwatch/bin/';
 
 // we use a nightwatch.conf.js file so we can include comments and helper functions
 module.exports = {
@@ -207,13 +200,13 @@ module.exports = {
     "test/e2e"// Where you are storing your Nightwatch e2e tests
   ],
   "output_folder": "./reports", // reports (test outcome) output by nightwatch
-  "selenium": { // downloaded by selenium-download module (see readme)
+  "selenium": {
     "start_process": true, // tells nightwatch to start/stop the selenium process
-    "server_path": "./node_modules/nightwatch/bin/selenium.jar",
+    "server_path": seleniumServer.path,
     "host": "127.0.0.1",
     "port": 4444, // standard selenium port
-    "cli_args": { // chromedriver is downloaded by selenium-download (see readme)
-      "webdriver.chrome.driver" : "./node_modules/nightwatch/bin/chromedriver"
+    "cli_args": {
+      "webdriver.chrome.driver" : chromedriver.path
     }
   },
   "test_settings": {
@@ -237,21 +230,6 @@ module.exports = {
     }
   }
 }
-/**
- * selenium-download does exactly what it's name suggests;
- * downloads (or updates) the version of Selenium (& chromedriver)
- * on your localhost where it will be used by Nightwatch.
- /the following code checks for the existence of `selenium.jar` before trying to run our tests.
- */
-
-require('fs').stat(BINPATH + 'selenium.jar', function (err, stat) { // got it?
-  if (err || !stat || stat.size < 1) {
-    require('selenium-download').ensure(BINPATH, function(error) {
-      if (error) throw new Error(error); // no point continuing so exit!
-      console.log('✔ Selenium & Chromedriver downloaded to:', BINPATH);
-    });
-  }
-});
 
 function padLeft (count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
   return count < 10 ? '0' + count : count.toString();
@@ -287,7 +265,7 @@ We have a slightly more _evolved_ `nightwatch.conf.js` (_with Saucelabs_) see:
 [github.com/dwyl/learn-nightwatch/**nightwatch.conf.js**](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.js)
 
 
-### 7) Running config file
+### 6) Running config file
 
 You will need to run the config file you created to download the Selenium driver.
 
@@ -295,7 +273,7 @@ You will need to run the config file you created to download the Selenium driver
 node nightwatch.conf.BASIC.js
 ```
 
-### 8) Create Your Nightwatch Test
+### 7) Create Your Nightwatch Test
 
 Nightwatch "looks" for tests in the `/test` folder of your project by default;
 you can change this to what ever you prefer. We keep our Nightwatch tests in `test/e2e`.
@@ -321,7 +299,7 @@ module.exports = { // adapted from: https://git.io/vodU0
 
 > See: [github.com/dwyl/learn-nightwatch/**test/e2e**](https://github.com/dwyl/learn-nightwatch/tree/master/test/e2e)
 
-### 9) Run your Test
+### 8) Run your Test
 
 Depending on what you named your configuration file,
 run it with a command _resembling_ the following:
@@ -362,19 +340,6 @@ If you see the following message while trying to run the tests:
 Then return to step 2 to install Java
 
 ## _Optional_ (_Level Up_)
-
-### `postinstall` script
-
-We put an entry in the `"scripts"` section of our `package.json` to
-_run_ the `selenium-download` script after all `node_modules`
-have been installed. e.g:
-
-```js
-  "scripts": {
-    "postinstall": "node nightwatch.conf.js"
-  }
-```
-
 
 ### Saucelabs
 

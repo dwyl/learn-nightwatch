@@ -7,7 +7,6 @@
     "node": "4.4.6"
   },
   "scripts": {
-    "postinstall": "node nightwatch.conf.js",
     "test": "./node_modules/.bin/nightwatch --env local",
     "ie": "./node_modules/.bin/nightwatch -e ie11",
     "sauce": "./node_modules/.bin/nightwatch -e chrome,ie11,android_s4_emulator,iphone_6_simulator",
@@ -32,9 +31,11 @@
   },
   "devDependencies": {
     "aws-sdk": "^2.7.13",
+    "chromedriver": "^2.33.2",
     "env2": "^2.1.1",
     "mime-types": "^2.1.13",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "selenium-server": "^3.8.1"
   },
   "keywords": [
     "nightwatch",
