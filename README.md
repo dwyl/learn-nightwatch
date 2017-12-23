@@ -164,7 +164,7 @@ we _prefer_ to always install devDependencies _locally_ to the project
 and list them _explicitly_ in `package.json` so it's _clear_ to everyone
 viewing/using the project _exactly_ which version is required to run the tests. </small>
 
-### 4)Install `selenium-server` and
+#### 4) Install `selenium-server` and
 
 In order to run Browser tests Nightwatch uses [Selenium](http://www.seleniumhq.org/).
 We _prefer_ to _automate_ the installation of Selenium using
@@ -175,7 +175,7 @@ which ensures that everyone on our team always has the latest version.
 npm install selenium-server --save-dev
 ```
 
-### 5) Configuration
+#### 5) Configuration
 
 Once you've installed `nightwatch`, you will need to create a configuration file.  
 _Some_ Nightwatch tutorials use a `nightwatch.json` file;
@@ -265,7 +265,7 @@ We have a slightly more _evolved_ `nightwatch.conf.js` (_with Saucelabs_) see:
 [github.com/dwyl/learn-nightwatch/**nightwatch.conf.js**](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.js)
 
 
-### 6) Running config file
+#### 6) Running config file
 
 You will need to run the config file you created to download the Selenium driver.
 
@@ -273,10 +273,10 @@ You will need to run the config file you created to download the Selenium driver
 node nightwatch.conf.BASIC.js
 ```
 
-### 7) Create Your Nightwatch Test
+#### 7) Create Your Nightwatch Test
 
 Nightwatch "looks" for tests in the `/test` folder of your project by default;
-you can change this to what ever you prefer. We keep our Nightwatch tests in `test/e2e`.
+you can change this to whatever you prefer. We keep our Nightwatch tests in `test/e2e`.
 
 This is the _simplest_ test you can write for Nightwatch.
 
@@ -299,7 +299,7 @@ module.exports = { // adapted from: https://git.io/vodU0
 
 > See: [github.com/dwyl/learn-nightwatch/**test/e2e**](https://github.com/dwyl/learn-nightwatch/tree/master/test/e2e)
 
-### 8) Run your Test
+#### 8) Run your Test
 
 Depending on what you named your configuration file,
 run it with a command _resembling_ the following:
@@ -365,7 +365,7 @@ Which corresponds to the following _complete_ command:
 ```
 
 > This just means "_Run Nightwatch using the default configuration
-(Suacelabs in our case) and execute all tests in this list of browsers_."
+(Saucelabs in our case) and execute all tests in this list of browsers_."
 
 **Note**: you will need to have the following _**environment variables**_
 exported for Saucelabs to run your test:
@@ -408,7 +408,7 @@ and uploaded to S3 when tests succeed.
 
 ### Running your Nightwatch tests on your application being served locally
 - Before the test can run you have to set up sauce connect, there are many way to do this [docs here](https://wiki.saucelabs.com/display/DOCS/Setting+Up+Sauce+Connect). The simplest way I have found is to use Sauce Connect launcher, which is an addon for firefox.
-- Sauce Connect is sets up a tunnel to allow Sauce labs access to your local host, this means you can test what ever is being severed from your local.
+- Sauce Connect is sets up a tunnel to allow Sauce labs access to your local host, this means you can test whatever is being served from your local.
 - To run the tests you must make sure the application is being served in one terminal and that the tunnel is open(this can be checked from the saucelabs dashboard), you then run your e2e test command in another terminal window.
 
 ### Running your Nightwatch tests on your _Continuous Integration_ (CI)
@@ -491,11 +491,11 @@ function makeServer(done) {
 }
 module.exports = makeServer;
 ```
-**Note** : In the above example you can see that the port is fixed. It will run fine if you are running tests on single device but in case you are running tests on multiple devices on saucelabs, this will give you an error that the port is already in use as all the devices try to start the server on same port (in our current approach). So we need to dynamically allot available ports to prevent this error. You can use [get-port](https://github.com/sindresorhus/get-port) for this.
+**Note** : In the above example you can see that the port is fixed. It will run fine if you are running tests on a single device. If you are running tests on multiple devices on saucelabs, this will give you an error that the port is already in use, as all the devices try to start the server on the same port (in our current approach). So we need to dynamically allot available ports to prevent this error. You can use [get-port](https://github.com/sindresorhus/get-port) for this.
 
 This is all we need to run a test on browser/s. Now we have set up saucelabs on travis.
 
-To run the test on Travis-CI and use sauce connect you need to add a addon to you .travis.yml
+To run the test on Travis-CI and use sauce connect you need to add a addon to your .travis.yml
 ```
 addons:
   sauce_connect: true
@@ -527,15 +527,15 @@ You can run multiple test commands i.e.
 ```
 You can see the working code [here](https://github.com/ritz078/embed.js/pull/228/files) and the corresponding test on travis [here](https://travis-ci.org/ritz078/embed.js/builds/211089816)
 
-**Note-1**: Tests on the PRs of _forked repos_ will fail as the secured environment variables are not accessible to them on travis. You will recieve authentication error in that case.
+**Note-1**: Tests on the PRs of _forked repos_ will fail as the secured environment variables are not accessible to them on travis. You will receive authentication error in that case.
 
 **Note-2**: Running tests on IE still seems tricky. Will have to explore more. Any help is appreciated.
 
-**Note-3**: If you are recieving timeout error, maybe you are running tests on many devices. Try to adjust the time or decrease the number of devices.
+**Note-3**: If you are receiving timeout error, maybe you are running tests on many devices. Try to adjust the time or decrease the number of devices.
 
 
 #### Running your Nightwatch tests on CircleCi.
-To run the test on circle ci you need to make some adjustments to you circle.yml
+To run the test on circle ci you need to make some adjustments to your circle.yml
 Here is an Example from the circle ci [docs](https://circleci.com/docs/browser-testing-with-sauce-labs/)
 ```
 dependencies:
