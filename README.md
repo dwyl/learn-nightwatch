@@ -164,7 +164,7 @@ we _prefer_ to always install devDependencies _locally_ to the project
 and list them _explicitly_ in `package.json` so it's _clear_ to everyone
 viewing/using the project _exactly_ which version is required to run the tests. </small>
 
-#### 4) Install `selenium-server` and
+#### 4) Install `selenium-server` and `chromedriver`
 
 In order to run Browser tests Nightwatch uses [Selenium](http://www.seleniumhq.org/).
 We _prefer_ to _automate_ the installation of Selenium using
@@ -172,7 +172,7 @@ We _prefer_ to _automate_ the installation of Selenium using
 which ensures that everyone on our team always has the latest version.
 
 ```sh
-npm install selenium-server --save-dev
+npm install selenium-server chromedriver --save-dev
 ```
 
 #### 5) Configuration
