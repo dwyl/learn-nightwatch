@@ -19,7 +19,7 @@ if (process.env.TRAVIS !== 'true') {
     uploadPath += `/local/${+ new Date()}`;
 } else {
     // is ci
-    uploadPath += `/ci/${TRAVIS_BRANCH}/${TRAVIS_JOB_ID}`;
+    uploadPath += `/ci/${process.env.TRAVIS_BRANCH}/${process.env.TRAVIS_JOB_ID}`;
 }
 
 console.log('uploadPath', uploadPath);
@@ -29,12 +29,13 @@ var dbx = new Dropbox({ accessToken: DROPBOX_TOKEN });
 function upload(filename) {
     fs.readFile(filename, 'utf8', function (err, contents) {
 
-    if (err) {
-        console.log('Error: ', err);
-    }
+        if (err) {
+            console.error('Error: ', err);
+            return;
+        }
     
-    // This uploads basic.js to the root of your dropbox
-    dbx.filesUpload({ path: uploadPath + '/' + path.basename(filename), contents: contents })
+        // This uploads basic.js to the root of your dropbox
+        dbx.filesUpload({ path: uploadPath + '/' + path.basename(filename), contents: contents })
         .then(function (response) {
             console.log(response);
         })
