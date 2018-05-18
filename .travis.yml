@@ -30,7 +30,7 @@ before_script:
   - sleep 3 #wait a while before xvfb to start
 
 script:
-  - npm test test/e2e/Siim_Raudsepp_rahvaraamat.js
+  - npm test test/e2e/google.js
   - ls -l screenshots
   - ls -l screenshots/*/*
   - node test/e2e-ignore/dropbox.js
