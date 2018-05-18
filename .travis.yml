@@ -31,6 +31,8 @@ before_script:
 
 script:
   - npm test test/e2e/Siim_Raudsepp_rahvaraamat.js
+  - ls -l screenshots
+  - ls -l screenshots/*/*
 
 notifications:
   email: false
