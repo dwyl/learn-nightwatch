@@ -19,7 +19,7 @@ if (process.env.TRAVIS !== 'true') {
     uploadPath += `/local/${+ new Date()}`;
 } else {
     // is ci
-    uploadPath += `/ci/${process.env.TRAVIS_BRANCH}/${process.env.TRAVIS_JOB_ID}`;
+    uploadPath += `/ci/${process.env.TRAVIS_EVENT_TYPE}/${process.env.TRAVIS_BRANCH}/${process.env.TRAVIS_BUILD_ID}`;
 }
 
 console.log('uploadPath', uploadPath);
