@@ -17,7 +17,7 @@ module.exports = { // addapted from: https://git.io/vodU0
         .saveScreenshot(config.imgpath(browser) + 'google2.png')
         .pause(10000)
         .saveScreenshot(config.imgpath(browser) + 'google3.png')
-        .assert.containsText('body', 'kass')
+        .assert.containsText('body', 'cat')
         .end();
 
   }
