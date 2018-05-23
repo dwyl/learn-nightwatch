@@ -1,1 +1,2 @@
-"extends": "airbnb-base"
+extends:
+  - airbnb-base

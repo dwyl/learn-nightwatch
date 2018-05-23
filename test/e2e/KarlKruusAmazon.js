@@ -1,8 +1,8 @@
-var config = require('../../nightwatch.conf.js');
+const config = require('../../nightwatch.conf.js');
 
 module.exports = { // addapted from: https://git.io/vodU0
   '@tags': ['amazon'],
-  'Open amazon': function(browser) {
+  'Open amazon': function (browser) {
     // test account
     // ta838303@gmail.com
     // pass6534
@@ -11,16 +11,15 @@ module.exports = { // addapted from: https://git.io/vodU0
       .pause(1000)
       .waitForElementVisible('body')
       .pause(1000)
-      .saveScreenshot(config.imgpath(browser) + 'amazonBeforeLogin.png');
-    
-    browser
-        .setValue('#ap_email', 'ta838303@gmail.com')
-        .setValue('#ap_password', 'pass6534')
-        .click("#signInSubmit")
-        .pause(5000)
-        .saveScreenshot(config.imgpath(browser) + 'amazonAfterLogin.png')
-        .assert.urlContains('?ref_=nav_ya_signin&')
-        .end();
+      .saveScreenshot(`${config.imgpath(browser)}amazonBeforeLogin.png`);
 
-  }
-}
+    browser
+      .setValue('#ap_email', 'ta838303@gmail.com')
+      .setValue('#ap_password', 'pass6534')
+      .click('#signInSubmit')
+      .pause(5000)
+      .saveScreenshot(`${config.imgpath(browser)}amazonAfterLogin.png`)
+      .assert.urlContains('?ref_=nav_ya_signin&')
+      .end();
+  },
+};

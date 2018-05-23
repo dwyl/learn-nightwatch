@@ -1,5 +1,5 @@
 // tests.js
-var utils = require('../utils');
+const utils = require('../utils');
 
 module.exports = {
   '@tags': ['sampletest'],
@@ -14,5 +14,5 @@ module.exports = {
     browser.pause(5000);
     utils(browser).logout();
     browser.end();
-  }
+  },
 };
