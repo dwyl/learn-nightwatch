@@ -1,3 +1,4 @@
+/*eslint no-console: ["error", { allow: ["warn", "error"] }] */
 const conf = require('../../nightwatch.conf.js');
 
 module.exports = {

@@ -38,8 +38,8 @@ function upload(filename) {
       .then((response) => {
         console.log(response);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((err2) => {
+        console.log(err2);
       });
   });
 }
