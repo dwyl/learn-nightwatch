@@ -1,13 +1,13 @@
 // npm install dropbox node-fetch glob --save
 const fs = require('fs');
 const path = require('path');
-const Dropbox = require('dropbox').Dropbox;
+const { Dropbox } = require('dropbox');
 const glob = require('glob');
 
 // fix for missing fetch in node
 fetch = require('node-fetch');
 
-const DROPBOX_TOKEN = process.env.DROPBOX_TOKEN;
+const { DROPBOX_TOKEN } = process.env;
 
 if (!DROPBOX_TOKEN) {
   throw new Error('error: no DROPBOX_TOKEN!');
