@@ -34,7 +34,6 @@ script:
   - npm test test/e2e/google.js
   - ls -l screenshots
   - ls -l screenshots/*/*
-  - node test/e2e-ignore/dropbox.js
 
 notifications:
   email: false
