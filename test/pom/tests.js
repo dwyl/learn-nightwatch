@@ -1,5 +1,5 @@
 // tests.js
-const utils = require('../utils');
+const utils = require('./utils');
 
 module.exports = {
   '@tags': ['sampletest'],
