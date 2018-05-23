@@ -9,7 +9,7 @@
   "scripts": {
     "test": "nightwatch --env local",
     "ie": "nightwatch -e ie11",
-    "lint": "eslint test",
+    "lint": "eslint test --format=unix",
     "sauce": "nightwatch -e chrome,ie11,android_s4_emulator,iphone_6_simulator",
     "upload": "node test/e2e/upload_screenshots_to_s3.js",
     "dropbox-upload": "dropbox-upload",
