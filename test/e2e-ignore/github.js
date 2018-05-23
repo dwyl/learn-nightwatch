@@ -1,4 +1,3 @@
-/*eslint no-console: ["error", { allow: ["warn", "error"] }] */
 const conf = require('../../nightwatch.conf.js');
 
 module.exports = {
@@ -9,7 +8,7 @@ module.exports = {
       .waitForElementVisible('body'); // wait for the body to be rendered
     // check if we are seeing the Mobile Version of GitHub
     browser.element('css selector', '.switch-to-desktop', (result) => {
-      if (result.status != -1) { // Element exists, do something
+      if (result.status !== -1) { // Element exists, do something
         browser.click('.switch-to-desktop')
           .waitForElementVisible('body'); // wait for the body to be rendered
       }

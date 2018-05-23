@@ -3,6 +3,7 @@ extends:
 
 rules:
   no-console: off
+  func-names: off
 
 globals:
   fetch: true
