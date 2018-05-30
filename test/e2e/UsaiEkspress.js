@@ -3,7 +3,6 @@ const config = require('../../nightwatch.conf.js');
 module.exports = {
   '@tags': ['EestiEkspress1'],
   'Eesti Ekspress 1': function (browser) {
-    browser;
     browser.resizeWindow(1920, 1080)
       .url('http://ekspress.delfi.ee')
       .waitForElementVisible('body')
@@ -14,6 +13,7 @@ module.exports = {
     // .moveToElement('a[class="navigation-arrow navigation-arrow-right"]',1,1)
     // .click('div[class="next-article-preview"]')
       .pause(1000)
+      .saveScreenshot(`${config.imgpath(browser)}ekspress.png`)
       .end();
   },
   'Eesti Ekspress 2': function (browser) {
@@ -28,6 +28,7 @@ module.exports = {
       .click('(//a[@class="archive-item issue-downloaded-link lazyload-added"])[3]')
       .pause(1500)
       .click('a[class="navigation-arrow-link navigation-arrow-link-right issue-cover2-start-reading"]')
+      .saveScreenshot(`${config.imgpath(browser)}ekspress.png`)
       .end();
   },
   'Eesti Ekspress 3': function (browser) {
@@ -45,6 +46,7 @@ module.exports = {
       .pause(2000)
       .click('input[type="submit"')
       .pause(1000)
+      .saveScreenshot(`${config.imgpath(browser)}ekspress.png`)
       .end();
   },
 };
