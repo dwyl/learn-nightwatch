@@ -10,11 +10,11 @@ module.exports = { // addapted from: https://git.io/vodU0
       .url('http://ekspress.delfi.ee/')
       .waitForElementVisible('body')
       .pause(1000)
-      .moveToElement('div[class="navigation-arrow navigation-arrow-right"]',1,1)
+      .moveToElement('div[class="navigation-arrow navigation-arrow-right"]', 1, 1)
       .pause(1000)
       .mouseButtonClick(0)
       .pause(3000)
-      .moveToElement('a[class="navigation-arrow-link navigation-arrow-link-right issue-cover2-start-reading"]',1,1)
+      .moveToElement('a[class="navigation-arrow-link navigation-arrow-link-right issue-cover2-start-reading"]', 1, 1)
       .pause(1000)
       .mouseButtonClick(0)
       .pause(1000)
@@ -30,17 +30,17 @@ module.exports = { // addapted from: https://git.io/vodU0
       .pause(3000)
       .click('div.archive-item-container:nth-child(3) a')
       .pause(1000)
-      .moveToElement('a[class="navigation-arrow-link navigation-arrow-link-right issue-cover2-start-reading"]',1,1)
+      .moveToElement('a[class="navigation-arrow-link navigation-arrow-link-right issue-cover2-start-reading"]', 1, 1)
       .pause(1000)
       .mouseButtonClick(0)
       .pause(1000)
       .click('a[class="button sidebar-button js-toggle-sidebar"]')
       .pause(1000)
-      .moveToElement('div[class="sidebar-item sidebar-item-1"]',10,50)
+      .moveToElement('div[class="sidebar-item sidebar-item-1"]', 10, 50)
       .pause(1000)
       .mouseButtonClick(0)
       .pause(1000)
-      .saveScreenshot(`${config.imgpath(browser)}express2Raudsepp.png`)
+      .saveScreenshot(`${config.imgpath(browser)}express2Raudsepp.png`);
   },
   'Express search tallinna polütehnikum': function (browser) {
     browser
@@ -57,5 +57,5 @@ module.exports = { // addapted from: https://git.io/vodU0
       .saveScreenshot(`${config.imgpath(browser)}express3Raudsepp.png`)
       .pause(1000)
       .end();
-  }
+  },
 };

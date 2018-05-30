@@ -18,7 +18,6 @@ module.exports = { // addapted from: https://git.io/vodU0
       .end();
   },
   'Ekspress, case 2': function (browser) {
-    
     browser
       .url('http://ekspress.delfi.ee')
       .pause(1000)
@@ -42,7 +41,6 @@ module.exports = { // addapted from: https://git.io/vodU0
       .end();
   },
   'Ekspress, case 3': function (browser) {
-    
     browser
       .url('http://ekspress.delfi.ee')
       .pause(1000)
@@ -63,5 +61,4 @@ module.exports = { // addapted from: https://git.io/vodU0
       .end();
   },
 };
-
 
