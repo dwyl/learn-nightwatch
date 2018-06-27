@@ -4,7 +4,7 @@
   "description": "Learn how to use nightwatch for front-end testing. step-by-step tutorial",
   "main": "index.js",
   "engines": {
-    "node": "4.4.6"
+    "node": ">=4.4.6"
   },
   "scripts": {
     "test": "nightwatch --env local",
