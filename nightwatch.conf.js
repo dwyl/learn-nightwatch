@@ -14,7 +14,7 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
     "server_path": seleniumServer.path,
     "log_path": "",
     "host": "chrome",
-    "port": 4444,
+    "port": 31112,
     "cli_args": {
       "webdriver.chrome.driver" : chromedriver.path
     }
@@ -38,7 +38,7 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
     },
     "local": {
       "launch_url": "http://localhost",
-      "selenium_port": 4444,
+      "selenium_port": 31112,
       "selenium_host": "chrome",
       "silent": true,
       "screenshots": {
