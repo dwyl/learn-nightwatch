@@ -1,11 +1,10 @@
-FROM openjdk:latest
-
-RUN apt-get update
-RUN apt-get install curl
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
-RUN apt-get install nodejs
+FROM node:latest
 
 COPY . /nightwatch
 WORKDIR /nightwatch
 
+RUN npm i npm@latest -g
 RUN npm install
+
+#CMD node_modules/.bin/nightwatch -c nightwatch.conf.BASIC.js
+CMD npm run test

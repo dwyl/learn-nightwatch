@@ -10,10 +10,10 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
   ],
   "output_folder": "./node_modules/nightwatch/reports", // reports (test outcome) output by Nightwatch
   "selenium": {
-    "start_process": true,
+    "start_process": false,
     "server_path": seleniumServer.path,
     "log_path": "",
-    "host": "127.0.0.1",
+    "host": "hub",
     "port": 4444,
     "cli_args": {
       "webdriver.chrome.driver" : chromedriver.path
@@ -39,7 +39,7 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
     "local": {
       "launch_url": "http://localhost",
       "selenium_port": 4444,
-      "selenium_host": "127.0.0.1",
+      "selenium_host": "chrome",
       "silent": true,
       "screenshots": {
         "enabled": true, // save screenshots taken here
