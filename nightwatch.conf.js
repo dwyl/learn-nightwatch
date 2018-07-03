@@ -13,8 +13,8 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
     "start_process": false,
     "server_path": seleniumServer.path,
     "log_path": "",
-    "host": "hub",
-    "port": 31112,
+    "host": "chrome",
+    "port": 4444,
     "cli_args": {
       "webdriver.chrome.driver" : chromedriver.path
     }
@@ -27,7 +27,7 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
       "selenium_host": "ondemand.saucelabs.com",
       "silent": true,
       "screenshots": {
-        "enabled": false, // save screenshots to this directory (excluded by .gitignore)
+        "enabled": true, // save screenshots to this directory (excluded by .gitignore)
         "path": SCREENSHOT_PATH
       },
       "username" : "${SAUCE_USERNAME}",     // if you want to use Saucelabs remember to
@@ -38,11 +38,11 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
     },
     "local": {
       "launch_url": "http://localhost",
-      "selenium_port": 31112,
+      "selenium_port": 4444,
       "selenium_host": "chrome",
       "silent": true,
       "screenshots": {
-        "enabled": false, // save screenshots taken here
+        "enabled": true, // save screenshots taken here
         "path": SCREENSHOT_PATH
       }, // this allows us to control the
       "globals": {
@@ -116,28 +116,28 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
   }
 }
 module.exports = config;
-
-function padLeft (count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
-  return count < 10 ? '0' + count : count.toString();
-}
-
-var FILECOUNT = 0; // "global" screenshot file count
-/**
- * The default is to save screenshots to the root of your project even though
- * there is a screenshots path in the config object above! ... so we need a
- * function that returns the correct path for storing our screenshots.
- * While we're at it, we are adding some meta-data to the filename, specifically
- * the Platform/Browser where the test was run and the test (file) name.
- */
-function imgpath (browser) {
-  var a = browser.options.desiredCapabilities;
-  var meta = [a.platform];
-  meta.push(a.browserName ? a.browserName : 'any');
-  meta.push(a.version ? a.version : 'any');
-  meta.push(a.name); // this is the test filename so always exists.
-  var metadata = meta.join('~').toLowerCase().replace(/ /g, '');
-  return SCREENSHOT_PATH + metadata + '_' + padLeft(FILECOUNT++) + '_';
-}
-
-module.exports.imgpath = imgpath;
-module.exports.SCREENSHOT_PATH = SCREENSHOT_PATH;
+//
+// function padLeft (count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
+//   return count < 10 ? '0' + count : count.toString();
+// }
+//
+// var FILECOUNT = 0; // "global" screenshot file count
+// /**
+//  * The default is to save screenshots to the root of your project even though
+//  * there is a screenshots path in the config object above! ... so we need a
+//  * function that returns the correct path for storing our screenshots.
+//  * While we're at it, we are adding some meta-data to the filename, specifically
+//  * the Platform/Browser where the test was run and the test (file) name.
+//  */
+// function imgpath (browser) {
+//   var a = browser.options.desiredCapabilities;
+//   var meta = [a.platform];
+//   meta.push(a.browserName ? a.browserName : 'any');
+//   meta.push(a.version ? a.version : 'any');
+//   meta.push(a.name); // this is the test filename so always exists.
+//   var metadata = meta.join('~').toLowerCase().replace(/ /g, '');
+//   return SCREENSHOT_PATH + metadata + '_' + padLeft(FILECOUNT++) + '_';
+// }
+//
+// module.exports.imgpath = imgpath;
+// module.exports.SCREENSHOT_PATH = SCREENSHOT_PATH;
