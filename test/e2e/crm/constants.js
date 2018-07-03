@@ -1,6 +1,6 @@
 module.exports = {
     browser: (height = '1280', width = '800'),
-    crm_url: 'http://google.com/',
+    crm_url: 'https://qa-crm.pipl.com/',
     login_button: 'idan',
     input_email_login: '//*[@id="id_email"]',
     input_password_login: '//div[@class=\'form-group\'][2]/input[@id=\'id_password\']',
