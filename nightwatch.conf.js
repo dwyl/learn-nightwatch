@@ -27,7 +27,7 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
       "selenium_host": "ondemand.saucelabs.com",
       "silent": true,
       "screenshots": {
-        "enabled": true, // save screenshots to this directory (excluded by .gitignore)
+        "enabled": false, // save screenshots to this directory (excluded by .gitignore)
         "path": SCREENSHOT_PATH
       },
       "username" : "${SAUCE_USERNAME}",     // if you want to use Saucelabs remember to
@@ -42,7 +42,7 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
       "selenium_host": "chrome",
       "silent": true,
       "screenshots": {
-        "enabled": true, // save screenshots taken here
+        "enabled": false, // save screenshots taken here
         "path": SCREENSHOT_PATH
       }, // this allows us to control the
       "globals": {
