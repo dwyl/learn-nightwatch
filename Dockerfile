@@ -1,6 +1,7 @@
 FROM node:latest
 
 COPY . /nightwatch
+RUN mkdir /nightwatch/screenshots
 WORKDIR /nightwatch
 
 RUN npm i npm@latest -g
