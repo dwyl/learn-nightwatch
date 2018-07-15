@@ -2,7 +2,7 @@ require('env2')('.env'); // optionally store your environment variables in .env
 const seleniumServer = require("selenium-server");
 const chromedriver = require("chromedriver");
 const PKG = require('./package.json'); // so we can get the version of the project
-const SCREENSHOT_PATH = "./node_modules/nightwatch/screenshots/" + PKG.version + "/";
+const SCREENSHOT_PATH = "./screenshots/";
 
 const config = { // we use a nightwatch.conf.js file so we can include comments and helper functions
   "src_folders": [
@@ -10,7 +10,7 @@ const config = { // we use a nightwatch.conf.js file so we can include comments 
   ],
   "output_folder": "./node_modules/nightwatch/reports", // reports (test outcome) output by Nightwatch
   "selenium": {
-    "start_process": true,
+    "start_process": false,
     "server_path": seleniumServer.path,
     "log_path": "",
     "host": "127.0.0.1",
