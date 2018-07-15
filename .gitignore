@@ -14,3 +14,5 @@ nightwatch/chromedriver
 reports
 screenshots
 .env
+
+.idea
