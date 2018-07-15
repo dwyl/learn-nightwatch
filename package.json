@@ -10,7 +10,6 @@
     "test": "nightwatch --env local",
     "ie": "nightwatch -e ie11",
     "sauce": "nightwatch -e chrome,ie11,android_s4_emulator,iphone_6_simulator",
-    "upload": "node test/e2e/upload_screenshots_to_s3.js",
     "e2e": "npm run sauce; npm run upload",
     "dev": "nodemon -w test/index.html --delay 250ms --exec 'npm run upload'"
   },
