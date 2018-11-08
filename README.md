@@ -36,8 +36,8 @@ Nightwatch is _quick_ to setup and the tests/scenarios are _easy_ to write.
 
 > We _exhaustively_ read through all the tutorials, blog posts and documentation
 for Nightwatch (_including the mailing list & StackOverflow Q&A_)
-and have condensed our findings into this step-by-step guide.  
-We hope you find it _useful_ and decide to use it for your web app/site!  
+and have condensed our findings into this step-by-step guide.
+We hope you find it _useful_ and decide to use it for your web app/site!
 _**Please**_ give us _**feedback**_ and if you _get stuck_,
 [_**tell us!**_](https://github.com/dwyl/learn-nightwatch/issues)
 
@@ -96,7 +96,7 @@ npm test
 ```
 
 
-You should expect to see:  
+You should expect to see:
 ![learn-nightwatch-console-output-success](https://cloud.githubusercontent.com/assets/194400/16376918/f2d9f8c0-3c5a-11e6-96c4-88e0bdb44638.png)
 
 Once you see the tests pass you are well on your way
@@ -104,8 +104,8 @@ to testing with Nightwatch!
 
 
 <sup>1</sup><small>This _assumes_ you have node.js installed.
-If not, https://nodejs.org/en/download/ </small>  
-<sup>2</sup><small>Selenium Requires Java/JDK see: [Java Installation section](https://github.com/dwyl/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)  
+If not, https://nodejs.org/en/download/ </small>
+<sup>2</sup><small>Selenium Requires Java/JDK see: [Java Installation section](https://github.com/dwyl/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)
 Once you have Java installed re-run the Nightwatch tests (`npm test`).</small>
 
 <br />
@@ -177,7 +177,7 @@ npm install selenium-server chromedriver --save-dev
 
 #### 5) Configuration
 
-Once you've installed `nightwatch`, you will need to create a configuration file.  
+Once you've installed `nightwatch`, you will need to create a configuration file.
 _Some_ Nightwatch tutorials use a `nightwatch.json` file;
 this is good for the most _basic_ cases
 but if you want to use variables in your
@@ -219,7 +219,11 @@ module.exports = {
         "waitForConditionTimeout": 5000 // sometimes internet is slow so wait.
       },
       "desiredCapabilities": { // use Chrome as the default browser for tests
-        "browserName": "chrome"
+        "browserName": "chrome",
+        // uncomment the lines to run Chrome in headless mode
+        // "chromeOptions" : {
+        //    "args" : ["headless"]
+        // }
       }
     },
     "chrome": {
@@ -258,9 +262,9 @@ module.exports.SCREENSHOT_PATH = SCREENSHOT_PATH;
 ```
 
 > One of our _favourite_ things about using a `.js` file
-is the ability to add _comments_ in the file.  
+is the ability to add _comments_ in the file.
 This makes it _much_ easier for new people to
-_understand_ what's going on.  
+_understand_ what's going on.
 We have a slightly more _evolved_ `nightwatch.conf.js` (_with Saucelabs_) see:
 [github.com/dwyl/learn-nightwatch/**nightwatch.conf.js**](https://github.com/dwyl/learn-nightwatch/blob/master/nightwatch.conf.js)
 
@@ -511,7 +515,7 @@ const TRAVIS_JOB_NUMBER = process.env.TRAVIS_JOB_NUMBER;
 default: {
   launch_url: 'http://ondemand.saucelabs.com:80',
 
-  username : process.env.SAUCE_USERNAME,     
+  username : process.env.SAUCE_USERNAME,
   access_key : process.env.SAUCE_ACCESS_KEY,
   ...
   desiredCapabilities: {
@@ -629,8 +633,8 @@ If you prefer to install it _manually_ that's an option.
 > Visit: http://www.seleniumhq.org/download/ and download the latest version.
 
 When downloading the `selenium-server-standalone-2.53.0.jar`
-you _may_ see a _warning_ in your browser:  
-![download-selenium-chrome-warning](https://cloud.githubusercontent.com/assets/194400/16004469/b865583a-3159-11e6-9b6a-40bd754ef209.png)  
+you _may_ see a _warning_ in your browser:
+![download-selenium-chrome-warning](https://cloud.githubusercontent.com/assets/194400/16004469/b865583a-3159-11e6-9b6a-40bd754ef209.png)
 Click on "keep" to save the file.
 Once you have it, put it in the `bin` directory of your project
 and re-name it to `selenium.jar` (_without the version number_).
