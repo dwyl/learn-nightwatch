@@ -1,0 +1,68 @@
+14:15:25.399 INFO [GridLauncherV3.parse] - Selenium server version: 3.141.59, revision: e82be7d358
+14:15:25.470 INFO [GridLauncherV3.lambda$buildLaunchers$3] - Launching a standalone Selenium Server on port 4444
+2019-11-21 14:15:25.513:INFO::main: Logging initialized @327ms to org.seleniumhq.jetty9.util.log.StdErrLog
+14:15:25.717 INFO [WebDriverServlet.<init>] - Initialising WebDriverServlet
+14:15:26.148 INFO [SeleniumServer.boot] - Selenium Server is up and running on port 4444
+14:15:27.026 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "acceptSslCerts": true,
+  "browserName": "chrome",
+  "chromeOptions": {
+    "args": [
+      "Mozilla\u002f5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit\u002f534.46\n            (KHTML, like Gecko) Version\u002f5.1 Mobile\u002f9A334 Safari\u002f7534.48.3",
+      "--window-size=640,1136"
+    ],
+    "w3c": false
+  },
+  "javascriptEnabled": true,
+  "name": "Guinea Pig"
+}
+14:15:27.026 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "acceptSslCerts": true,
+  "browserName": "chrome",
+  "chromeOptions": {
+    "args": [
+      "Mozilla\u002f5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit\u002f534.46\n            (KHTML, like Gecko) Version\u002f5.1 Mobile\u002f9A334 Safari\u002f7534.48.3",
+      "--window-size=640,1136"
+    ],
+    "w3c": false
+  },
+  "javascriptEnabled": true,
+  "name": "Github"
+}
+14:15:27.027 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+14:15:27.027 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+Starting ChromeDriver 78.0.3904.70 (edb9c9f3de0247fd912a77b7f6cae7447f6d3ad5-refs/branch-heads/3904@{#800}) on port 29149
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+Starting ChromeDriver 78.0.3904.70 (edb9c9f3de0247fd912a77b7f6cae7447f6d3ad5-refs/branch-heads/3904@{#800}) on port 11944
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+14:15:27.556 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "acceptSslCerts": true,
+  "browserName": "chrome",
+  "chromeOptions": {
+    "args": [
+      "Mozilla\u002f5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit\u002f534.46\n            (KHTML, like Gecko) Version\u002f5.1 Mobile\u002f9A334 Safari\u002f7534.48.3",
+      "--window-size=640,1136"
+    ],
+    "w3c": false
+  },
+  "javascriptEnabled": true,
+  "name": "Upload Screenshots To S3"
+}
+14:15:27.557 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+Starting ChromeDriver 78.0.3904.70 (edb9c9f3de0247fd912a77b7f6cae7447f6d3ad5-refs/branch-heads/3904@{#800}) on port 7372
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+[1574338531.297][WARNING]: Timed out connecting to Chrome, retrying...
+[1574338531.338][WARNING]: Timed out connecting to Chrome, retrying...
+[1574338531.462][WARNING]: Timed out connecting to Chrome, retrying...
+14:15:33.411 INFO [ProtocolHandshake.createSession] - Detected dialect: OSS
+14:15:33.411 INFO [ProtocolHandshake.createSession] - Detected dialect: OSS
+14:15:33.547 INFO [ProtocolHandshake.createSession] - Detected dialect: OSS
+14:15:33.913 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session e0feecf5cd4450382bf206b78c3d4abf (org.openqa.selenium.chrome.ChromeDriverService)
+14:15:33.913 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 8018cdf56c6e64e3f566b5cf3df15e89 (org.openqa.selenium.chrome.ChromeDriverService)
+14:15:33.913 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 58cfa4aeb178f25db1f36aedafb14446 (org.openqa.selenium.chrome.ChromeDriverService)
+14:15:34.105 INFO [ActiveSessions$1.onStop] - Removing session e0feecf5cd4450382bf206b78c3d4abf (org.openqa.selenium.chrome.ChromeDriverService)
+14:15:36.904 INFO [ActiveSessions$1.onStop] - Removing session 8018cdf56c6e64e3f566b5cf3df15e89 (org.openqa.selenium.chrome.ChromeDriverService)
+14:15:38.219 INFO [ActiveSessions$1.onStop] - Removing session 58cfa4aeb178f25db1f36aedafb14446 (org.openqa.selenium.chrome.ChromeDriverService)

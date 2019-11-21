@@ -28,7 +28,10 @@ module.exports = {
         "waitForConditionTimeout": 5000 // sometimes internet is slow so wait.
       },
       "desiredCapabilities": { // use Chrome as the default browser for tests
-        "browserName": "chrome"
+        "browserName": "chrome",
+        "chromeOptions": {
+          "args" : ["--no-sandbox"],
+          "w3c": false
       }
     },
     "chrome": {
