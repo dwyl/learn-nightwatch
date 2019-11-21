@@ -32,6 +32,7 @@ module.exports = {
         "chromeOptions": {
           "args" : ["--no-sandbox"],
           "w3c": false
+        }
       }
     },
     "chrome": {
