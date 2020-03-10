@@ -69,7 +69,7 @@ _**Try it**_ on your local machine in 5 mins by following these _**3 easy steps*
 
 ### 1. Clone
 
-Clone the repository by _copy-pasting_ the following command into your terminal:
+Clone the repository by _copy-pasting_ the following command into your terminal (replace `cp` with `copy` if you're on Windows):
 
 ```sh
 git clone https://github.com/dwyl/learn-nightwatch.git && cd learn-nightwatch && cp sample.env .env
