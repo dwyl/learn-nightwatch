@@ -108,8 +108,6 @@ If not, https://nodejs.org/en/download/ </small>
 <sup>2</sup><small>Selenium Requires Java/JDK see: [Java Installation section](https://github.com/dwyl/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)  
 Once you have Java installed re-run the Nightwatch tests (`npm test`).</small>
 
-<br />
-- - - - - - -
 ## *Step-by-Step Tutorial to end to end test on your OWN PROJECT*
 
 Now that you have had a _taste_ for running tests with Nightwatch,
