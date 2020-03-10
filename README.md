@@ -79,7 +79,7 @@ git clone https://github.com/dwyl/learn-nightwatch.git && cd learn-nightwatch &&
 
 ### 2. Install<sup>1</sup>
 
-Install the *required* dependencies
+Make sure you `cd learn-nightwatch` so that you're in the correct directory and then install the *required* dependencies
 including Selenium Server and `chromedriver`:
 
 ```sh
