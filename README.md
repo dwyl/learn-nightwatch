@@ -69,7 +69,7 @@ _**Try it**_ on your local machine in 5 mins by following these _**3 easy steps*
 
 ### 1. Clone
 
-Clone the repository by _copy-pasting_ the following command into your terminal:
+Clone the repository by _copy-pasting_ the following command into your terminal (replace `cp` with `copy` if you're on Windows):
 
 ```sh
 git clone https://github.com/dwyl/learn-nightwatch.git && cd learn-nightwatch && cp sample.env .env
@@ -79,7 +79,7 @@ git clone https://github.com/dwyl/learn-nightwatch.git && cd learn-nightwatch &&
 
 ### 2. Install<sup>1</sup>
 
-Install the *required* dependencies
+Make sure you `cd learn-nightwatch` so that you're in the correct directory and then install the *required* dependencies
 including Selenium Server and `chromedriver`:
 
 ```sh
@@ -108,8 +108,6 @@ If not, https://nodejs.org/en/download/ </small>
 <sup>2</sup><small>Selenium Requires Java/JDK see: [Java Installation section](https://github.com/dwyl/learn-nightwatch#installing-java-runtime-environment-jre) below. (_don't worry, you'll be up-and-running shortly..._!)
 Once you have Java installed re-run the Nightwatch tests (`npm test`).</small>
 
-<br />
-- - - - - - -
 ## *Step-by-Step Tutorial to end to end test on your OWN PROJECT*
 
 Now that you have had a _taste_ for running tests with Nightwatch,
@@ -224,6 +222,10 @@ module.exports = {
         // "chromeOptions" : {
         //    "args" : ["headless"]
         // }
+        "chromeOptions": {
+          "args" : ["--no-sandbox"],
+          "w3c": false
+        }
       }
     },
     "chrome": {
