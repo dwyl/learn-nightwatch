@@ -10,7 +10,7 @@ _**Automate** your **acceptance tests** and run them in **real browsers**_!
 [![Codeship Build Status](https://img.shields.io/codeship/d9151e40-1473-0134-47e0-12348d1f3442.svg?style=flat-square)](https://codeship.com/projects/157818)
 [![Dependency Status](https://img.shields.io/david/dwyl/learn-nightwatch.svg?style=flat-square)](https://david-dm.org/dwyl/learn-nightwatch)
 [![devDependency Status](https://img.shields.io/david/dev/dwyl/learn-nightwatch.svg?style=flat-square)](https://david-dm.org/dwyl/learn-nightwatch#info=devDependencies)
-[![Hit Count](http://hits.dwyl.io/dwyl/learn-nightwatch.svg)](http://hits.dwyl.io/dwyl/learn-nightwatch)
+[![HitCount](https://hits.dwyl.com/dwyl/learn-nightwatch.svg)](https://github.com/dwyl/learn-nightwatch)
 </div>
 
 ## _Why_?
