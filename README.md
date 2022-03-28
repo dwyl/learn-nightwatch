@@ -43,11 +43,11 @@ _**Please**_ give us _**feedback**_ and if you _get stuck_,
 
 #### Background Links
 
-+ Nightwatch website: http://nightwatchjs.org/
++ Nightwatch website: https://nightwatchjs.org/
 + Github: https://github.com/nightwatchjs/nightwatch
 + Guide/docs: https://github.com/nightwatchjs/nightwatch-docs
 (_don't be put off by the lack of docs, we're here to help if you get stuck!_)
-+ Configuration file settings: http://nightwatchjs.org/guide#settings-file
++ Configuration file settings: https://nightwatchjs.org/guide#settings-file
 
 ## _Who_?
 
@@ -118,7 +118,7 @@ let's walk through each of the steps to get this working in **_your_ project**.
 #### 1) Make sure you have Java(_Runtime Environment JRE_) installed
 
 While we prefer _not_ to run `Java` on our machines for
-[_security reasons_](http://krebsonsecurity.com/tag/java/) Selenium is _still_
+[_security reasons_](https://krebsonsecurity.com/tag/java/) Selenium is _still_
 the best way of running tests in _real_ browsers.
 
 You can check by typing
@@ -145,7 +145,7 @@ brew cask install java
 You should see something like this:
 ![install-java-with-homebrew-cask](https://cloud.githubusercontent.com/assets/194400/16007040/296f1bfc-3168-11e6-8009-8f39b715239d.png)
 
-> See: [http://stackoverflow.com/questions/24342886/how-to-**install-java-8**-on-**mac**](http://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac)
+> See: [https://stackoverflow.com/questions/24342886/how-to-**install-java-8**-on-**mac**](https://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac)
 
 #### 2) `cd` into your project
 
@@ -164,7 +164,7 @@ viewing/using the project _exactly_ which version is required to run the tests. 
 
 #### 4) Install `selenium-server` and `chromedriver`
 
-In order to run Browser tests Nightwatch uses [Selenium](http://www.seleniumhq.org/).
+In order to run Browser tests Nightwatch uses [Selenium](https://www.seleniumhq.org/).
 We _prefer_ to _automate_ the installation of Selenium using
 [`selenium-server`](https://www.npmjs.com/package/selenium-server)
 which ensures that everyone on our team always has the latest version.
@@ -604,24 +604,24 @@ If _night**mare**_ ever change their name, we _could re-consider_ it.
 
 ### Research
 
-+ Basic intro: http://juristr.com/blog/2014/02/nightwatch-test-automation/
-+ Page Object Pattern: http://martinfowler.com/bliki/PageObject.html
++ Basic intro: https://juristr.com/blog/2014/02/nightwatch-test-automation/
++ Page Object Pattern: https://martinfowler.com/bliki/PageObject.html
 + Nightwatch with React: https://www.syncano.io/blog/testing-syncano/
-+ How to run a _single_ Nightwatch test: http://stackoverflow.com/questions/28308990/how-to-run-a-single-test-in-nightwatch/29701199#29701199
-+ Custom Commands: http://nightwatchjs.org/guide#writing-custom-commands
++ How to run a _single_ Nightwatch test: https://stackoverflow.com/questions/28308990/how-to-run-a-single-test-in-nightwatch/29701199#29701199
++ Custom Commands: https://nightwatchjs.org/guide#writing-custom-commands
 + Nightwatch Global Variables:
-http://stackoverflow.com/questions/25067391/how-to-make-a-globally-accessible-variable/
-+ Travis with Saucelabs: http://samsaccone.com/posts/testing-with-travis-and-sauce-labs.html
+https://stackoverflow.com/questions/25067391/how-to-make-a-globally-accessible-variable/
++ Travis with Saucelabs: https://samsaccone.com/posts/testing-with-travis-and-sauce-labs.html
 + Selenium Status:
-http://stackoverflow.com/questions/6517501/selenium-2-how-to-check-that-server-is-running-and-stop-the-server
+https://stackoverflow.com/questions/6517501/selenium-2-how-to-check-that-server-is-running-and-stop-the-server
 + Silence Selenium on Travis:
-http://andrew.yurisich.com/work/2014/08/30/silence-noisy-selenium-server-output-in-travis-ci/
+https://andrew.yurisich.com/work/2014/08/30/silence-noisy-selenium-server-output-in-travis-ci/
 + Intro by @mikberg: https://medium.com/@mikaelberg/zero-to-hero-with-end-to-end-tests-using-nightwatch-saucelabs-and-travis-e932c8deb695
 + Intro (Angular-focussed): http://g00glen00b.be/e2e-testing-nightwatch-js/
 + Nightwatchjs: how to check if element exists without creating an error/failure/exception
-http://stackoverflow.com/questions/31687027/nightwatchjs-how-to-check-if-element-exists-without-creating-an-error-failure-e
+https://stackoverflow.com/questions/31687027/nightwatchjs-how-to-check-if-element-exists-without-creating-an-error-failure-e
 + Can I create reusable test steps in nightwatch.js?
-http://stackoverflow.com/questions/31388280/can-i-create-reusable-test-steps-in-nightwatch-js
+https://stackoverflow.com/questions/31388280/can-i-create-reusable-test-steps-in-nightwatch-js
 + Nightwatch on ***Saucelabs***: https://github.com/saucelabs-sample-test-frameworks/JS-Nightwatch.js
 
 <br />
@@ -632,7 +632,7 @@ http://stackoverflow.com/questions/31388280/can-i-create-reusable-test-steps-in-
 
 If you prefer to install it _manually_ that's an option.
 
-> Visit: http://www.seleniumhq.org/download/ and download the latest version.
+> Visit: https://www.seleniumhq.org/download/ and download the latest version.
 
 When downloading the `selenium-server-standalone-2.53.0.jar`
 you _may_ see a _warning_ in your browser:
@@ -645,14 +645,14 @@ and re-name it to `selenium.jar` (_without the version number_).
 ### StackOverflow Questions
 
 Remind me to Respond to these:
-> + [x] http://stackoverflow.com/questions/24314040/getting-started-with-nightwatch-js
-> + [ ] http://stackoverflow.com/questions/37699036/is-it-possible-to-start-a-selenium-server-inside-travis
-> + [ ] http://stackoverflow.com/questions/25919673/file-upload-testing-in-nightwatch-js
-> + [ ] http://stackoverflow.com/questions/31388280/can-i-create-reusable-test-steps-in-nightwatch-js/31393249#31393249
-> + [ ] use saucelabs with nightwatch? http://stackoverflow.com/questions/36137270/how-to-use-saucelabs-with-nightwatch
-> + [x] keypress: http://stackoverflow.com/questions/31812935/nightwatch-testing-sendkeys-and-keys-not-sending-key-clicks ... [*answer*](http://stackoverflow.com/questions/31812935/nightwatch-testing-sendkeys-and-keys-not-sending-key-clicks/37950264#37950264)
-> + [x] Run Selenium as child process: http://stackoverflow.com/questions/27408864/cant-launch-selenium-phantomjs-ghostdriver-as-child-processes
-> + [x] Current running browser: http://stackoverflow.com/questions/38102543/when-running-nightwatch-js-test-how-can-i-get-the-name-of-browser-currently-runn
+> + [x] https://stackoverflow.com/questions/24314040/getting-started-with-nightwatch-js
+> + [ ] https://stackoverflow.com/questions/37699036/is-it-possible-to-start-a-selenium-server-inside-travis
+> + [ ] https://stackoverflow.com/questions/25919673/file-upload-testing-in-nightwatch-js
+> + [ ] https://stackoverflow.com/questions/31388280/can-i-create-reusable-test-steps-in-nightwatch-js/31393249#31393249
+> + [ ] use saucelabs with nightwatch? https://stackoverflow.com/questions/36137270/how-to-use-saucelabs-with-nightwatch
+> + [x] keypress: https://stackoverflow.com/questions/31812935/nightwatch-testing-sendkeys-and-keys-not-sending-key-clicks ... [*answer*](https://stackoverflow.com/questions/31812935/nightwatch-testing-sendkeys-and-keys-not-sending-key-clicks/37950264#37950264)
+> + [x] Run Selenium as child process: https://stackoverflow.com/questions/27408864/cant-launch-selenium-phantomjs-ghostdriver-as-child-processes
+> + [x] Current running browser: https://stackoverflow.com/questions/38102543/when-running-nightwatch-js-test-how-can-i-get-the-name-of-browser-currently-runn
 
 ## Cons (_of using Nightwatch_)
 
