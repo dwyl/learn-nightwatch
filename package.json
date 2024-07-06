@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/dwyl/learn-nightwatch#readme",
   "dependencies": {
-    "nightwatch": "^2.5.4",
+    "nightwatch": "^3.6.3",
     "saucelabs": "^4.0.2",
     "selenium-download": "^2.0.15"
   },
